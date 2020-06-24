@@ -1,18 +1,26 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <component :is="comName"></component>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-
+import index from './page/index.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    index
+  },
+  data() {
+  return{
+  comName:'index',
   }
+ },
+ methods: {  
+ }
+
 }
 </script>
 
