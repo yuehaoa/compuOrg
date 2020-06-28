@@ -1,36 +1,21 @@
 <template>
-  <div id="app">
-    <component :is="comName"></component>
+  <div>
+    <router-link to="/login"></router-link>
+    <router-link to="/index"></router-link>
+    <transition name="fade" mode="out-in" :duration="250">
+          <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import index from './page/index.vue'
 export default {
-  name: 'App',
-  components: {
-    HelloWorld,
-    index
-  },
+  name: 'app',
   data() {
-  return{
-  comName:'index',
+    return{
+      comName:'login',
+    }
   }
- },
- methods: {  
- }
-
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
