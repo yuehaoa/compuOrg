@@ -27,7 +27,7 @@
                                     </template>
                                     <MenuItem name="1-1">运算器</MenuItem>
                                     <MenuItem name="1-2">存储器</MenuItem>
-                                    <MenuItem name="1-3">系统纵向</MenuItem>
+                                    <MenuItem name="1-3">系统总线</MenuItem>
                                 </Submenu>
                                 <Submenu name="2">
                                     <template slot="title">
@@ -105,6 +105,27 @@
                             <div class="time-control-unit-text text">
                                 时序与操作台
                             </div>
+                            <div class="clk0 twoNeedle"/>
+                            <div class="clk0-text text">
+                                clk0
+                            </div>
+                            <div class="three-hundred-hz twoNeedle"/>
+                            <div class="three-hundred-hz-text text">
+                                300HZ
+                            </div>
+                            <div class="thirty-hz twoNeedle"/>
+                            <div class="thirty-hz-text text">
+                                30HZ
+                            </div>
+                            <div class="three-hz twoNeedle"/>
+                            <div class="three-hz-text text">
+                                3HZ
+                            </div>
+                            <div class="st white-btn"/>
+                            <div class="start bulb"/>
+                            <div class="start-text text">
+                                运行
+                            </div>
                         </div>
                     </div>
                     <div class="expansion-unit box">
@@ -160,6 +181,11 @@
                     </div>
                     <div class="system-bus box">
                         <div class="wrapper">
+                            <div class="system-T4-T1 fourNeedle"/>
+                            <div class="system-T4-T1-text text">
+                                T4 - T1
+                            </div>
+                            <div class="red-buble red-buble-1"/>
                             <div class="system-bus-text-1 text">
                                 控制总线
                             </div>
@@ -258,6 +284,105 @@
         })(document, window);
     </script>
 <style>
+.text{
+    position: absolute;
+    color: #fff;
+}
+.twoNeedle{
+    width:.636rem;
+    height:.35rem;
+    cursor: pointer;
+    position:absolute;
+    background: url('../assets/2针.png') no-repeat 50% 50%;
+    background-size: cover;
+}
+.fourNeedle{
+    width:.636rem;
+    height:.36rem;
+    cursor: pointer;
+    position:absolute;
+    background: url('../assets/4针.png') no-repeat 50% 50%;
+    background-size: cover;
+}
+.red-buble{
+    width:.2rem;
+    height:.28rem;
+    position:absolute;
+    background: url('../assets/red-bulbe.png') no-repeat 50% 50%;
+    background-size: cover;
+}
+.red-buble-1{
+    left:.6rem;
+    top:.8rem;
+}
+.three-hundred-hz{
+    left:2rem;
+    top:.1rem;
+}
+.three-hundred-hz-text{
+    width:.6rem;
+    height:.276rem;
+    left:2.8rem;
+    top:.15rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.st{
+    left:4.2rem;
+    top:.4rem;
+}
+.white-btn{
+    width:.8rem;
+    height:.8rem;
+    cursor:pointer;
+    position:absolute;
+    background: url('../assets/bt.png') no-repeat 50% 50%;
+    background-size: cover;
+}
+.bulb{
+    width:.25rem;
+    height:.25rem;
+    cursor:pointer;
+    position:absolute;
+    background: url('../assets/bulb.png') no-repeat 50% 50%;
+    background-size: cover;
+}
+.start{
+    left:.4rem;
+    top:1.7rem;
+}
+.start-text{
+    width:.6rem;
+    height:.276rem;
+    left:.7rem;
+    top:1.7rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.thirty-hz{
+    left:2rem;
+    top:.55rem;
+}
+.thirty-hz-text{
+    width:.6rem;
+    height:.276rem;
+    left:2.8rem;
+    top:.65rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.three-hz{
+    left:2rem;
+    top:1.05rem;
+}
+.three-hz-text{
+    width:.6rem;
+    height:.276rem;
+    left:2.8rem;
+    top:1.05rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
 .card-menu{
     width:22rem;
     height:14rem;
@@ -269,6 +394,18 @@
 .box{
     border-style: solid;
     border-color: #ffffff;
+}
+.clk0{
+    left:.65rem;
+    top:.192rem;
+}
+.clk0-text{
+    width:.48rem;
+    height:.276rem;
+    left:.8rem;
+    top:.65rem;
+    font-size: .192rem;
+    line-height: .192rem;
 }
 .power-source{
     width: 1.488rem;
@@ -534,6 +671,20 @@
     position:absolute;
     left:12.804rem;
     top:3.204rem;
+    background-color: #697a96;
+}
+.system-T4-T1{
+    left:.5rem;
+    top:.1rem;
+}
+.system-T4-T1-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:.5rem;
+    top:.5rem;
+    font-size: .192rem;
+    line-height: .192rem;
 }
 .system-bus-text-1{
     width:1.08rem;
@@ -577,12 +728,13 @@
     position:absolute;
     left:12rem;
     top:.432rem;
+    background-color: #697a96;
 }
 .time-control-unit-text{
     width:1.3rem;
     height:.4rem;
     position:absolute;
-    top:1.14rem;
+    top:1.4rem;
     left:.4rem;
     font-size: .192rem;
     line-height: .192rem;
@@ -602,10 +754,6 @@
     left:1.4rem;
     font-size: .192rem;
     line-height: .192rem;
-}
-.text{
-    position: absolute;
-    color: #fff;
 }
 .sys-unit-text{
     width:.8rem;
