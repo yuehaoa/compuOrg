@@ -1,0 +1,52 @@
+.start{
+    left:.4rem;
+    top:1.7rem;
+}
+.start-text{
+    width:.6rem;
+    height:.276rem;
+    left:.7rem;
+    top:1.7rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.thirty-hz{
+    left:2rem;
+    top:.55rem;
+}
+.thirty-hz-text{
+    width:.6rem;
+    height:.276rem;
+    left:2.8rem;
+    top:.65rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.three-hz{
+    left:2rem;
+    top:1.05rem;
+}
+.three-hz-text{
+    width:.6rem;
+    height:.276rem;
+    left:2.8rem;
+    top:1.05rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.three-hundred-hz{
+    left:2rem;
+    top:.1rem;
+}
+.three-hundred-hz-text{
+    width:.6rem;
+    height:.276rem;
+    left:2.8rem;
+    top:.15rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.st{
+    left:4.2rem;
+    top:.4rem;
+}

@@ -1,0 +1,33 @@
+.time-control-unit{
+    width: 5.196rem;
+    height:2.472rem;
+    position:absolute;
+    left:12rem;
+    top:.432rem;
+    background-color: #697a96;
+}
+.time-control-unit-text{
+    width:1.3rem;
+    height:.4rem;
+    position:absolute;
+    top:1.4rem;
+    left:.4rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.expansion-unit{
+    width:2.472rem;
+    height:2.472rem;
+    position:absolute;
+    top:.432rem;
+    left:17.19rem;
+}
+.expansion-unit-text{
+    width:1.26rem;
+    height:.36rem;
+    position:absolute;
+    top:2.15rem;
+    left:1.4rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}

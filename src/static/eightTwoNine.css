@@ -1,0 +1,58 @@
+
+.eightTwoNine{
+    width:2.25rem;
+    height:1.704rem;
+    position:absolute;
+    left:15.192rem;
+    top:4.9rem;
+}
+.eightTwoNine-text{
+    width: .54rem;
+    height: .54rem;
+    font-size: .192rem;
+    line-height: .192rem;
+    position: absolute;
+    color: #fff;
+    left: 1.6rem;
+    top: 0.68rem;
+}
+.eightTwoSeven{
+    width:2.25rem;
+    height:1.704rem;
+    position:absolute;
+    left:15.192rem;
+    top:8.328rem;
+}
+.eightTwoSeven-text{
+    width: .54rem;
+    height: .54rem;
+    font-size: .192rem;
+    line-height: .192rem;
+    position: absolute;
+    color: #fff;
+    left: 1.6rem;
+    top: 0.96rem;
+}
+.extra{
+    width:2.26rem;
+    height:1.704rem;
+    position:absolute;
+    left:17.43rem;
+    top:4.9rem;
+}
+.expand-bus{
+    width:2.25rem;
+    height:1.8rem;
+    position:absolute;
+    left:15.192rem;
+    top:6.55rem;
+}
+.expand-bus-text{
+    width:1.464rem;
+    height:.4rem;
+    left:.24rem;
+    top:1.02rem;
+    position:absolute;
+    font-size: .192rem;
+    line-height: .192rem;
+}

@@ -1,0 +1,56 @@
+.twoNeedle{
+    width:.636rem;
+    height:.35rem;
+    cursor: pointer;
+    position:absolute;
+    background: url('../assets/2针.png') no-repeat 50% 50%;
+    background-size: cover;
+}
+.fourNeedle{
+    width:.636rem;
+    height:.36rem;
+    cursor: pointer;
+    position:absolute;
+    background: url('../assets/4针.png') no-repeat 50% 50%;
+    background-size: cover;
+}
+.switch{
+    width:.5rem;
+    height:.6rem;
+    position:absolute;
+    cursor: pointer;
+    background: url('../assets/on.png') no-repeat 50% 50%;
+    background-size: cover;
+}
+.red-buble{
+    width:.2rem;
+    height:.28rem;
+    position:absolute;
+    cursor: pointer;
+    background: url('../assets/red-bulbe.png') no-repeat 50% 50%;
+    background-size: cover;
+}
+.green-buble{
+    width:.2rem;
+    height:.28rem;
+    position:absolute;
+    cursor: pointer;
+    background: url('../assets/green-buble.png') no-repeat 50% 50%;
+    background-size: cover;
+}
+.white-btn{
+    width:.8rem;
+    height:.8rem;
+    cursor:pointer;
+    position:absolute;
+    background: url('../assets/bt.png') no-repeat 50% 50%;
+    background-size: cover;
+}
+.bulb{
+    width:.25rem;
+    height:.25rem;
+    cursor:pointer;
+    position:absolute;
+    background: url('../assets/bulb.png') no-repeat 50% 50%;
+    background-size: cover;
+}
