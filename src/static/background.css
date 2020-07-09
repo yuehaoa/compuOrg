@@ -2,6 +2,9 @@
     position: absolute;
     color: #fff;
 }
+.select-background{
+    background-color: #697a96;
+}
 .card-menu{
     width:22rem;
     height:14rem;

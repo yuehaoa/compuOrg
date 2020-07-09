@@ -25,7 +25,7 @@
                                         <Icon type="ios-stats" />
                                         实验选择
                                     </template>
-                                    <MenuItem name="1-1" to="experiment1">运算器</MenuItem>
+                                    <MenuItem name="1-1">运算器</MenuItem>
                                     <MenuItem name="1-2">存储器</MenuItem>
                                     <MenuItem name="1-3">系统总线</MenuItem>
                                 </Submenu>
@@ -100,10 +100,31 @@
                             </div>
                         </div>
                     </div>
-                    <div class="time-control-unit box">
+                    <div class="time-control-unit box select-background">
                         <div class="wrapper">
                             <div class="time-control-unit-text text">
                                 时序与操作台
+                            </div>
+                            <div class="clk0 twoNeedle"/>
+                            <div class="clk0-text text">
+                                clk0
+                            </div>
+                            <div class="three-hundred-hz twoNeedle"/>
+                            <div class="three-hundred-hz-text text">
+                                300HZ
+                            </div>
+                            <div class="thirty-hz twoNeedle"/>
+                            <div class="thirty-hz-text text">
+                                30HZ
+                            </div>
+                            <div class="three-hz twoNeedle"/>
+                            <div class="three-hz-text text">
+                                3HZ
+                            </div>
+                            <div class="st white-btn"/>
+                            <div class="start bulb"/>
+                            <div class="start-text text">
+                                运行
                             </div>
                         </div>
                     </div>
@@ -131,8 +152,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="alu-reg-unit box">
+                    <div class="alu-reg-unit box select-background">
                         <div class="wrapper">
+                            <div class="red-buble alu-red-a0"/>
+                            <div class="red-buble alu-red-a1"/>
+                            <div class="red-buble alu-red-a2"/>
+                            <div class="red-buble alu-red-a3"/>
+                            <div class="green-buble alu-green-a4"/>
+                            <div class="green-buble alu-green-a5"/>
+                            <div class="green-buble alu-green-a6"/>
+                            <div class="green-buble alu-green-a7"/>
                             <div class="alu-reg-unit-text text">
                                 ALU及REG单元
                             </div>
@@ -158,8 +187,16 @@
                     <div class="system-bus-text text">
                         系统总线
                     </div>
-                    <div class="system-bus box">
+                    <div class="system-bus box select-background">
                         <div class="wrapper">
+                            <div class="system-T4-T1 fourNeedle"/>
+                            <div class="system-T4-T1-text text">
+                                T4 - T1
+                            </div>
+                            <div class="red-buble system-red-buble-1"/>
+                            <div class="red-buble system-red-buble-2"/>
+                            <div class="red-buble system-red-buble-3"/>
+                            <div class="red-buble system-red-buble-4"/>
                             <div class="system-bus-text-1 text">
                                 控制总线
                             </div>
@@ -211,10 +248,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="con-unit box">
+                    <div class="con-unit box  select-background">
                         <div class="wrapper">
                             <div class="con-unit-text text">
                                 CON单元
+                            </div>
+                            <div class="switch SD27"/>
+                            <div class="SD27-text text">
+                                SD27  K7
+                            </div>
+                            <div class="switch SD26"/>
+                            <div class="SD26-text text">
+                                26  K6
                             </div>
                         </div>
                     </div>
