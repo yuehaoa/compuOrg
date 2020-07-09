@@ -314,5 +314,5 @@
 @import '../elements/system-bus.css';
 @import '../elements/time-control.css';
 @import '../elements/alu.css';
-@import '../elements/con.css';
+@import '../elements/con2.css';
 </style>
