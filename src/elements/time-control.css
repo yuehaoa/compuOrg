@@ -1,14 +1,126 @@
 .start{
     left:.4rem;
-    top:1.7rem;
+    top:1.5rem;
 }
 .start-text{
     width:.6rem;
     height:.276rem;
     left:.7rem;
-    top:1.7rem;
+    top:1.5rem;
     font-size: .192rem;
     line-height: .192rem;
+}
+.kk1-text{
+    width:.6rem;
+    height:.276rem;
+    left:.7rem;
+    top:2.2rem;
+    font-size: .192rem;
+    line-height: .192rem;
+    font-weight: bold;
+}
+.stop{
+    left:.4rem;
+    top:1.85rem;
+}
+.stop-text{
+    width:.6rem;
+    height:.276rem;
+    left:.7rem;
+    top:1.85rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+
+.singleShot{
+    left:1.8rem;
+    top:1.35rem;
+}
+.singleShot-text{
+    width:.6rem;
+    height:.276rem;
+    left:2.1rem;
+    top:1.35rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.singleStep{
+    left:1.8rem;
+    top:1.68rem;
+}
+.singleStep-text{
+    width:.6rem;
+    height:.276rem;
+    left:2.1rem;
+    top:1.68rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.continue{
+    left:1.8rem;
+    top:1.98rem;
+}
+.continue-text{
+    width:.6rem;
+    height:.276rem;
+    left:2.1rem;
+    top:1.98rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.kk2-text{
+    width:.6rem;
+    height:.276rem;
+    left:2.1rem;
+    top:2.23rem;
+    font-size: .192rem;
+    line-height: .192rem;
+    font-weight: bold;
+}
+.program{
+    left:2.7rem;
+    top:1.35rem;
+}
+.program-text{
+    width:.6rem;
+    height:.276rem;   
+    font-size: .192rem;
+    line-height: .192rem;
+    left:3.0rem;
+    top:1.35rem;
+}
+.check{
+    left:2.7rem;
+    top:1.68rem;
+}
+.check-text{
+    width:.6rem;
+    height:.276rem;
+    left:3.0rem;
+    top:1.68rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.run{
+    left:2.7rem;
+    top:1.98rem;
+}
+.run-text{
+    width:.6rem;
+    height:.276rem;
+    left:3.0rem;
+    top:1.98rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.kk3-text{
+    width:.6rem;
+    height:.276rem;
+    left:3.0rem;
+    top:2.23rem;
+    font-size: .192rem;
+    line-height: .192rem;
+    font-weight: bold;
 }
 .thirty-hz{
     left:2rem;
@@ -17,20 +129,20 @@
 .thirty-hz-text{
     width:.6rem;
     height:.276rem;
-    left:2.8rem;
-    top:.65rem;
+    left:2.1rem;
+    top:1rem;
     font-size: .192rem;
     line-height: .192rem;
 }
 .three-hz{
-    left:2rem;
-    top:1.05rem;
+    left:2.8rem;
+    top:.55rem;
 }
 .three-hz-text{
     width:.6rem;
     height:.276rem;
-    left:2.8rem;
-    top:1.05rem;
+    left:3rem;
+    top:1rem;
     font-size: .192rem;
     line-height: .192rem;
 }
@@ -49,4 +161,21 @@
 .st{
     left:4.2rem;
     top:.4rem;
+}
+.st-text{
+    left: 4.7rem;
+    top: 1.2rem;
+}
+.tfourNeedle{
+    left: 3.8rem;
+    top: 1.65rem;
+}
+.tfourNeedle-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:3.8rem;
+    top:2.15rem;
+    font-size: .192rem;
+    line-height: .192rem;
 }
