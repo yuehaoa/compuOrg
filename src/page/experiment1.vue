@@ -121,6 +121,21 @@
                             <div class="three-hz-text text">
                                 3HZ
                             </div>
+
+                            <div class="st">
+                                <Dropdown class="white-btn stMenu" placement="right-start">
+                                    <DropdownMenu slot="list">
+                                        <DropdownItem style="width:0.8rem">T1</DropdownItem>
+                                        <DropdownItem style="width:0.8rem">T2</DropdownItem>
+                                        <DropdownItem style="width:0.8rem">T3</DropdownItem>
+                                        <DropdownItem style="width:0.8rem" @click.native="T4">T4</DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
+                            </div>
+                            <div class="st-text text">
+                                ST
+                            </div>
+                            
                             <div class="st white-btn"/>
                             <div class="st-text text">
                                 ST
@@ -198,7 +213,7 @@
                     </div>
                     <div class="alu-reg-unit box select-background">
                         <div class="wrapper">
-                            <div class="red-buble alu-red-a0"/>
+                            <div class="red-buble alu-red-a0" ref="A7"/>
                             <div class="red-buble alu-red-a1"/>
                             <div class="red-buble alu-red-a2"/>
                             <div class="red-buble alu-red-a3"/>
@@ -262,7 +277,12 @@
                             <div class="alu-reg-unit-text text">
                                 ALU及REG单元
                             </div>
-                            <!---->
+                            <div class="memA-text text">
+                                LDA:
+                            </div>
+                            <div class="memB-text text">
+                                LDB:
+                            </div>
 
                         </div>
                     </div>
@@ -418,15 +438,101 @@
                             <div class="con-unit-text text">
                                 CON单元
                             </div>
-                            <div class="switch SD27" />
+                            <div class="switch SD27" @click="changeSwitch" ref="num7"/>
                             <div class="SD27-text text">
                                 SD27  K7
                             </div>
-                            <div class="switch SD26"/>
+                            <div class="switch SD26" @click="changeSwitch" ref="num6"/>
                             <div class="SD26-text text">
                                 26  K6
                             </div>
 
+
+                            <div class="switch SD25" @click="changeSwitch" ref="num5"/>
+                            <div class="SD25-text text">
+                                25  K5
+                            </div>
+                            <div class="switch SD24" @click="changeSwitch" ref="num4"/>
+                            <div class="SD24-text text">
+                                24  K4
+                            </div>
+                            <div class="switch SD23" @click="changeSwitch" />
+                            <div class="SD23-text text">
+                                23  K3
+                            </div>
+                            <div class="switch SD22" @click="changeSwitch" />
+                            <div class="SD22-text text">
+                                22  K2
+                            </div>
+                            <div class="switch SD21" @click="changeSwitch" />
+                            <div class="SD21-text text">
+                                21  K1
+                            </div>
+                            <div class="switch SD20" @click="changeSwitch" />
+                            <div class="SD20-text text">
+                                SD20  K0
+                            </div>
+                            <div class="switch SD17" @click="changeSwitch"/>
+                            <div class="SD17-text text">
+                                SD17  ALU_B
+                            </div>
+                            <div class="switch SD16" @click="changeSwitch"/>
+                            <div class="SD16-text text">
+                                16  S3
+                            </div>
+                            <div class="switch SD15" @click="changeSwitch"/>
+                            <div class="SD15-text text">
+                                15  S2
+                            </div>
+                            <div class="switch SD14" @click="changeSwitch"/>
+                            <div class="SD14-text text">
+                                14  S1
+                            </div>
+                            <div class="switch SD13" @click="changeSwitch"/>
+                            <div class="SD13-text text">
+                                13  S0
+                            </div>
+                            <div class="switch SD12" @click="changeSwitch"/>
+                            <div class="SD12-text text">
+                                12  Cn
+                            </div>
+                            <div class="switch SD11" @click="changeSwitch" ref="lda"/>
+                            <div class="SD11-text text">
+                                11  LDA
+                            </div>
+                            <div class="switch SD10" @click="changeSwitch" ref="ldb"/>
+                            <div class="SD10-text text">
+                                SD10  LDB
+                            </div>
+                            <div class="switch SD7" @click="changeSwitch"/>
+                            <div class="SD7-text text">
+                                SD07  WR
+                            </div>
+                            <div class="switch SD6" @click="changeSwitch"/>
+                            <div class="SD6-text text">
+                                06  RD
+                            </div>
+                            <div class="switch SD5" @click="changeSwitch"/>
+                            <div class="SD5-text text">
+                                05  IOM
+                            </div>
+                            <div class="switch SD4" @click="changeSwitch"/>
+                            <div class="SD4-text text">
+                                04
+                            </div>
+                            <div class="switch SD3" @click="changeSwitch"/>
+                            <div class="SD3-text text">
+                                03
+                            </div>
+                            <div class="switch SD2" @click="changeSwitch"/>
+                            <div class="SD2-text text">
+                                02
+                            </div>
+                            <div class="switch SD1" @click="changeSwitch"/>
+                            <div class="SD1-text text">
+                                01  LDAR
+                            </div>
+                            <div class="switch SD0" @click="changeSwitch"/>
                             <div class="switch SD25"/>
                             <div class="SD25-text text">
                                 25  K5
@@ -588,14 +694,16 @@
     </row>
 </template>
 <script>
+    
     import { screenChange } from "../scripts/screen.js"
     export default {
+
         data() {
             return{
                 imageUrl: require('../assets/bulb.png'),
                 needleUrl: require('../assets/2针.png'),
                 threeHundred: require('../assets/2针.png'),
-                three:require('../assets/2针.png')
+                three:require('../assets/2针.png'),
             }
         },
         mounted() {
@@ -611,6 +719,47 @@
                e.srcElement.style.backgroundImage = 
                     e.srcElement.style.backgroundImage === "url(\""+require("../assets/2针.png")+"\")" || e.srcElement.style.backgroundImage === ""
                         ?"url(\""+require("../assets/2针-green.png")+"\")":"url(\""+require("../assets/2针.png")+"\")"
+            },
+            changeSwitch(e){
+                e.srcElement.style.backgroundImage = 
+                    e.srcElement.style.backgroundImage === "url(\""+require("../assets/on.png")+"\")" || e.srcElement.style.backgroundImage === ""
+                        ?"url(\""+require("../assets/off.png")+"\")":"url(\""+require("../assets/on.png")+"\")"
+            },
+            T4(){
+                
+                var numlist=this.$refs.num7.parentElement.children;
+                var bulbelist=this.$refs.A7.parentElement.children;
+                let j=-1;  //灯节点起始位置，0表示暂存器A，8表示暂存器B
+                if (this.$refs.lda.style.backgroundImage==="url(\""+require("../assets/off.png")+"\")"
+                    &&(this.$refs.ldb.style.backgroundImage==="url(\""+require("../assets/on.png")+"\")"||this.$refs.ldb.style.backgroundImage==="")){
+                        // lda开，ldb关，送暂存器A
+                        j=0;
+                    }
+                else if(this.$refs.ldb.style.backgroundImage==="url(\""+require("../assets/off.png")+"\")"
+                    &&(this.$refs.lda.style.backgroundImage==="url(\""+require("../assets/on.png")+"\")"||this.$refs.lda.style.backgroundImage==="")){
+                        j=8;
+                    }
+                else {
+                    alert("请先打开LDA或LDB");
+                    return;
+                }
+                for(let i=1;i<=15;i+=2,j++){
+                    if (numlist[i].style.backgroundImage==="url(\""+require("../assets/off.png")+"\")"&&i<=7){
+                        bulbelist[j].style.backgroundImage="url(\""+require("../assets/red.png")+"\")";
+                        
+                    }
+                    else if (numlist[i].style.backgroundImage==="url(\""+require("../assets/on.png")+"\")"&&i<=7){
+                        bulbelist[j].style.backgroundImage="url(\""+require("../assets/red-bulbe.png")+"\")";
+                    }    
+                    else if (numlist[i].style.backgroundImage==="url(\""+require("../assets/off.png")+"\")"&&i>7){
+                        bulbelist[j].style.backgroundImage="url(\""+require("../assets/green.png")+"\")";
+                       
+                    }
+                    else if (numlist[i].style.backgroundImage==="url(\""+require("../assets/on.png")+"\")"&&i>7){
+                        bulbelist[j].style.backgroundImage="url(\""+require("../assets/green-buble.png")+"\")";
+                       
+                    }
+                }
             }
         }
     }

@@ -1,3 +1,12 @@
+.memA-text{
+    left: 1.4rem;
+    top: 1.0rem;
+    width:.636rem;
+    height:.276rem;
+    
+    font-size: .192rem;
+    line-height: .192rem;
+}
 .alu-red-a0{
     left:1.92rem;
     top:.96rem;
@@ -30,10 +39,14 @@
     left:4.22rem;
     top:.96rem;
 }
-
-.alu-red-a8{
-    left:1.92rem;
-    top:1.36rem;
+.memB-text{
+    left: 1.4rem;
+    top: 1.4rem;
+    width:.636rem;
+    height:.276rem;
+    
+    font-size: .192rem;
+    line-height: .192rem;
 }
 .alu-red-a9{
     left:2.22rem;
