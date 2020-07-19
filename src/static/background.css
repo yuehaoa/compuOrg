@@ -13,6 +13,10 @@
     background: #244475;
     position: absolute;
 }
+.table-style{
+    top:1.26rem;
+    left:2rem;
+}
 .box{
     border-style: solid;
     border-color: #ffffff;
@@ -29,6 +33,13 @@
 }
 .tree{
     width:3rem;
+    height:18rem;
+    top:1.06rem;
+    position:absolute;
+    background-color:#fff;
+}
+.tree2{
+    width:4.5rem;
     height:18rem;
     top:1.06rem;
     position:absolute;

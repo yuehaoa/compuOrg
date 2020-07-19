@@ -9,10 +9,11 @@
     width:1.3rem;
     height:.4rem;
     position:absolute;
-    top:1.4rem;
+    top:1.2rem;
     left:.4rem;
     font-size: .192rem;
     line-height: .192rem;
+    font-weight: bold;
 }
 .expansion-unit{
     width:2.472rem;

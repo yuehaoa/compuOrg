@@ -13,15 +13,17 @@
     top:1.3rem;
     font-size: .192rem;
     line-height: .192rem;
+    font-weight:bold;
 }
 .system-bus-text-2{
     width:1.08rem;
     height:.42rem;
     position:absolute;
     left:.216rem;
-    top:3.66rem;
+    top:3.3rem;
     font-size: .192rem;
     line-height: .192rem;
+    font-weight:bold;
 }
 .system-bus-text-3{
     width:1.08rem;
@@ -31,6 +33,7 @@
     top:4.92rem;
     font-size: .192rem;
     line-height: .192rem;
+    font-weight:bold;
 }
 .system-bus-text{
     width:9.24rem;
