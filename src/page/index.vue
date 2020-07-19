@@ -75,18 +75,39 @@
                     </div>
                 </Sider>
             </div>
-            <div class="tree2" v-if="!menuShow">
-                <card>
+            <div v-if="!menuShow">
+                <card class="tree2">
                     <Button type="primary" @click="menuShow = !menuShow">退出</Button>
                     <Button type="success" style="float:right">校验</Button>
-                    <Table :columns = "tableCol" :data ="tableData" style="margin-top:10px;"></Table>
+                    <Table highlight-row stripe :columns = "tableCol" :data ="tableData" style="margin-top:.2rem;" @on-current-change="showLine"></Table>
+                    <div style="margin-top:.2rem">
+                        <Button type="error" style="float:right" @click="remove()">删除</Button>
+                    </div>
                 </card>
             </div>
         </i-col>
         <i-col span="19">
-            <card class="card-menu">
-                <div class="wrapper">
-                    <div class="power-source box">
+            <div class="svg-style" id="svg-container">
+                <div class="time-control-unit box">
+                        <div class="wrapper">
+                            <div class="time-control-unit-text text">
+                                时序与操作台
+                            </div>
+                            <div class="three-hundred-hz twoNeedle" @click="buttonClick('300HZ')" id="300HZ"/>
+                            <div class="three-hundred-hz-text text">
+                                300HZ
+                            </div>
+                            <div class="thirty-hz twoNeedle" @click="buttonClick('30HZ')" id="30HZ"/>
+                            <div class="thirty-hz-text text">
+                                30HZ
+                            </div>
+                            <div class="three-hz twoNeedle" @click="buttonClick('3HZ')" id="3HZ"/>
+                            <div class="three-hz-text text">
+                                3HZ
+                            </div>
+                        </div>
+                </div>
+                <div class="power-source box">
                         <div class="wrapper">
                             <div class="power-source-text text">
                                 电源
@@ -107,16 +128,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="time-control-unit box">
-                        <div class="wrapper">
-                            <div class="time-control-unit-text text">
-                                时序与操作台
-                            </div>
-                            <div class="start-text text">
-                                运行
-                            </div>
-                        </div>
-                    </div>
                     <div class="expansion-unit box">
                         <div class="wrapper">
                             <div class="expansion-unit-text text">
@@ -124,6 +135,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="cpu-text text">
                         CPU
                     </div>
@@ -145,6 +157,10 @@
                         <div class="wrapper">
                             <div class="alu-reg-unit-text text">
                                 ALU及REG单元
+                            </div>
+                            <div class="alu-eightNeedle-d0d7 eightNeedle" @click="buttonClick('D7-D0')" id="D7-D0"/>
+                            <div class="text alu-eightNeedle-d0d7-text">
+                                D7——D0
                             </div>
                         </div>
                     </div>
@@ -235,6 +251,10 @@
                             </div>
                         </div>
                     </div>
+            </div>
+            <card class="card-menu">
+                <div class="wrapper">
+                    
                 </div>
             </card>
         </i-col>
@@ -242,6 +262,7 @@
 </template>
 <script>
     import { screenChange } from "../scripts/screen.js"
+    import { SVG } from '@svgdotjs/svg.js'
     export default {
         mounted() {
             screenChange(document,window);
@@ -250,7 +271,17 @@
             return {
                 imageUrl: require('../assets/bulb.png'),
                 menuShow: true,
+                count: 0,
+                x1:0,
+                x2:0,
+                y1:0,
+                y2:0,
                 tableCol:[
+                    {
+                        type: 'index',
+                        width: 60,
+                        align: 'center'
+                    },
                     {
                         title: '已连接A',
                         key: 'A'
@@ -261,7 +292,8 @@
                     }
                 ],
                 tableData:[
-                ]
+                ],
+                temp:[]
             }
         },
         methods: {
@@ -274,8 +306,45 @@
                 }
             },
             buttonClick(name) {
-                let x = {A: name}
-                this.tableData.push(x);
+                if(this.count%2==0) {
+                    let x = {A: name, B: ""}
+                    this.tableData.push(x);
+                }
+                else {
+                   var y = Math.floor(this.count/2)
+                    this.tableData[y].B = name;
+                }
+                this.count++;
+            },
+            remove() {
+                this.tableData.pop();
+                this.count = this.count-2;
+            },
+            showLine(currentRow) {
+                if(this.temp.length!=0) {
+                    var draw2 = this.temp.pop();
+                    draw2.remove();
+                }
+                var draw = SVG().addTo('#svg-container').size('100%', '100%')
+                let A   = currentRow.A;
+                let B = currentRow.B;
+                var x1 = document.getElementById(A).getBoundingClientRect().left;
+                let x = document.getElementById("svg-container").getBoundingClientRect().left;
+                let y = document.getElementById("svg-container").getBoundingClientRect().top;
+                var y1 = document.getElementById(A).getBoundingClientRect().top;
+                var x2 = document.getElementById(B).getBoundingClientRect().left;
+                var y2 = document.getElementById(B).getBoundingClientRect().top;
+                let fx1 = x1-x;
+                let fy1 = y1-y;
+                let fx2 = x2-x;
+                let fy2 = y2-y;
+                var line = draw.line(fx1,fy1+10,fx2,fy2+10).stroke({ width: 1, color: "#fff" })
+                var line2 = draw.line(fx1,fy1+10,fx1+10,fy1+10).stroke({ width: 1, color: "#fff" })
+                var line3 = draw.line(fx2,fy2+10,fx2+10,fy2+10).stroke({ width: 1, color: "#fff" })
+                this.temp.push(draw)
+                console.log(line);
+                console.log(line2);
+                console.log(line3);
             }
         }
     }
@@ -293,4 +362,13 @@
 @import '../elements/time-control.css';
 @import '../elements/alu.css';
 @import '../elements/con2.css';
+.svg-style{
+    position:absolute;
+    background:transparent;
+    width:22rem;
+    height:14rem;
+    left:4.8rem;
+    top:1.26rem;
+    z-index: 1;
+}
 </style>

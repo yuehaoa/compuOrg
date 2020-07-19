@@ -121,6 +121,7 @@
                             <div class="three-hz-text text">
                                 3HZ
                             </div>
+
                             <div class="st">
                                 <Dropdown class="white-btn stMenu" placement="right-start">
                                     <DropdownMenu slot="list">
@@ -135,6 +136,10 @@
                                 ST
                             </div>
                             
+                            <div class="st white-btn"/>
+                            <div class="st-text text">
+                                ST
+                            </div>
                             <div class="start bulb" @click="changeImage"/>
                             <div class="start-text text">
                                 运行
@@ -278,7 +283,6 @@
                             <div class="memB-text text">
                                 LDB:
                             </div>
-                            <!---->
 
                         </div>
                     </div>
@@ -443,6 +447,7 @@
                                 26  K6
                             </div>
 
+
                             <div class="switch SD25" @click="changeSwitch" ref="num5"/>
                             <div class="SD25-text text">
                                 25  K5
@@ -528,6 +533,91 @@
                                 01  LDAR
                             </div>
                             <div class="switch SD0" @click="changeSwitch"/>
+                            <div class="switch SD25"/>
+                            <div class="SD25-text text">
+                                25  K5
+                            </div>
+                            <div class="switch SD24"/>
+                            <div class="SD24-text text">
+                                24  K4
+                            </div>
+                            <div class="switch SD23"/>
+                            <div class="SD23-text text">
+                                23  K3
+                            </div>
+                            <div class="switch SD22"/>
+                            <div class="SD22-text text">
+                                22  K2
+                            </div>
+                            <div class="switch SD21"/>
+                            <div class="SD21-text text">
+                                21  K1
+                            </div>
+                            <div class="switch SD20"/>
+                            <div class="SD20-text text">
+                                SD20  K0
+                            </div>
+                            <div class="switch SD17"/>
+                            <div class="SD17-text text">
+                                SD17  ALU_B
+                            </div>
+                            <div class="switch SD16"/>
+                            <div class="SD16-text text">
+                                16  S3
+                            </div>
+                            <div class="switch SD15"/>
+                            <div class="SD15-text text">
+                                15  S2
+                            </div>
+                            <div class="switch SD14"/>
+                            <div class="SD14-text text">
+                                14  S1
+                            </div>
+                            <div class="switch SD13"/>
+                            <div class="SD13-text text">
+                                13  S0
+                            </div>
+                            <div class="switch SD12"/>
+                            <div class="SD12-text text">
+                                12  Cn
+                            </div>
+                            <div class="switch SD11"/>
+                            <div class="SD11-text text">
+                                11  LDA
+                            </div>
+                            <div class="switch SD10"/>
+                            <div class="SD10-text text">
+                                SD10  LDB
+                            </div>
+                            <div class="switch SD7"/>
+                            <div class="SD7-text text">
+                                SD07  WR
+                            </div>
+                            <div class="switch SD6"/>
+                            <div class="SD6-text text">
+                                06  RD
+                            </div>
+                            <div class="switch SD5"/>
+                            <div class="SD5-text text">
+                                05  IOM
+                            </div>
+                            <div class="switch SD4"/>
+                            <div class="SD4-text text">
+                                04
+                            </div>
+                            <div class="switch SD3"/>
+                            <div class="SD3-text text">
+                                03
+                            </div>
+                            <div class="switch SD2"/>
+                            <div class="SD2-text text">
+                                02
+                            </div>
+                            <div class="switch SD1"/>
+                            <div class="SD1-text text">
+                                01  LDAR
+                            </div>
+                            <div class="switch SD0"/>
                             <div class="SD0-text text">
                                 SD00 LOR
                             </div>
@@ -607,23 +697,20 @@
     
     import { screenChange } from "../scripts/screen.js"
     export default {
-    
+
         data() {
             return{
                 imageUrl: require('../assets/bulb.png'),
                 needleUrl: require('../assets/2针.png'),
                 threeHundred: require('../assets/2针.png'),
                 three:require('../assets/2针.png'),
-               
             }
         },
         mounted() {
             screenChange(document,window);
         },
         methods: {
-            
             changeImage(e) {
-                
                 e.srcElement.style.backgroundImage 
                     = e.srcElement.style.backgroundImage === "url(\""+require("../assets/bulb.png")+"\")" || e.srcElement.style.backgroundImage === ""
                         ?"url(\""+require("../assets/bulb-green.png")+"\")":"url(\""+require("../assets/bulb.png")+"\")"
