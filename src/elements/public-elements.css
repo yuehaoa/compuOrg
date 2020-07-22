@@ -27,7 +27,7 @@
     height:.6rem;
     position:absolute;
     cursor: pointer;
-    background: url('../assets/on.png') no-repeat 50% 50%;
+    background: url('../assets/off.png') no-repeat 50% 50%;
     background-size: cover;
 }
 .red-buble{

@@ -23,21 +23,53 @@
     left:2.82rem;
     top:.96rem;
 }
-.alu-green-a4{
-    left:3.32rem;
+.alu-red-a4{
+    left:3.22rem;
     top:.96rem;
+}
+.alu-red-a5{
+    left:3.52rem;
+    top:.96rem;  
+}
+.alu-red-a6{
+    left:3.82rem;
+    top:.96rem;
+}
+.alu-red-a7{
+    left:4.12rem;
+    top:.96rem;
+}
+.alu-green-a0{
+    left:1.92rem;
+    top:1.36rem;   
+}
+.alu-green-a1{
+    left:2.22rem;
+    top:1.36rem;
+}
+.alu-green-a2{
+    left:2.52rem;
+    top:1.36rem;
+}
+.alu-green-a3{
+    left:2.82rem;
+    top:1.36rem;
+}
+.alu-green-a4{
+    left:3.22rem;
+    top:1.36rem;
 }
 .alu-green-a5{
-    left:3.62rem;
-    top:.96rem;
+    left:3.52rem;
+    top:1.36rem;
 }
 .alu-green-a6{
-    left:3.92rem;
-    top:.96rem;
+    left:3.82rem;
+    top:1.36rem;
 }
 .alu-green-a7{
-    left:4.22rem;
-    top:.96rem;
+    left:4.12rem;
+    top:1.36rem;
 }
 .memB-text{
     left: 1.4rem;
@@ -47,34 +79,6 @@
     
     font-size: .192rem;
     line-height: .192rem;
-}
-.alu-red-a9{
-    left:2.22rem;
-    top:1.36rem;
-}
-.alu-red-a10{
-    left:2.52rem;
-    top:1.36rem;
-}
-.alu-red-a11{
-    left:2.82rem;
-    top:1.36rem;
-}
-.alu-green-a12{
-    left:3.32rem;
-    top:1.36rem;
-}
-.alu-green-a13{
-    left:3.62rem;
-    top:1.36rem;
-}
-.alu-green-a14{
-    left:3.92rem;
-    top:1.36rem;
-}
-.alu-green-a15{
-    left:4.22rem;
-    top:1.36rem;
 }
 .alu-twoNeedle-rob{
 
