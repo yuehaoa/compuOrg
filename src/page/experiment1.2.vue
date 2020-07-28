@@ -70,7 +70,7 @@
                 <card class="tree2">
                     <Button type="primary" @click="backWords()">退出</Button>
                     <Button type="success" style="float:right">校验</Button>
-                    <Table highlight-row stripe :columns = "tableCol" :data ="tableData" style="margin-top:.2rem;" @on-current-change="showLine" ></Table>
+                    <Table highlight-row stripe :columns = "tableCol" :data ="tableData" style="margin-top:.2rem;" @on-current-change="showLight" ></Table>
                     <div style="margin-top:.2rem">
                         <Button type="error" style="float:right" @click="remove()">删除</Button>
                     </div>
@@ -240,7 +240,7 @@
                             <div class="alu-eightNeedle-in-text text">
                                 IN7—IN0
                             </div>
-                            <div class="alu-fourNeedle-fzfc fourNeedle"/>
+                            <div class="alu-fourNeedle-fzfc fourNeedle" @click="buttonClick('aluFZ-FC')" id="aluFZ-FC"/>
                             <div class="text alu-fourNeedle-fzfc-text">
                                 FZ-FC
                             </div>
@@ -248,7 +248,7 @@
                             <div class="text alu-fourNeedle-s3s0-text">
                                 S3-S0
                             </div>
-                            <div class="alu-twoNeedle-cn twoNeedle"/>
+                            <div class="alu-twoNeedle-cn twoNeedle" @click="buttonClick('aluCn')" id="aluCn"/>
                             <div class="text alu-twoNeedle-cn-text">
                                 Cn
                             </div>
@@ -609,7 +609,6 @@
     </row>
 </template>
 <script>
-    import { SVG } from '@svgdotjs/svg.js'
     import { screenChange } from "../scripts/screen.js"
     export default {
 
@@ -638,7 +637,28 @@
                 ],
                 tableData:[
                 ],
-                temp:[]
+                temp:[],
+                classNameOfGreen:{
+                    'twoNeedle':"url(\""+require("../assets/2针-green.png")+"\")",
+                    'fourNeedle':"url(\""+require("../assets/4针-green.png")+"\")",
+                    'eightNeedle':"url(\""+require("../assets/8针.png")+"\")",
+                    'eightNeedle2':"url(\""+require("../assets/8_2针.png")+"\")",
+                    },
+                classNameOfGrey:{
+                    'twoNeedle':"url(\""+require("../assets/2针.png")+"\")",
+                    'fourNeedle':"url(\""+require("../assets/4针.png")+"\")",
+                    'eightNeedle':"url(\""+require("../assets/8针.png")+"\")",
+                    'eightNeedle2':"url(\""+require("../assets/8_2针.png")+"\")",
+                },
+                oldRowData:{
+                    A:null,
+                    B:null
+                },
+                currentRow:null,
+                picFlickerIndex:0,
+                picFlicker_A:[],
+                picFlicker_B:[],
+                timer:null
             }
         },
         mounted() {
@@ -667,7 +687,7 @@
                 let off = "url(\""+require("../assets/off.png")+"\")";
                 let on = "url(\""+require("../assets/on.png")+"\")";
                 e.srcElement.style.backgroundImage = 
-                    e.srcElement.style.backgroundImage === off || e.srcElement.style.backgroundImage === "" ? on : off;
+                e.srcElement.style.backgroundImage === off || e.srcElement.style.backgroundImage === "" ? on : off;
             },
             t4Option(){               
                 var numlist=this.$refs.num7.parentElement.children;
@@ -729,38 +749,71 @@
                 this.tableData.pop();
                 this.count = this.count-2;
             },
-            showLine(currentRow) {
-                /*每次清除上一次的连线 */
-                if(this.temp.length!=0) {
-                    var draw2 = this.temp.pop();
-                    draw2.remove();
+            showLight(currentRow){
+                /*每次清除上一次亮灯*/ 
+                this.currentRow=currentRow;
+                this.picFlickerIndex=0;
+                if(this.timer!=null){
+                    clearInterval(this.timer);
                 }
-                /*将svg画板加入到div中 */
-                var draw = SVG().addTo('#svg-container').size('100%', '100%')
-                /*获取当前的连线针脚A,B */
-                let A   = currentRow.A;
-                let B = currentRow.B;
-                /*获取 svg-container相对窗口左上角的位置 */
-                let x = document.getElementById("svg-container").getBoundingClientRect().left;
-                let y = document.getElementById("svg-container").getBoundingClientRect().top;
-                /*获取A相对窗口左上角位置 */
-                var x1 = document.getElementById(A).getBoundingClientRect().left;
-                var y1 = document.getElementById(A).getBoundingClientRect().top;
-                /*获取B相对窗口左上角位置 */
-                var x2 = document.getElementById(B).getBoundingClientRect().left;
-                var y2 = document.getElementById(B).getBoundingClientRect().top;
-                /*获得A,B相对 svg-container的位置 */
-                let fx1 = x1-x;
-                let fy1 = y1-y;
-                let fx2 = x2-x;
-                let fy2 = y2-y;
-                var line = draw.line(fx1,fy1+10,fx2,fy2+10).stroke({ width: 1, color: "#fff" })
-                var line2 = draw.line(fx1,fy1+10,fx1+10,fy1+10).stroke({ width: 1, color: "#fff" })
-                var line3 = draw.line(fx2,fy2+10,fx2+10,fy2+10).stroke({ width: 1, color: "#fff" })
-                this.temp.push(draw)
-                console.log(line);
-                console.log(line2);
-                console.log(line3);
+                if(this.oldRowData.A!=null && this.oldRowData.B!=null){
+                    let old_classNameArr_A=document.getElementById(this.oldRowData.A).className.split(" ");
+                    let old_classNameArr_B=document.getElementById(this.oldRowData.B).className.split(" ");
+                     for(let i=0;i<old_classNameArr_A.length;++i){
+                        for(let key in this.classNameOfGrey){
+                            if(old_classNameArr_A[i]===key){
+                                /*清除列A的上一次绿灯状态*/ 
+                                document.getElementById(this.oldRowData.A).style.backgroundImage=this.classNameOfGrey[key];
+                                this.picFlicker_A.splice(0,this.picFlicker_A.length);
+                            }
+                        }
+                    }
+                    for(let i=0;i<old_classNameArr_B.length;++i){
+                        for(let key in this.classNameOfGrey){
+                            if(old_classNameArr_B[i]===key){
+                                /*清除列B的上一次绿灯状态*/
+                                document.getElementById(this.oldRowData.B).style.backgroundImage=this.classNameOfGrey[key];
+                                this.picFlicker_B.splice(0,this.picFlicker_B.length);
+                            }
+                        }
+                    }
+                }
+                /*记录当前列A、B的所有类名*/
+                var classNameArr_A=document.getElementById(currentRow.A).className.split(" ");
+                var classNameArr_B=document.getElementById(currentRow.B).className.split(" ");
+                /*通过类名匹配到该部件的相应的绿色状态图片*/                        
+                for(let i=0;i<classNameArr_A.length;++i){
+                    for(let key in this.classNameOfGreen){
+                        if(classNameArr_A[i]===key){
+                            document.getElementById(currentRow.A).style.backgroundImage=this.classNameOfGreen[key];
+                            this.picFlicker_A.push(this.classNameOfGrey[key]);
+                            this.picFlicker_A.push(this.classNameOfGreen[key]);
+                        }
+                    }
+                }
+                for(let i=0;i<classNameArr_B.length;++i){
+                    for(let key in this.classNameOfGreen){
+                        if(classNameArr_B[i]===key){
+                            document.getElementById(currentRow.B).style.backgroundImage=this.classNameOfGreen[key];
+                            this.picFlicker_B.push(this.classNameOfGrey[key]);
+                            this.picFlicker_B.push(this.classNameOfGreen[key]);
+                        }
+                    }
+                }
+                /*记录当前列信息 */
+                this.oldRowData.A=currentRow.A;
+                this.oldRowData.B=currentRow.B;
+                /*设置定时器，每0.5秒切换一次图片 */
+                this.timer=setInterval(this.lightFlicker,500);
+            },
+            lightFlicker(){
+                document.getElementById(this.currentRow.A).style.backgroundImage=this.picFlicker_A[this.picFlickerIndex%2];
+                document.getElementById(this.currentRow.B).style.backgroundImage=this.picFlicker_B[this.picFlickerIndex%2];
+                ++this.picFlickerIndex;
+                /*当图片切换4次后删除定时器，不再切换图片 */
+                if(this.picFlickerIndex>=4){
+                    clearInterval(this.timer);
+                }
             }
         }
     }
