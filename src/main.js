@@ -22,6 +22,10 @@ const routes = [
   {
     path: "/experiment1",
     component: () => import("./page/experiment1.vue")
+  },
+  {
+    path: "/experiment1.2",
+    component: () => import("./page/experiment1.2.vue")
   }
 ]
 const router = new VueRouter({
