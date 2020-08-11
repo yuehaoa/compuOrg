@@ -69,11 +69,21 @@
             <div v-if="!menuShow">
                 <card class="tree2">
                     <Button type="primary" @click="backWords()">退出</Button>
-                    <Button type="success" style="float:right">校验</Button>
+
+                    <Button type="success" style="float:right" @click="lineCheck()">校验</Button>
+
+         
+
                     <Table highlight-row stripe :columns = "tableCol" :data ="tableData" style="margin-top:.2rem;" @on-current-change="showLine" ></Table>
                     <div style="margin-top:.2rem">
                         <Button type="error" style="float:right" @click="remove()">删除</Button>
                     </div>
+
+                    <div style="margin-buttom:.2rem">
+                        <Button type="success" style="float:left" @click="startExeperiment()">开始</Button>
+                    </div>
+
+
                 </card>
             </div>
         </i-col>
@@ -179,7 +189,10 @@
                             <div class="text kk3-text">
                                 kk3
                             </div>
-                            <div class="tfourNeedle fourNeedle"></div>
+
+                            <div class="tfourNeedle fourNeedle" @click="buttonClick('time-con-T4-T1')" id="time-con-T4-T1"></div>
+
+             
                             <div class="tfourNeedle-text text">
                                 T4—T1
                             </div>
@@ -191,6 +204,59 @@
                                 扩展单元
                             </div>
                         </div>
+                    </div>
+                    <!--结果列表栏-->
+                    <div class="box result-unit" v-if="start">
+                        <div class="wrapper">
+                            <div class="text result-unit-text">
+                                --结果列表栏--
+                            </div>
+                            <div>
+                                <br>
+                                <br>
+                                <span class="result">
+                                    F: {{F.toString()}}
+                                </span>
+                                <br>
+                                <br>
+                                <span v-for="(value,index) in S3_0_Flag" v-bind:key="index" class="result">
+                                    S{{3-index}}: {{value}}
+                                    <br>
+                                    <br>
+                                </span>
+                                <span class="result">
+                                    ALU_B: {{alu_b}}
+                                </span>
+                                <br>
+                                <br>
+                                <span class="result">
+                                    LDA: {{lda}}
+                                </span>
+                                <br>
+                                <br>
+                                <span class="result">
+                                    LDB: {{ldb}}
+                                </span>
+                                <br>
+                                <br>
+                                <span class="result">
+                                    Cn: {{conCn}}
+                                </span>
+                                <br>
+                                <br>
+                                <span class="result">
+                                    FZ: {{FZ}}
+                                </span>
+                                <br>
+                                <br>
+                                <span class="result">
+                                    FC: {{FC}}
+                                </span>
+
+                                
+                            </div>
+                        </div>
+                        
                     </div>
                     <div class="cpu-text text">
                         CPU
@@ -248,7 +314,10 @@
                             <div class="text alu-fourNeedle-s3s0-text">
                                 S3-S0
                             </div>
-                            <div class="alu-twoNeedle-cn twoNeedle"/>
+
+                            <div class="alu-twoNeedle-cn twoNeedle" @click="buttonClick('aluCn')" id="aluCn"/>
+
+
                             <div class="text alu-twoNeedle-cn-text">
                                 Cn
                             </div>
@@ -315,7 +384,7 @@
                     </div>
                     <div class="system-bus box select-background">
                         <div class="wrapper">
-                            <div class="system-T4-T1 fourNeedle"/>
+                            <div class="system-T4-T1 fourNeedle"  @click=" buttonClick('con-bus-T4-T1')" id="con-bus-T4-T1"/>
                             <div class="system-T4-T1-text text">
                                 T4 - T1
                             </div>
@@ -365,20 +434,24 @@
                                 XA0
                             </div>
 
-                            <div class="red-buble system-red-buble-a7"/>
-                            <div class="red-buble system-red-buble-a6"/>
-                            <div class="red-buble system-red-buble-a5"/>
-                            <div class="red-buble system-red-buble-a4"/>
+                            <!----->
+                            <div class="red-buble system-red-buble-a7" name="buble_F"/>
+                            <div class="red-buble system-red-buble-a6" name="buble_F"/>
+                            <div class="red-buble system-red-buble-a5" name="buble_F"/>
+                            <div class="red-buble system-red-buble-a4" name="buble_F"/>
                             <div class="text system-red-buble-text">
                                 A7--------A4
                             </div>
-                            <div class="green-buble system-green-buble-a3"/>
-                            <div class="green-buble system-green-buble-a2"/>
-                            <div class="green-buble system-green-buble-a1"/>
-                            <div class="green-buble system-green-buble-a0"/>
+                            <div class="green-buble system-green-buble-a3" name="buble_F"/>
+                            <div class="green-buble system-green-buble-a2" name="buble_F"/>
+                            <div class="green-buble system-green-buble-a1" name="buble_F"/>
+                            <div class="green-buble system-green-buble-a0" name="buble_F"/>
                             <div class="text system-green-buble-text">
                                 A3--------A0
                             </div>
+                            <!---->
+
+
 
                             <div class="system-bus-text-1 text">
                                 控制总线
@@ -443,6 +516,7 @@
                             <div class="switch SD21" @click="changeSwitch" />
                             <div class="SD21-text text">
                                 21  K1
+
                             </div>
                             <div class="switch SD22" @click="changeSwitch" />
                             <div class="SD22-text text">
@@ -460,6 +534,8 @@
                             <div class="SD25-text text">
                                 25  K5
                             </div>
+
+
                             <div class="switch SD26" @click="changeSwitch"/>
                             <div class="SD26-text text">
                                 26  K6
@@ -468,27 +544,29 @@
                             <div class="SD27-text text">
                                 SD27  K7
                             </div>
-                            <div class="switch SD17" @click="changeSwitch"/>
+
+                            <div class="switch SD17" @click="changeSwitch" id="ALU_B"/>
                             <div class="SD17-text text">
                                 SD17  ALU_B
                             </div>
-                            <div class="switch SD16" @click="changeSwitch"/>
+                            <div class="switch SD16" @click="changeSwitch" name="SD03-00"/>
                             <div class="SD16-text text">
                                 16  S3
                             </div>
-                            <div class="switch SD15" @click="changeSwitch"/>
+                            <div class="switch SD15" @click="changeSwitch" name="SD03-00"/>
                             <div class="SD15-text text">
                                 15  S2
                             </div>
-                            <div class="switch SD14" @click="changeSwitch"/>
+                            <div class="switch SD14" @click="changeSwitch" name="SD03-00"/>
                             <div class="SD14-text text">
                                 14  S1
                             </div>
-                            <div class="switch SD13" @click="changeSwitch"/>
+                            <div class="switch SD13" @click="changeSwitch" name="SD03-00"/>
                             <div class="SD13-text text">
                                 13  S0
                             </div>
-                            <div class="switch SD12" @click="changeSwitch"/>
+                            <div class="switch SD12" @click="changeSwitch" id="conCn"/>
+              
                             <div class="SD12-text text">
                                 12  Cn
                             </div>
@@ -561,7 +639,9 @@
                             <div class="fourNeedle-s3s0-text text">
                                 S3-S0
                             </div>
+
                             <div class="twoNeedle-cn twoNeedle" @click="buttonClick('conCn')" id="conCn"/>
+
                             <div class="twoNeedle-cn-text text">
                                 Cn
                             </div>
@@ -621,6 +701,7 @@
                 x2:0,
                 y1:0,
                 y2:0,
+
                 tableCol:[
                     {
                         type: 'index',
@@ -638,7 +719,22 @@
                 ],
                 tableData:[
                 ],
-                temp:[]
+
+                temp:[],
+                FZ:0,
+                FC:0,
+                lineRight: false,  //布线检查，true表示布线正确
+                start:false,      //true表示开始试验
+                lda:0,
+                ldb:0,
+                conCn:0,
+                alu_b:0,
+                S3_0_Flag:[0,0,0,0], //运算指令
+                memA:[0,0,0,0,0,0,0,0],  //暂存器A
+                memB:[0,0,0,0,0,0,0,0],  //暂存器B
+                F:[0,0,0,0,0,0,0,0]
+
+             
             }
         },
         mounted() {
@@ -669,7 +765,9 @@
                 e.srcElement.style.backgroundImage = 
                     e.srcElement.style.backgroundImage === off || e.srcElement.style.backgroundImage === "" ? on : off;
             },
+
             t4Option(){               
+
                 var numlist=this.$refs.num7.parentElement.children;
                 var bulbelist=this.$refs.A7.parentElement.children;
                 let switchOn = "url(\""+require("../assets/on.png")+"\")";
@@ -697,21 +795,32 @@
                     return;
                 }
                 if(isLda){
+
+                    this.lda=1;
+                    this.ldb=0;
                     switchArr.forEach((v,index)=>{
                         if(v.style.backgroundImage === switchOn) {
                             ldaBuble[index].style.backgroundImage = redLight;
+                            this.memA[index]=1;
                         } else{
                             ldaBuble[index].style.backgroundImage = redOff;
+                            this.memA[index]=0;
                         }
                     })
+                    console.log("A: "+this.memA);
                 } else{
+                    this.lda=0;
+                    this.ldb=1;
                     switchArr.forEach((v,index)=>{
                         if(v.style.backgroundImage === switchOn) {
                             ldbBuble[index].style.backgroundImage = greenLight;
+                            this.memB[index]=1;
                         } else{
                             ldbBuble[index].style.backgroundImage = greenOff;
+                            this.memB[index]=0;
                         }
                     })
+                    console.log("B: "+this.memB);
                 }
             },
             buttonClick(name) {
@@ -725,6 +834,323 @@
                 }
                 this.count++;
             },
+
+            /*布线检查函数 */
+            lineCheck(){
+                if (this.tableData.length>9)
+                {
+                    alert("布线多余，请重新布线");
+                    return;
+                }
+                if (this.tableData.length<9)
+                {
+                    alert("布线不足，请重新布线");
+                    return;
+                }
+                 let lineNum=0; 
+                 /*实验一连线情况*/
+                 var lineList=[
+                     "aluALU_BconALU_B",
+                     "aluS3-S0conS3-S0",
+                     "aluCnconCn",
+                     "conLDA-LDBaluLDA-LDB",
+                     "SD27-SD20aluIN7-IN0",
+                     "cpuD7-D0-1outD7-D0",
+                     "cpuD7-D0-1aluD7-D0",    
+                     "clk030HZ",
+                     "time-con-T4-T1con-bus-T4-T1"
+                 ]
+                 this.tableData.forEach((element)=>{
+                     /*检查布线表中连线是否正确*/
+                    
+                    lineList.forEach((v)=>{
+                        if ((element.A+element.B)===v||v===(element.B+element.A)){
+                            lineNum++;
+                        }  
+                    })
+                    console.log(element.A+element.B+" "+lineNum);
+                 })
+                 /*布线数正确 */
+                 if (lineNum===9){
+                     alert("布线正确!");
+                     this.lineRight=true;
+                 }
+                 else{
+                     alert("布线错误！请检查布线");
+                 }
+            },
+            /**逻辑运算 */
+            _0000_X(){
+                //F=A
+                this.memA.forEach((v,index)=>{
+                    this.F[index]=v;
+                })
+            },
+            _0001_X(){
+                //F=B
+                 this.memB.forEach((v,index)=>{
+                    this.F[index]=v;
+                })
+            },
+            _0010_X(){
+                //F=AB
+                 this.memA.forEach((v,index)=>{
+                        this.F[index]= this.memB[index] && v;
+                    })
+                    this.FZ= this.F[0]===0?1:0;
+            },
+            _0011_X(){
+                //F=A+B
+                 this.memA.forEach((v,index)=>{
+                        this.F[index]= this.memB[index] || v;
+                    })
+                    this.FZ= this.F[0]===0?1:0;
+            },
+            _0100_X(){
+                //F=/A
+                this.memA.forEach((v,index)=>{
+                        this.F[index]= !v;
+                    })
+                this.FZ= this.F[0]===0?1:0;
+            },
+            /**移位运算 */
+            _0101_X(){
+                //F=A 不带进位循环右移 B（取低 3 位）位
+                let count=this.memB[7]+this.memB[6]*2+this.memB[5]*4;
+                this.F.forEach((v,index)=>{
+                    v=this.memA[(index-count+8)%8];
+                })
+                this.FZ= this.F[0]===0?1:0;
+            },
+            _0110_0(){
+                //F=A 逻辑右移一位
+                this.F.forEach((v,index)=>{
+                    if (index===0){
+                        v=0;
+                    }
+                    else{
+                        v=this.memA[index-1];
+                    }
+                })
+                this.FZ= this.F[0]===0?1:0;
+            },
+            _0110_1(){
+                //F=A 带进位循环右移一位
+                this.F.forEach((v,index)=>{
+                    if (index===0){
+                        v=this.FC;
+                        this.FC=this.memA[7];
+                    }
+                    else{
+                        v=this.memA[index-1];
+                    }
+                })
+                this.FZ= this.F[0]===0?1:0;
+            },
+            _0111_0(){
+                //F=A 逻辑左移一位
+                this.F.forEach((v,index)=>{
+                    if (index===7){
+                        v=0;
+                    }
+                    else{
+                        v=this.memA[index+1];
+                    }
+                })
+                this.FZ= this.F[0]===0?1:0;
+            },
+            _0111_1(){
+                //F=A 带进位循环左移一位
+                this.F.forEach((v,index)=>{
+                    if (index===7){
+                        v=this.FC;
+                        this.FC=this.memA[0];
+                    }
+                    else{
+                        v=this.memA[index+1];
+                    }
+                })
+                this.FZ= this.F[0]===0?1:0;
+            },
+            /**算术运算 */
+            _1000_X(Cn){
+                //置 FC=CN
+                this.FC=Cn;
+            },
+            _1001_X(){
+                //F=A 加 B
+                let flag=0;
+                this.memA.reverse().forEach((v,index)=>{
+                    
+                    this.F[7-index]=v+this.memB[7-index]+flag;
+                    if (this.F[7-index]>=2){
+                        this.F[7-index]-=2;
+                        if (index===7){
+                            this.FC=1;
+                        }
+                        flag=1;  //有进位1
+                    }
+                    else{
+                        flag=0;
+                    }
+                   
+                })
+                this.FZ= this.F[0]===0?1:0;
+            },
+            _1010_X(){
+                //F=A 加 B 加 FC
+                let flag=0;
+                this.memA.reverse().forEach((v,index)=>{
+                    
+                    this.F[7-index]=v+this.memB[7-index]+flag;
+                    if (this.F[7-index]>=2){
+                        this.F[7-index]-=2;
+                        if (index===7){
+                            this.FC=1;
+                        }
+                        flag=1;  //有进位1
+                    }
+                    else{
+                        flag=0;
+                    }
+                   
+                })
+                this.FZ= this.F[0]===0?1:0;
+            },
+            _1011_X(){
+                //F=A 减 B
+                let flag=0;
+                this.memA.reverse().forEach((v,index)=>{
+                    this.F[7-index]=v-this.memB[7-index]-flag;
+                    
+                    if (this.F[7-index]<0){
+                        this.F[7-index]+=2;
+                        if (index===7){
+                            this.FC=1;
+                        }
+                        flag=1;  //有借位
+                    }
+                })
+                this.FZ= this.F[0]===0?1:0;
+            },
+            _1100_X(){
+                //F=A 减 1
+                let flag=0;
+                this.memA.reverse().forEach((v,index)=>{
+                    this.F[7-index]=v-1-flag;
+                    
+                    if (this.F[7-index]<0){
+                        this.F[7-index]+=2;
+                        if (index===7){
+                            this.FC=1;
+                        }
+                        flag=1;  //有借位
+                    }
+                })
+                this.FZ= this.F[0]===0?1:0;
+            },
+            _1101_X(){
+                //F=A 加 1
+                let flag=0;
+                this.memA.reverse().forEach((v,index)=>{
+                    
+                    this.F[7-index]=v+1+flag;
+                    if (this.F[7-index]>=2){
+                        this.F[7-index]-=2;
+                        if (index===7){
+                            this.FC=1;
+                        }
+                        flag=1;  //有进位1
+                    }
+                    else{
+                        flag=0;
+                    }
+                   
+                })
+                this.FZ= this.F[0]===0?1:0;
+            },
+            startExeperiment(){
+                this.lineCheck();
+                if (!this.lineRight)
+                {
+                    alert("请先布线！");
+                    return;
+                }
+                this.start=true;
+                let switchOn = "url(\""+require("../assets/on.png")+"\")";
+                let redLight ="url(\""+require("../assets/red.png")+"\")";
+                let redOff = "url(\""+require("../assets/red-bulbe.png")+"\")";
+                let greenLight ="url(\""+require("../assets/green.png")+"\")";
+                let greenOff = "url(\""+require("../assets/green-buble.png")+"\")";
+                //获取系统总线区灯泡数组
+                let buble_F_list=document.getElementsByName('buble_F');
+                //获取S3-S0开关
+                var SD3_0=document.getElementsByName('SD03-00');
+                //置Cn
+                this.conCn=document.getElementById('SD_Cn').style.backgroundImage===switchOn?1:0 ;
+                //置ALU_B
+                this.alu_b=document.getElementById('ALU_B').style.backgroundImage===switchOn?1:0 ;
+                /*根据SD03-00置相应的功能号*/
+                SD3_0.forEach((element,index)=>{
+                    if (element.style.backgroundImage===switchOn){
+                        this.S3_0_Flag[index]=1;
+                    }
+                    else{
+                        this.S3_0_Flag[index]=0;
+                    }
+                });
+                let flag=this.S3_0_Flag.toString().replace(",","").replace(",","").replace(",","").replace(",","");
+                console.log("指令： "+flag);
+                switch(flag){
+                    case "0000": this._0000_X();break;
+                    case "0001": this._0001_X();break;
+                    case "0010": this._0010_X();break;
+                    case "0011": this._0011_X();break;
+                    case "0100": this._0100_X();break;
+                    case "0101": this._0101_X();break;
+                    case "0110": { 
+                        if (this.conCn===0) 
+                            this._0110_0();
+                        else 
+                            this._0110_1();    
+                        break;
+                        }
+                    case "0111": { 
+                        if (this.conCn===0) 
+                            this._0111_0();
+                        else 
+                            this._0111_1();    
+                        break;
+                        }
+                    case "1000": this._1000_X();break;
+                    case "1001": this._1001_X();break;
+                    case "1010": this._1010_X();break;
+                    case "1011": this._1011_X();break;
+                    case "1100": this._1100_X();break;
+                    case "1101": this._1101_X();break;           
+                }
+                //将结果显示在系统总线的灯泡中
+                this.F.forEach((v,index)=>{
+                    console.log(index+" : "+v);
+                    if (index<4){
+                        if (v===1){
+                            buble_F_list[index].style.backgroundImage=redLight;
+                        }
+                        else{
+                            buble_F_list[index].style.backgroundImage=redOff; 
+                        } 
+                    }
+                    else{
+                        if (v===1){
+                            buble_F_list[index].style.backgroundImage=greenLight;
+                        }
+                        else{
+                            buble_F_list[index].style.backgroundImage=greenOff; 
+                        } 
+                    }
+                })
+            },
+
             remove() {
                 this.tableData.pop();
                 this.count = this.count-2;
@@ -779,6 +1205,9 @@
 @import '../elements/alu.css';
 @import '../elements/con2.css';
 @import '../elements/cpu.css';
+
+@import '../elements/result.css';
+
 .svg-style{
     position:absolute;
     background:transparent;

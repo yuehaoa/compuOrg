@@ -1,0 +1,23 @@
+.result-unit{
+    width: 2.072rem;
+    height: 11.902rem;
+    position: absolute;
+    top: .432rem;
+    left: 19.87rem;
+}
+.result-unit-text{
+    top: .472rem;
+    left: 0.2rem;
+    width: 2.0rem;
+    height: .276rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.result{
+    width: 2.0rem;
+    height: .276rem;
+    font-size: .192rem;
+    line-height: .192rem;
+    color :white;
+    left: 0.2rem;
+}
