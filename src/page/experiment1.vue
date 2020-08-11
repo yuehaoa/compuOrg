@@ -69,14 +69,21 @@
             <div v-if="!menuShow">
                 <card class="tree2">
                     <Button type="primary" @click="backWords()">退出</Button>
+
                     <Button type="success" style="float:right" @click="lineCheck()">校验</Button>
+
+         
+
                     <Table highlight-row stripe :columns = "tableCol" :data ="tableData" style="margin-top:.2rem;" @on-current-change="showLine" ></Table>
                     <div style="margin-top:.2rem">
                         <Button type="error" style="float:right" @click="remove()">删除</Button>
                     </div>
+
                     <div style="margin-buttom:.2rem">
                         <Button type="success" style="float:left" @click="startExeperiment()">开始</Button>
                     </div>
+
+
                 </card>
             </div>
         </i-col>
@@ -182,7 +189,10 @@
                             <div class="text kk3-text">
                                 kk3
                             </div>
+
                             <div class="tfourNeedle fourNeedle" @click="buttonClick('time-con-T4-T1')" id="time-con-T4-T1"></div>
+
+             
                             <div class="tfourNeedle-text text">
                                 T4—T1
                             </div>
@@ -304,7 +314,10 @@
                             <div class="text alu-fourNeedle-s3s0-text">
                                 S3-S0
                             </div>
+
                             <div class="alu-twoNeedle-cn twoNeedle" @click="buttonClick('aluCn')" id="aluCn"/>
+
+
                             <div class="text alu-twoNeedle-cn-text">
                                 Cn
                             </div>
@@ -420,6 +433,7 @@
                             <div class="text system-eightNeedle-xa0-text">
                                 XA0
                             </div>
+
                             <!----->
                             <div class="red-buble system-red-buble-a7" name="buble_F"/>
                             <div class="red-buble system-red-buble-a6" name="buble_F"/>
@@ -436,6 +450,9 @@
                                 A3--------A0
                             </div>
                             <!---->
+
+
+
                             <div class="system-bus-text-1 text">
                                 控制总线
                             </div>
@@ -499,6 +516,7 @@
                             <div class="switch SD21" @click="changeSwitch" />
                             <div class="SD21-text text">
                                 21  K1
+
                             </div>
                             <div class="switch SD22" @click="changeSwitch" />
                             <div class="SD22-text text">
@@ -516,6 +534,8 @@
                             <div class="SD25-text text">
                                 25  K5
                             </div>
+
+
                             <div class="switch SD26" @click="changeSwitch"/>
                             <div class="SD26-text text">
                                 26  K6
@@ -524,6 +544,7 @@
                             <div class="SD27-text text">
                                 SD27  K7
                             </div>
+
                             <div class="switch SD17" @click="changeSwitch" id="ALU_B"/>
                             <div class="SD17-text text">
                                 SD17  ALU_B
@@ -545,6 +566,7 @@
                                 13  S0
                             </div>
                             <div class="switch SD12" @click="changeSwitch" id="conCn"/>
+              
                             <div class="SD12-text text">
                                 12  Cn
                             </div>
@@ -617,7 +639,9 @@
                             <div class="fourNeedle-s3s0-text text">
                                 S3-S0
                             </div>
-                            <div class="twoNeedle-cn twoNeedle" @click="buttonClick('conCn')" id="SD_Cn"/>
+
+                            <div class="twoNeedle-cn twoNeedle" @click="buttonClick('conCn')" id="conCn"/>
+
                             <div class="twoNeedle-cn-text text">
                                 Cn
                             </div>
@@ -677,7 +701,7 @@
                 x2:0,
                 y1:0,
                 y2:0,
-                
+
                 tableCol:[
                     {
                         type: 'index',
@@ -695,6 +719,7 @@
                 ],
                 tableData:[
                 ],
+
                 temp:[],
                 FZ:0,
                 FC:0,
@@ -708,6 +733,8 @@
                 memA:[0,0,0,0,0,0,0,0],  //暂存器A
                 memB:[0,0,0,0,0,0,0,0],  //暂存器B
                 F:[0,0,0,0,0,0,0,0]
+
+             
             }
         },
         mounted() {
@@ -738,12 +765,9 @@
                 e.srcElement.style.backgroundImage = 
                     e.srcElement.style.backgroundImage === off || e.srcElement.style.backgroundImage === "" ? on : off;
             },
-            t4Option(){
-                /*先判断是否连线*/
-                if (this.lineRight===false){
-                    alert("请先布线，然后再开始实验");
-                    return;
-                }               
+
+            t4Option(){               
+
                 var numlist=this.$refs.num7.parentElement.children;
                 var bulbelist=this.$refs.A7.parentElement.children;
                 let switchOn = "url(\""+require("../assets/on.png")+"\")";
@@ -771,6 +795,7 @@
                     return;
                 }
                 if(isLda){
+
                     this.lda=1;
                     this.ldb=0;
                     switchArr.forEach((v,index)=>{
@@ -809,6 +834,7 @@
                 }
                 this.count++;
             },
+
             /*布线检查函数 */
             lineCheck(){
                 if (this.tableData.length>9)
@@ -1124,6 +1150,7 @@
                     }
                 })
             },
+
             remove() {
                 this.tableData.pop();
                 this.count = this.count-2;
@@ -1178,7 +1205,9 @@
 @import '../elements/alu.css';
 @import '../elements/con2.css';
 @import '../elements/cpu.css';
+
 @import '../elements/result.css';
+
 .svg-style{
     position:absolute;
     background:transparent;

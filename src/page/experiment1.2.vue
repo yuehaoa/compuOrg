@@ -69,7 +69,9 @@
             <div v-if="!menuShow">
                 <card class="tree2">
                     <Button type="primary" @click="backWords()">退出</Button>
-                    <Button type="success" style="float:right" @click="iineCheck()">校验</Button>
+
+                    <Button type="success" style="float:right">校验</Button>
+
                     <Table highlight-row stripe :columns = "tableCol" :data ="tableData" style="margin-top:.2rem;" @on-current-change="showLight" ></Table>
                     <div style="margin-top:.2rem">
                         <Button type="error" style="float:right" @click="remove()">删除</Button>
@@ -745,13 +747,6 @@
                 }
                 this.count++;
             },
-            lineCheck(){
-                alert("jingru");
-               this.tableData.forEach((element)=>{
-                   console.log(element.A+" 与 "+element.B);
-               })
-            },
-
             remove() {
                 this.tableData.pop();
                 this.count = this.count-2;
