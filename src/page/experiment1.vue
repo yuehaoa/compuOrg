@@ -14,6 +14,7 @@
                 <card class="tree2">
                     <Button type="primary" @click="backWords()">返回</Button>
                     <Button type="success" style="float:right" @click="startExeperiment()" :disabled="!lineRight">测试实验结果</Button>
+                    <Button type="info" style="float:right;margin-top:10px" v-if="lineRight" @click="showAllLine()">显示所有连线</Button>
                     <Table v-if="tableShow" highlight-row stripe :columns = "tableCol" :data ="tableData" style="margin-top:.2rem;"  @on-current-change="showLine">
                         <template slot="Check" slot-scope="{row}">
                             <Icon type="md-checkmark" color="limegreen" v-if="exist(row)"/>
@@ -401,15 +402,12 @@
                             <div class="red-buble system-red-buble-a5" name="buble_F"/>
                             <div class="red-buble system-red-buble-a4" name="buble_F"/>
                             <div class="text system-red-buble-text">
-                                A7--------A4
+                                A7-----A0 代表F的值
                             </div>
                             <div class="green-buble system-green-buble-a3" name="buble_F"/>
                             <div class="green-buble system-green-buble-a2" name="buble_F"/>
                             <div class="green-buble system-green-buble-a1" name="buble_F"/>
                             <div class="green-buble system-green-buble-a0" name="buble_F"/>
-                            <div class="text system-green-buble-text">
-                                A3--------A0
-                            </div>
                             <!---->
 
 
@@ -697,7 +695,9 @@
                      "clk030HZ",
                      "time-con-T4-T1con-bus-T4-T1"
                  ],
-                temp:[],
+                temp:[], //用来清除上一次的连线
+                totalRow: [],
+                allLineTemp: [], //用来删除所有连线的draw
                 FZ:0,
                 FC:0,
                 lineRight: false,  //布线检查，true表示布线正确
@@ -826,11 +826,14 @@
             buttonClick(name) {
                 if(this.count%2==0) {
                     let x = {A: name, B: ""}
+                    let x1 = {A: name, B: ""}
                     this.tableData.push(x);
+                    this.totalRow.push(x1);
                 }
                 else {
                    var y = Math.floor(this.count/2)
                     this.tableData[y].B = name;
+                    this.totalRow[y].B = name;
                 }
                 this.count++;
             },
@@ -860,19 +863,31 @@
                 }
                  /*实验一连线情况*/
                  var lineList = [];
-                 this.tableData.forEach((element)=>{
+                /* this.tableData.forEach((element)=>{
                      /*检查布线表中连线是否正确*/                   
-                    this.lineList.forEach((v)=>{
+                    /* this.lineList.forEach((v)=>{
                         if(element.A.indexOf("cpuD7-D0")!==-1) element.A ='cpuD7-D0';
                         if(element.B.indexOf("cpuD7-D0")!==-1) element.B ='cpuD7-D0';
                         if ((element.A+element.B)===v||v===(element.B+element.A)){
                             lineList.push(v);
                         }
                     })
-                 })
+                 }) */
+                 let i = 0;
+                 for(;i<this.tableData.length;i++) {
+                     let element = this.tableData[i];
+                     let v = this.lineList[i];
+                     if(element.A.indexOf("cpuD7-D0")!==-1) element.A ='cpuD7-D0';
+                     if(element.B.indexOf("cpuD7-D0")!==-1) element.B ='cpuD7-D0';
+                     if ((element.A+element.B)===v||v===(element.B+element.A)){
+                        lineList.push(v);
+                     }
+                 }
                  /*布线数正确 */
-                 let str1 = lineList.sort().toString();
-                 let str2 = this.lineList.sort().toString();
+                 // let str1 = lineList.sort().toString();
+                 // let str2 = this.lineList.sort().toString();
+                 let str1 = lineList.toString();
+                 let str2 = this.lineList.toString();
                  if (str1 === str2){
                      this.$Message.success({
                          content: "布线正确! 请调整kk1-kk3准备开始实验"
@@ -882,7 +897,7 @@
                  }
                  else{
                      this.$Message.warning({
-                        content: "布线错误！请检查布线"
+                        content: "布线错误！请检查布线，并且注意连接顺序"
                     })
                  }
             },
@@ -1240,6 +1255,12 @@
                     })
                     return;
                 }
+                //清空所有连线，只有点击显示所有连线才会显示连线
+                if(this.temp.length!=0) {
+                    var draw2 = this.temp.pop();
+                    draw2.remove();
+                }
+
                 let timeStartLight = "url(\""+require("../assets/bulb-green.png")+"\")";
                 let kk1Start = document.getElementById('kk1Start').style.backgroundImage;
                 let kk3Start = document.getElementById('kk3Start').style.backgroundImage;
@@ -1252,12 +1273,12 @@
                 }
                 this.start=true;
                 let switchOn = "url(\""+require("../assets/on.png")+"\")";
-                // let redLight ="url(\""+require("../assets/red.png")+"\")";
-                // let redOff = "url(\""+require("../assets/red-bulbe.png")+"\")";
-                // let greenLight ="url(\""+require("../assets/green.png")+"\")";
-                // let greenOff = "url(\""+require("../assets/green-buble.png")+"\")";
+                let redLight ="url(\""+require("../assets/red.png")+"\")";
+                let redOff = "url(\""+require("../assets/red-bulbe.png")+"\")";
+                let greenLight ="url(\""+require("../assets/green.png")+"\")";
+                let greenOff = "url(\""+require("../assets/green-buble.png")+"\")";
                 //获取系统总线区灯泡数组
-                // let buble_F_list=document.getElementsByName('buble_F');
+                let buble_F_list=document.getElementsByName('buble_F');
                 //获取S3-S0开关
                 var SD3_0=document.getElementsByName('SD03-00');
                 //置Cn
@@ -1304,7 +1325,7 @@
                     case "1101": this._1101_X();break;           
                 }
                 //将结果显示在系统总线的灯泡中
-               /* this.F.forEach((v,index)=>{
+               this.F.forEach((v,index)=>{
                     console.log(index+" : "+v);
                     if (index<4){
                         if (v===1){
@@ -1322,23 +1343,36 @@
                             buble_F_list[index].style.backgroundImage=greenOff; 
                         } 
                     }
-                }) */
+                })
             },
 
             remove() {
                 this.tableData.pop();
                 this.count = this.count-2;
             },
-            showLine(currentRow) {
-                /*每次清除上一次的连线 */
+            showAllLine() {
+                //清理单独连线
                 if(this.temp.length!=0) {
                     var draw2 = this.temp.pop();
                     draw2.remove();
                 }
-                /*将svg画板加入到div中 */
+                //清除所有连线的draw
+                if(this.allLineTemp.length!=0) {
+                    var draw3 = this.allLineTemp.pop();
+                    draw3.remove();
+                    return;
+                }
+                console.log(this.totalRow)
                 var draw = SVG().addTo('#svg-container').size('100%', '100%')
-                /*获取当前的连线针脚A,B */
-                let A   = currentRow.A;
+                let i=0;
+                for(;i<this.totalRow.length;i++) {
+
+                   this.drawLine(this.totalRow[i], draw);
+                }
+                this.allLineTemp.push(draw);
+            },
+            drawLine (currentRow, draw) {
+                 let A   = currentRow.A;
                 let B = currentRow.B;
                 /*获取 svg-container相对窗口左上角的位置 */
                 let x = document.getElementById("svg-container").getBoundingClientRect().left;
@@ -1357,10 +1391,20 @@
                 var line = draw.line(fx1,fy1+10,fx2,fy2+10).stroke({ width: 1, color: "#fff" })
                 var line2 = draw.line(fx1,fy1+10,fx1+10,fy1+10).stroke({ width: 1, color: "#fff" })
                 var line3 = draw.line(fx2,fy2+10,fx2+10,fy2+10).stroke({ width: 1, color: "#fff" })
-                this.temp.push(draw)
                 console.log(line);
                 console.log(line2);
                 console.log(line3);
+            },
+            showLine(currentRow) {
+                /*每次清除上一次的连线 */
+               if(this.temp.length!=0) {
+                    var draw2 = this.temp.pop();
+                    draw2.remove();
+                }
+                /*将svg画板加入到div中 */
+                var draw = SVG().addTo('#svg-container').size('100%', '100%')
+                this.drawLine(currentRow, draw)
+                this.temp.push(draw)
             }
         }
     }
