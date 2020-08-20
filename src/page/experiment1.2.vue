@@ -609,6 +609,7 @@
     </row>
 </template>
 <script>
+    const axios = require("axios");
     import { screenChange } from "../scripts/screen.js"
     export default {
 
@@ -658,13 +659,15 @@
                 picFlickerIndex:0,
                 picFlicker_A:[],
                 picFlicker_B:[],
-                timer:null
+                timer:null,
             }
         },
         mounted() {
             screenChange(document,window);
+           
         },
         methods: {
+            
             backWords() {
                 this.menuShow = !this.menuShow;
                 if(this.temp.length!=0) {
