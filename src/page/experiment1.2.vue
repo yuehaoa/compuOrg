@@ -69,7 +69,9 @@
             <div v-if="!menuShow">
                 <card class="tree2">
                     <Button type="primary" @click="backWords()">退出</Button>
+
                     <Button type="success" style="float:right">校验</Button>
+
                     <Table highlight-row stripe :columns = "tableCol" :data ="tableData" style="margin-top:.2rem;" @on-current-change="showLight" ></Table>
                     <div style="margin-top:.2rem">
                         <Button type="error" style="float:right" @click="remove()">删除</Button>
