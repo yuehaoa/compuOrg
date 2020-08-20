@@ -5,8 +5,11 @@
 .select-background{
     background-color: #697a96;
 }
+.invisible{
+    opacity: .3
+}
 .card-menu{
-    width:22rem;
+    width:23rem;
     height:13rem;
     left:4.8rem;
     top:1.26rem;
@@ -39,7 +42,7 @@
     background-color:#fff;
 }
 .tree2{
-    width:4.5rem;
+    width:4.7rem;
     height:18rem;
     top:1.06rem;
     position:absolute;
