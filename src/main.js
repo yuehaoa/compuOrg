@@ -3,6 +3,9 @@ import App from './App.vue'
 import iView from 'iview' // 引入iview依赖
 import 'iview/dist/styles/iview.css' // 引入iview css样式
 import VueRouter from 'vue-router'
+import VueDraggableResizable from 'vue-draggable-resizable'
+import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
+Vue.component('vue-draggable-resizable', VueDraggableResizable)
 Vue.use(iView) //使用iview组件 
 Vue.use(VueRouter)
 Vue.config.productionTip = false

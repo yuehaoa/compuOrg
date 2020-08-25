@@ -53,94 +53,101 @@
                             </div>
                         </div>
                     </div>
-                    <div class="time-control-unit box">
-                        <div class="wrapper">
-                            <div class="time-control-unit-text text">
-                                时序与操作台
-                            </div>
-                            <div class="clk0 twoNeedle" @click="buttonClick('clk0')" id="clk0"/>
-                            <div class="clk0-text text">
-                                clk0
-                            </div>
-                            <div class="three-hundred-hz twoNeedle invisible"/>
-                            <div class="three-hundred-hz-text text invisible">
-                                300HZ
-                            </div>
-                            <div class="thirty-hz twoNeedle" @click="buttonClick('30HZ')" id="30HZ"/>
-                            <div class="thirty-hz-text text">
-                                30HZ
-                            </div>
-                            <div class="three-hz twoNeedle invisible"/>
-                            <div class="three-hz-text text invisible">
-                                3HZ
-                            </div>
+                    <vue-draggable-resizable
+                        w="auto"
+                        h="auto"
+                        :grid="[20,40]"
+                        :resizable="false"
+                    >
+                        <div class="time-control-unit box" ref="timeControl" @wheel.prevent="handleTableWheel(0,$event)">
+                            <div class="wrapper">
+                                <div class="time-control-unit-text text">
+                                    时序与操作台
+                                </div>
+                                <div class="clk0 twoNeedle" @click="buttonClick('clk0')" id="clk0"/>
+                                <div class="clk0-text text">
+                                    clk0
+                                </div>
+                                <div class="three-hundred-hz twoNeedle invisible"/>
+                                <div class="three-hundred-hz-text text invisible">
+                                    300HZ
+                                </div>
+                                <div class="thirty-hz twoNeedle" @click="buttonClick('30HZ')" id="30HZ"/>
+                                <div class="thirty-hz-text text">
+                                    30HZ
+                                </div>
+                                <div class="three-hz twoNeedle invisible"/>
+                                <div class="three-hz-text text invisible">
+                                    3HZ
+                                </div>
 
-                            <div class="st">
-                                <Dropdown class="white-btn stMenu" placement="right-start">
-                                    <DropdownMenu slot="list">
-                                        <DropdownItem style="width:0.8rem">T1</DropdownItem>
-                                        <DropdownItem style="width:0.8rem">T2</DropdownItem>
-                                        <DropdownItem style="width:0.8rem">T3</DropdownItem>
-                                        <DropdownItem style="width:0.8rem" @click.native="t4Option">T4</DropdownItem>
-                                    </DropdownMenu>
-                                </Dropdown>
-                            </div>
-                            <div class="st-text text">
-                                ST
-                            </div>
-                            <div class="st-text text">
-                                ST
-                            </div>
-                            <div class="start bulb" @click="changeImage" id="kk1Start"/>
-                            <div class="start-text text">
-                                运行
-                            </div>
-                            <div class="text kk1-text">
-                                kk1
-                            </div>
-                            <div class="stop bulb" @click="changeImage"/>
-                            <div class="stop-text text">
-                                停止
-                            </div>
-                            <div class="singleShot bulb" @click="changeImage" id="singleBeat"/>
-                            <div class="singleShot-text text">
-                                单拍
-                            </div>
-                            <div class="singleStep bulb" @click="changeImage"/>
-                            <div class="singleStep-text text">
-                                单步
-                            </div>
-                            <div class="continue bulb" @click="changeImage"/>
-                            <div class="continue-text text">
-                                连续
-                            </div>
-                            <div class="text kk2-text">
-                                kk2
-                            </div>
-                            <div class="program bulb" @click="changeImage"/>
-                            <div class="program-text text">
-                                编程
-                            </div>
-                            <div class="check bulb" @click="changeImage"/>
-                            <div class="check-text text">
-                                校验
-                            </div>
-                            <div class="run bulb" @click="changeImage" id="kk3Start"/>
-                            <div class="run-text text">
-                                运行
-                            </div>
-                            <div class="text kk3-text">
-                                kk3
-                            </div>
+                                <div class="st">
+                                    <Dropdown class="white-btn stMenu" placement="right-start">
+                                        <DropdownMenu slot="list">
+                                            <DropdownItem style="width:0.8rem">T1</DropdownItem>
+                                            <DropdownItem style="width:0.8rem">T2</DropdownItem>
+                                            <DropdownItem style="width:0.8rem">T3</DropdownItem>
+                                            <DropdownItem style="width:0.8rem" @click.native="t4Option">T4</DropdownItem>
+                                        </DropdownMenu>
+                                    </Dropdown>
+                                </div>
+                                <div class="st-text text">
+                                    ST
+                                </div>
+                                <div class="st-text text">
+                                    ST
+                                </div>
+                                <div class="start bulb" @click="changeImage" id="kk1Start"/>
+                                <div class="start-text text">
+                                    运行
+                                </div>
+                                <div class="text kk1-text">
+                                    kk1
+                                </div>
+                                <div class="stop bulb" @click="changeImage"/>
+                                <div class="stop-text text">
+                                    停止
+                                </div>
+                                <div class="singleShot bulb" @click="changeImage" id="singleBeat"/>
+                                <div class="singleShot-text text">
+                                    单拍
+                                </div>
+                                <div class="singleStep bulb" @click="changeImage"/>
+                                <div class="singleStep-text text">
+                                    单步
+                                </div>
+                                <div class="continue bulb" @click="changeImage"/>
+                                <div class="continue-text text">
+                                    连续
+                                </div>
+                                <div class="text kk2-text">
+                                    kk2
+                                </div>
+                                <div class="program bulb" @click="changeImage"/>
+                                <div class="program-text text">
+                                    编程
+                                </div>
+                                <div class="check bulb" @click="changeImage"/>
+                                <div class="check-text text">
+                                    校验
+                                </div>
+                                <div class="run bulb" @click="changeImage" id="kk3Start"/>
+                                <div class="run-text text">
+                                    运行
+                                </div>
+                                <div class="text kk3-text">
+                                    kk3
+                                </div>
 
-                            <div class="tfourNeedle fourNeedle" @click="buttonClick('time-con-T4-T1')" id="time-con-T4-T1"></div>
+                                <div class="tfourNeedle fourNeedle" @click="buttonClick('time-con-T4-T1')" id="time-con-T4-T1"></div>
 
-             
-                            <div class="tfourNeedle-text text">
-                                T4—T1
+                
+                                <div class="tfourNeedle-text text">
+                                    T4—T1
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </vue-draggable-resizable>
                     <div class="expansion-unit box">
                         <div class="wrapper">
                             <div class="expansion-unit-text text">
@@ -230,8 +237,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="alu-reg-unit box">
-                        <div class="wrapper">
+                    <vue-draggable-resizable
+                        w="auto"
+                        h="auto"
+                        :grid="[20,40]"
+                        :resizable="false"
+                    >
+                        <div class="alu-reg-unit box" ref="aluReg" @wheel.prevent="handleTableWheel(1,$event)">
+                            <div class="wrapper">
                             <div class="red-buble alu-red-a0" ref="A7"/>
                             <div class="red-buble alu-red-a1"/>
                             <div class="red-buble alu-red-a2"/>
@@ -315,22 +328,30 @@
 
                         </div>
                     </div>
-                    <div class="cpu-bus box">
-                        <div class="wrapper">
-                            <div class="cpu-eightNeedle-1 eightNeedle2" @click="buttonClick('cpuD7-D0-1')" id="cpuD7-D0-1"/>
-                            <div class="cpu-eightNeedle-2 eightNeedle2" @click="buttonClick('cpuD7-D0-2')" id="cpuD7-D0-2"/>
-                            <div class="cpu-eightNeedle-3 eightNeedle2" @click="buttonClick('cpuD7-D0-3')" id="cpuD7-D0-3"/>
-                            <div class="text cpu-eightNeedle-text-d7">
-                                D7
-                            </div>
-                            <div class="text cpu-eightNeedle-text-d0">
-                                D0
-                            </div>
-                            <div class="cpu-bus-text text">
-                                CPU内总线
+                    </vue-draggable-resizable>
+                    <vue-draggable-resizable
+                        w="auto"
+                        h="auto"
+                        :grid="[20,40]"
+                        :resizable="false"
+                    >
+                        <div class="cpu-bus box" ref="cpuBus" @wheel.prevent="handleTableWheel(2,$event)">
+                            <div class="wrapper">
+                                <div class="cpu-eightNeedle-1 eightNeedle2" @click="buttonClick('cpuD7-D0-1')" id="cpuD7-D0-1"/>
+                                <div class="cpu-eightNeedle-2 eightNeedle2" @click="buttonClick('cpuD7-D0-2')" id="cpuD7-D0-2"/>
+                                <div class="cpu-eightNeedle-3 eightNeedle2" @click="buttonClick('cpuD7-D0-3')" id="cpuD7-D0-3"/>
+                                <div class="text cpu-eightNeedle-text-d7">
+                                    D7
+                                </div>
+                                <div class="text cpu-eightNeedle-text-d0">
+                                    D0
+                                </div>
+                                <div class="cpu-bus-text text">
+                                    CPU内总线
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </vue-draggable-resizable>
                     <div class="pc-ar box">
                         <div class="wrapper">
                             <div class="pc-ar-text-1 text">
@@ -344,7 +365,13 @@
                     <div class="system-bus-text text">
                         系统总线
                     </div>
-                    <div class="system-bus box select-background">
+                    <vue-draggable-resizable
+                        w="auto"
+                        h="auto"
+                        :grid="[20,40]"
+                        :resizable="false"
+                    >
+                        <div class="system-bus box select-background" ref="systemBus" @wheel.prevent="handleTableWheel(3,$event)">
                         <div class="wrapper">
                             <div class="system-T4-T1 fourNeedle"  @click=" buttonClick('con-bus-T4-T1')" id="con-bus-T4-T1"/>
                             <div class="system-T4-T1-text text">
@@ -422,7 +449,8 @@
                                 地址总线
                             </div>
                         </div>
-                    </div>
+                        </div>
+                    </vue-draggable-resizable>
                     <div class="mm-io-text text">
                         主存及外设
                     </div>
@@ -463,172 +491,179 @@
                             </div>
                         </div>
                     </div>
-                    <div class="con-unit box">
-                        <div class="wrapper">
-                            <div class="con-unit-text text">
-                                CON单元
-                            </div>
-                            <div class="switch SD20" @click="changeSwitch" />
-                            <div class="SD20-text text">
-                                SD20  K0
-                            </div>
-                            <div class="switch SD21" @click="changeSwitch" />
-                            <div class="SD21-text text">
-                                21  K1
+                    <vue-draggable-resizable
+                        w="auto"
+                        h="auto"
+                        :grid="[20,40]"
+                        :resizable="false"
+                    >
+                        <div class="con-unit box" ref="conUnit" @wheel.prevent="handleTableWheel(4,$event)">
+                            <div class="wrapper">
+                                <div class="con-unit-text text">
+                                    CON单元
+                                </div>
+                                <div class="switch SD20" @click="changeSwitch" />
+                                <div class="SD20-text text">
+                                    SD20  K0
+                                </div>
+                                <div class="switch SD21" @click="changeSwitch" />
+                                <div class="SD21-text text">
+                                    21  K1
 
-                            </div>
-                            <div class="switch SD22" @click="changeSwitch" />
-                            <div class="SD22-text text">
-                                22  K2
-                            </div>
-                            <div class="switch SD23" @click="changeSwitch" />
-                            <div class="SD23-text text">
-                                23  K3
-                            </div>
-                            <div class="switch SD24" @click="changeSwitch"/>
-                            <div class="SD24-text text">
-                                24  K4
-                            </div>
-                            <div class="switch SD25" @click="changeSwitch"/>
-                            <div class="SD25-text text">
-                                25  K5
-                            </div>
+                                </div>
+                                <div class="switch SD22" @click="changeSwitch" />
+                                <div class="SD22-text text">
+                                    22  K2
+                                </div>
+                                <div class="switch SD23" @click="changeSwitch" />
+                                <div class="SD23-text text">
+                                    23  K3
+                                </div>
+                                <div class="switch SD24" @click="changeSwitch"/>
+                                <div class="SD24-text text">
+                                    24  K4
+                                </div>
+                                <div class="switch SD25" @click="changeSwitch"/>
+                                <div class="SD25-text text">
+                                    25  K5
+                                </div>
 
 
-                            <div class="switch SD26" @click="changeSwitch"/>
-                            <div class="SD26-text text">
-                                26  K6
-                            </div>
-                            <div class="switch SD27" @click="changeSwitch" ref="num7"/>
-                            <div class="SD27-text text">
-                                SD27  K7
-                            </div>
+                                <div class="switch SD26" @click="changeSwitch"/>
+                                <div class="SD26-text text">
+                                    26  K6
+                                </div>
+                                <div class="switch SD27" @click="changeSwitch" ref="num7"/>
+                                <div class="SD27-text text">
+                                    SD27  K7
+                                </div>
 
-                            <div class="switch SD17 invisible" @click="changeSwitch" id="ALU_B"/>
-                            <div class="SD17-text text invisible">
-                                SD17  ALU_B
-                            </div>
-                            <div class="switch SD16" @click="changeSwitch" name="SD03-00"/>
-                            <div class="SD16-text text">
-                                16  S3
-                            </div>
-                            <div class="switch SD15" @click="changeSwitch" name="SD03-00"/>
-                            <div class="SD15-text text">
-                                15  S2
-                            </div>
-                            <div class="switch SD14" @click="changeSwitch" name="SD03-00"/>
-                            <div class="SD14-text text">
-                                14  S1
-                            </div>
-                            <div class="switch SD13" @click="changeSwitch" name="SD03-00"/>
-                            <div class="SD13-text text">
-                                13  S0
-                            </div>
-                            <div class="switch SD12" @click="changeSwitch" id="SD_Cn"/>
-              
-                            <div class="SD12-text text">
-                                12  Cn
-                            </div>
-                            <div class="switch SD11" @click="changeSwitch" ref="lda"/>
-                            <div class="SD11-text text">
-                                11  LDA
-                            </div>
-                            <div class="switch SD10" @click="changeSwitch" ref="ldb"/>
-                            <div class="SD10-text text">
-                                SD10  LDB
-                            </div>
-                            <div class="switch SD7 invisible"/>
-                            <div class="SD7-text text invisible">
-                                SD07  WR
-                            </div>
-                            <div class="switch SD6 invisible"/>
-                            <div class="SD6-text text invisible">
-                                06  RD
-                            </div>
-                            <div class="switch SD5 invisible"/>
-                            <div class="SD5-text text invisible">
-                                05  IOM
-                            </div>
-                            <div class="switch SD4 invisible"/>
-                            <div class="SD4-text text invisible">
-                                04
-                            </div>
-                            <div class="switch SD3 invisible"/>
-                            <div class="SD3-text text invisible">
-                                03
-                            </div>
-                            <div class="switch SD2 invisible"/>
-                            <div class="SD2-text text invisible">
-                                02
-                            </div>
-                            <div class="switch SD1 invisible"/>
-                            <div class="SD1-text text invisible">
-                                01  LDAR
-                            </div>
-                            <div class="switch SD0 invisible"/>
-                            <div class="SD0-text text invisible">
-                                SD00 LOR
-                            </div>
-                            <div class="clr-white-btn white-btn" @click="clear()"/>
-                            <div class="white-btn-text text">
-                                CLR
-                            </div>
-                            <div class="fourNeedle-k7k6 fourNeedle invisible"/>
-                            <div class="fourNeedle-k7k6-text text invisible">
-                                K7--K6
-                            </div>
-                            <div class="fourNeedle-k5k4 fourNeedle invisible"/>
-                            <div class="fourNeedle-k5k4-text text invisible">
-                                K5--K4
-                            </div>
-                            <div class="fourNeedle-k3k2 fourNeedle invisible"/>
-                            <div class="fourNeedle-k3k2-text text invisible">
-                                K3--K0
-                            </div>
-                            <div class="eightNeedle-SD27 eightNeedle" @click="buttonClick('SD27-SD20')" id="SD27-SD20"/>
-                            <div class="eightNeedle-SD27-text text">
-                                SD27-SD20
-                            </div>
-                            <div class="twoNeedle-alu twoNeedle" @click="buttonClick('conALU_B')" id="conALU_B"/>
-                            <div class="twoNeedle-alu-text text">
-                                ALU_B
-                            </div>
-                            <div class="fourNeedle-s3s0 fourNeedle" @click="buttonClick('conS3-S0')" id="conS3-S0"/>
-                            <div class="fourNeedle-s3s0-text text">
-                                S3-S0
-                            </div>
+                                <div class="switch SD17 invisible" @click="changeSwitch" id="ALU_B"/>
+                                <div class="SD17-text text invisible">
+                                    SD17  ALU_B
+                                </div>
+                                <div class="switch SD16" @click="changeSwitch" name="SD03-00"/>
+                                <div class="SD16-text text">
+                                    16  S3
+                                </div>
+                                <div class="switch SD15" @click="changeSwitch" name="SD03-00"/>
+                                <div class="SD15-text text">
+                                    15  S2
+                                </div>
+                                <div class="switch SD14" @click="changeSwitch" name="SD03-00"/>
+                                <div class="SD14-text text">
+                                    14  S1
+                                </div>
+                                <div class="switch SD13" @click="changeSwitch" name="SD03-00"/>
+                                <div class="SD13-text text">
+                                    13  S0
+                                </div>
+                                <div class="switch SD12" @click="changeSwitch" id="SD_Cn"/>
+                
+                                <div class="SD12-text text">
+                                    12  Cn
+                                </div>
+                                <div class="switch SD11" @click="changeSwitch" ref="lda"/>
+                                <div class="SD11-text text">
+                                    11  LDA
+                                </div>
+                                <div class="switch SD10" @click="changeSwitch" ref="ldb"/>
+                                <div class="SD10-text text">
+                                    SD10  LDB
+                                </div>
+                                <div class="switch SD7 invisible"/>
+                                <div class="SD7-text text invisible">
+                                    SD07  WR
+                                </div>
+                                <div class="switch SD6 invisible"/>
+                                <div class="SD6-text text invisible">
+                                    06  RD
+                                </div>
+                                <div class="switch SD5 invisible"/>
+                                <div class="SD5-text text invisible">
+                                    05  IOM
+                                </div>
+                                <div class="switch SD4 invisible"/>
+                                <div class="SD4-text text invisible">
+                                    04
+                                </div>
+                                <div class="switch SD3 invisible"/>
+                                <div class="SD3-text text invisible">
+                                    03
+                                </div>
+                                <div class="switch SD2 invisible"/>
+                                <div class="SD2-text text invisible">
+                                    02
+                                </div>
+                                <div class="switch SD1 invisible"/>
+                                <div class="SD1-text text invisible">
+                                    01  LDAR
+                                </div>
+                                <div class="switch SD0 invisible"/>
+                                <div class="SD0-text text invisible">
+                                    SD00 LOR
+                                </div>
+                                <div class="clr-white-btn white-btn" @click="clear()"/>
+                                <div class="white-btn-text text">
+                                    CLR
+                                </div>
+                                <div class="fourNeedle-k7k6 fourNeedle invisible"/>
+                                <div class="fourNeedle-k7k6-text text invisible">
+                                    K7--K6
+                                </div>
+                                <div class="fourNeedle-k5k4 fourNeedle invisible"/>
+                                <div class="fourNeedle-k5k4-text text invisible">
+                                    K5--K4
+                                </div>
+                                <div class="fourNeedle-k3k2 fourNeedle invisible"/>
+                                <div class="fourNeedle-k3k2-text text invisible">
+                                    K3--K0
+                                </div>
+                                <div class="eightNeedle-SD27 eightNeedle" @click="buttonClick('SD27-SD20')" id="SD27-SD20"/>
+                                <div class="eightNeedle-SD27-text text">
+                                    SD27-SD20
+                                </div>
+                                <div class="twoNeedle-alu twoNeedle" @click="buttonClick('conALU_B')" id="conALU_B"/>
+                                <div class="twoNeedle-alu-text text">
+                                    ALU_B
+                                </div>
+                                <div class="fourNeedle-s3s0 fourNeedle" @click="buttonClick('conS3-S0')" id="conS3-S0"/>
+                                <div class="fourNeedle-s3s0-text text">
+                                    S3-S0
+                                </div>
 
-                            <div class="twoNeedle-cn twoNeedle" @click="buttonClick('conCn')" id="conCn"/>
+                                <div class="twoNeedle-cn twoNeedle" @click="buttonClick('conCn')" id="conCn"/>
 
-                            <div class="twoNeedle-cn-text text">
-                                Cn
-                            </div>
-                            <div class="fourNeedle-ldaldb fourNeedle" @click="buttonClick('conLDA-LDB')" id="conLDA-LDB"/>
-                            <div class="fourNeedle-ldaldb-text text">
-                                LDA--LDB
-                            </div>
-                            <div class="eightNeedle-SD17 eightNeedle invisible"/>
-                            <div class="eightNeedle-SD17-text text invisible">
-                                SD17-SD10
-                            </div>
-                            <div class="fourNeedle-iom fourNeedle invisible"/>
-                            <div class="fourNeedle-iom-text text invisible">
-                                WR-RD-IOM
-                            </div>
-                            <div class="twoNeedle-ldar twoNeedle invisible"/>
-                            <div class="twoNeedle-ldar-text text invisible">
-                                LDAR
-                            </div>
-                            <div class="twoNeedle-ior twoNeedle invisible"/>
-                            <div class="twoNeedle-ior-text text invisible">
-                                IOR
-                            </div>
-                            <div class="eightNeedle-SD07 eightNeedle invisible"/>
-                            <div class="eightNeedle-SD07-text text invisible">
-                                SD07-SD00
+                                <div class="twoNeedle-cn-text text">
+                                    Cn
+                                </div>
+                                <div class="fourNeedle-ldaldb fourNeedle" @click="buttonClick('conLDA-LDB')" id="conLDA-LDB"/>
+                                <div class="fourNeedle-ldaldb-text text">
+                                    LDA--LDB
+                                </div>
+                                <div class="eightNeedle-SD17 eightNeedle invisible"/>
+                                <div class="eightNeedle-SD17-text text invisible">
+                                    SD17-SD10
+                                </div>
+                                <div class="fourNeedle-iom fourNeedle invisible"/>
+                                <div class="fourNeedle-iom-text text invisible">
+                                    WR-RD-IOM
+                                </div>
+                                <div class="twoNeedle-ldar twoNeedle invisible"/>
+                                <div class="twoNeedle-ldar-text text invisible">
+                                    LDAR
+                                </div>
+                                <div class="twoNeedle-ior twoNeedle invisible"/>
+                                <div class="twoNeedle-ior-text text invisible">
+                                    IOR
+                                </div>
+                                <div class="eightNeedle-SD07 eightNeedle invisible"/>
+                                <div class="eightNeedle-SD07-text text invisible">
+                                    SD07-SD00
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </vue-draggable-resizable>
                     <div class="in-unit box">
                         <div class="wrapper">
                             <div class="in-unit-text text">
@@ -647,6 +682,7 @@
     </row>
 </template>
 <script>
+    import VueDraggableResizable from "vue-draggable-resizable";
     import { SVG } from '@svgdotjs/svg.js'
     import { screenChange } from "../scripts/screen.js"
     export default {
@@ -709,13 +745,38 @@
                 S3_0_Flag:[0,0,0,0], //运算指令
                 memA:[0,0,0,0,0,0,0,0],  //暂存器A
                 memB:[0,0,0,0,0,0,0,0],  //暂存器B
-                F:[0,0,0,0,0,0,0,0]
+                F:[0,0,0,0,0,0,0,0],
+                resize: [
+
+                ]
             }
         },
         mounted() {
             screenChange(document,window);
+            let obj = [
+                this.$refs.timeControl,
+                this.$refs.aluReg,
+                this.$refs.cpuBus,
+                this.$refs.systemBus,
+                this.$refs.conUnit,
+            ]
+            this.resize = obj;
         },
         methods: {
+            handleTableWheel(i, event) {
+                let obj = this.resize[i];
+                return this.tableZoom(obj, event);
+            },
+            tableZoom(obj, event) {
+                // 一开始默认是100%
+                let zoom = parseInt(obj.style.zoom, 10) || 100;
+                // 滚轮滚一下wheelDelta的值增加或减少120
+                zoom += event.wheelDelta / 120;
+                if (zoom > 0) {
+                    obj.style.zoom = zoom + "%";
+                }
+                return false;
+            },
             backWords() {
                 this.menuShow = !this.menuShow;
                 if(this.temp.length!=0) {

@@ -15,6 +15,7 @@
     "less": "^3.11.3",
     "less-loader": "^6.1.2",
     "vue": "^2.6.11",
+    "vue-draggable-resizable": "^2.2.0",
     "vue-router": "^3.3.4"
   },
   "devDependencies": {
