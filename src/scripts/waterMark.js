@@ -1,8 +1,10 @@
 function watermark() {
+    //存储水印id
+    var mark_div=[];
     //默认设置
     var defaultSettings = {
         watermarl_element: "svg-container", //水印显示区域节点名，缺省为body
-        watermark_txt:"2020-8-23",//水印文字
+        watermark_txt:"天道好轮回",//水印文字
         watermark_img: '',
         watermark_x: 15, //水印起始位置x轴坐标
         watermark_y: 20, //水印起始位置Y轴坐标
@@ -30,7 +32,7 @@ function watermark() {
     }
 
     var oTemp = document.createDocumentFragment();
-
+    oTemp.id="waterMask";
 
     var maskElement = document.getElementById(defaultSettings.watermarl_element) || document.body;
 
@@ -52,7 +54,10 @@ function watermark() {
             x = defaultSettings.watermark_x + (defaultSettings.watermark_width + defaultSettings.watermark_x_space) * j;
             var mask_div = document.createElement('div');
             var mask_img = document.createElement('img');
-            mask_div.id = 'mask_div' + i + j;
+            mask_div.id = 'mask'+i+j;
+
+            mark_div.push(mask_div.id);
+
             mask_div.className = 'mask_div';
             mask_img.className = 'mask_img';
             //mask_div.appendChild(document.createTextNode(defaultSettings.watermark_txt));
@@ -93,11 +98,18 @@ function watermark() {
         }
     }
     maskElement.appendChild(oTemp);
-
-    
+    return mark_div;
+}
+function deleteMark(mark_div){
+    //删除水印
+    mark_div.forEach((mark)=>{
+        document.getElementById(mark).remove();
+        //console.log(mark);
+    })
 }
 export{
-    watermark
+    watermark,
+    deleteMark
 }
 
 

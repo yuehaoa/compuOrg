@@ -3,6 +3,9 @@ import App from './App.vue'
 import iView from 'iview' // 引入iview依赖
 import 'iview/dist/styles/iview.css' // 引入iview css样式
 import VueRouter from 'vue-router'
+import VueCropper from 'vue-cropper'
+
+Vue.use(VueCropper)
 Vue.use(iView) //使用iview组件 
 Vue.use(VueRouter)
 Vue.config.productionTip = false
@@ -10,6 +13,7 @@ const routes = [
   {
     path: '/', 
     redirect: '/PrtScr'
+    //redirect: '/test'
   },
   {
     path: "/index",
@@ -30,7 +34,11 @@ const routes = [
   {
     path: "/PrtScr",
     component: () => import("./page/PrtScr.vue")
-  }
+  },
+  // {
+  //   path: "/test",
+  //   component: () => import("./page/test.vue")
+  // }
 ]
 const router = new VueRouter({
   routes

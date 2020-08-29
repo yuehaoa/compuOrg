@@ -1,6 +1,7 @@
 <template>
-
+    
     <row>
+        
         <Menu mode="horizontal" theme="dark" active-name="1" class="head-menu">
             <div class="layout-logo">
                 <div class="wrapper">
@@ -27,14 +28,18 @@
                     <div style="margin-bottom:.2rem" v-if="tableShow">
                         <Button type="success" style="float:left" @click="lineCheck()">校验所有连线</Button>
                     </div>
-                    <div >
-                        <Button type="success" @click="getImg">截图</Button>
-                    </div>
+                    <Button type="success" @click="getImg">截图</Button>
+                    <Button type="success" @click="downImg" v-show="centerDialogVisible">下载</Button>
+                    <Button type="success" @click="cancel" v-show="centerDialogVisible">取消</Button>
                 </card>
             </div>
         </i-col>
         <i-col span="18" >
+                   
+                
             <div class="svg-style" id="svg-container" >
+                    <!-- 截图预览 -->
+                    <img id="image" :src="imgURL" class="prtscr" v-show="centerDialogVisible"> 
                     <div class="power-source box">
                         <div class="wrapper">
                             
@@ -651,21 +656,25 @@
                 <div class="cpu-bus box select-background"/>
                 <div class="con-unit box select-background"/>
             </card>
+           
         </i-col>
     </row>
+    
 
 </template>
+
 <script>
     import html2canvas from 'html2canvas'
-
     import { SVG } from '@svgdotjs/svg.js'
     import { screenChange } from "../scripts/screen.js"
-    import { watermark } from "../scripts/waterMark.js"
+    import { watermark, deleteMark } from "../scripts/waterMark.js"
+    
     
     export default {
-
+        
         data() {
             return{
+                centerDialogVisible:false,
                 imgURL:'', //图片资源路径
                 menuShow: true,
                 count: 0,
@@ -724,8 +733,8 @@
                 F:[0,0,0,0,0,0,0,0]
             }
         },
-        mounted() {
-            watermark();
+        mounted() {    
+           
             screenChange(document,window);
         },
         methods: {
@@ -1377,6 +1386,9 @@
             }, 
             //截图方法
             getImg(){
+                //获取水印id，方便一会删除
+                var mark_div=watermark();
+               
                 //html2canvas方法获取浏览器截图
                 html2canvas(
                 //获取截图内容的元素，svg-container即整个面板，若想获得特定截图，可将节点id传入    
@@ -1390,17 +1402,30 @@
        
                 let url=canvas.toDataURL('image/jpeg');// toDataURL :图片格式转成 base64
                 this.imgURL = url;
+                this.centerDialogVisible=true;   
+                })
+                //删除水印
+                deleteMark(mark_div);
+            }, 
+            downImg(){
                 /*使用a标签下载图片*/
                 let a = document.createElement('a');
                 a.href = this.imgURL;
                 a.download = 'test'; //下载名
                 a.click();
-                /**可以用<img :src="this.imgURL"/>来预览图片（要设置图片宽高） */     
-            })
- }
-        }
+                this.centerDialogVisible=false;
+            },
+            //取消截图
+            cancel(){
+                this.centerDialogVisible=false;
+            } 
+        },
+        
     }
+
+
 </script>
+
 <style>
 @import '../static/background.css';
 @import '../static/con-in.css';
@@ -1426,5 +1451,9 @@
     left:4.8rem;
     top:1.26rem;
     z-index: 1;
+}
+.prtscr{
+    width: 24rem;
+    height: 14rem;
 }
 </style>
