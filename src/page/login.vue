@@ -12,12 +12,12 @@
                 <i-input placeholder="手机号或邮箱" prefix="ios-contact" size="large" style="width:340px" v-model="passwordModel.userName"/>
             </form-item>
             <form-item prop="password">
-                <i-input placeholder="密码" v-model="passwordModel.password" @keyup.enter.native="submit()" @input="isPwd=true" prefix="ios-lock" size="large" type="password" style="width:340px"/>
+                <i-input placeholder="密码" v-model="passwordModel.password" @keyup.enter.native="login()" @input="isPwd=true" prefix="ios-lock" size="large" type="password" style="width:340px"/>
                 <checkbox v-model="isRemember" style="float:left;font-size:15px">记住密码</checkbox>
                 <a class="forgot-link" :to="{name:'Forgot'}">忘记密码?</a>
             </form-item>
             <form-item>
-                <i-button long size="large" type="primary" style="width:340px" @click="submit()" :loading="isloading">登 录</i-button>
+                <i-button long size="large" type="primary" style="width:340px" @click="login()" :loading="isloading">登 录</i-button>
                 <a href="javascript:;" class="to-mobile" @click="method='mobile'">使用手机短信登录</a>
             </form-item>
         </i-form>
@@ -27,34 +27,50 @@
             </form-item>
             <i-input prop="password" :mobile="mobileModel.userName" size="large" style="width:340px" v-model="mobileModel.password" />
             <form-item>
-                <i-button long size="large" type="primary" @click="submit()" :loading="isloading">登 录</i-button>
+                <i-button long size="large" type="primary" @click="login()" :loading="isloading">登 录</i-button>
                 <a href="javascript:;" class="to-mobile" @click="method='password'">使用账号密码登录</a>
             </form-item>
         </i-form>
     </div>
 </template>
 <script>
+const axios = require("axios");
 let regex = require("@/regex")
 export default {
     methods: {
-        submit () {
-            let method = this.method;
-            let userName = this[method + "Model"].userName;
-            let password = this[method + "Model"].password;
-            let form = this.$refs[method];
+        login () {
+            let userName = this[this.method + "Model"].userName;
+            let password = this[this.method + "Model"].password;
+            let form = this.$refs[this.method];
             form.validate(v => {
                 if (!v) {
                     return;
                 }
                 this.isloading = true;
-                if(method === "password") {
-                    if(userName === "admin" && password === "88888888") {
-                        this.$router.push({ path: '/index' })
-                    } else{
-                        this.$Message.warning("用户名或密码错误");
-                    }
+                if(this.method === "password") {
+                    axios.post('/compuOrgTest/api/usermanage/login',{userName:this[this.method + "Model"].userName,password:this[this.method + "Model"].password})
+                    .then(response =>{
+                        if(response.data.success){
+                            this.$Message.success("用户登录成功");
+                            setTimeout(()=>{
+                                this.$router.push("/index");
+                            },1500);
+                        }else{
+                            this.$Message.error(response.data.msg);
+                        }
+                    })
+                    .catch(error =>{
+                        if(error.response){
+                            this.$Message.error(error.message);
+                        }else{
+                            this.$Message.error("无法发送请求");
+                        }
+                    })
+                    .finally(()=>{
+                        this.isloading=false;
+                    });
                 }
-                else if(method === "mobile") {
+                else if(this.method === "mobile") {
                     if(userName === "15102242777" && password === "123456") {
                         this.$router.push("/index")
                     } else{
@@ -63,6 +79,7 @@ export default {
                 }
                 this.isloading = false;
             })
+
         }
     },
     data () {

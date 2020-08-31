@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@svgdotjs/svg.js": "^3.0.16",
+    "axios": "^0.19.2",
     "core-js": "^3.6.5",
     "cropper": "^4.1.0",
     "cropperjs": "^1.5.7",
@@ -18,7 +19,11 @@
     "less": "^3.11.3",
     "less-loader": "^6.1.2",
     "vue": "^2.6.11",
+
     "vue-cropper": "^0.5.5",
+
+    "vue-draggable-resizable": "^2.2.0",
+
     "vue-router": "^3.3.4"
   },
   "devDependencies": {
