@@ -27,6 +27,8 @@
                     <div style="margin-bottom:.2rem" v-if="tableShow">
                         <Button type="success" style="float:left" @click="lineCheck()">校验所有连线</Button>
                     </div>
+                    <Button type="primary" to="experimentQuiz" style="margin-top:20px;" long>开始实验小测</Button>
+                    <Button type="primary" style="margin-top:20px;" long @click="download">下载实验报告模板</Button>
                 </card>
             </div>
         </i-col>
@@ -1405,6 +1407,15 @@
                 var draw = SVG().addTo('#svg-container').size('100%', '100%')
                 this.drawLine(currentRow, draw)
                 this.temp.push(draw)
+            },
+             download(){
+                let link = document.createElement('a'); //创建a标签
+                link.style.display = 'none';  //将a标签隐藏
+                link.href = 'http://47.115.31.88:8080/实验模板.docx';  //给a标签添加下载链接
+                link.setAttribute('download', '实验模板.doc'); // 要给a标签添加一个download属性，属性值就是文件名称 否则下载出来的文件是没有属性的
+                document.body.appendChild(link);
+                link.click(); //执行a标签*/
+                document.body.removeChild(link);
             }
         }
     }

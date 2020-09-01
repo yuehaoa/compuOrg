@@ -52,7 +52,7 @@
                                             <Icon type="ios-stats" />
                                             实验整理
                                         </template>
-                                        <MenuItem name="4-1">生成报告</MenuItem>
+                                        <MenuItem name="4-1" to="report">生成报告</MenuItem>
                                     </Submenu>
                                 </Submenu>
                                 <Submenu name="用户管理">

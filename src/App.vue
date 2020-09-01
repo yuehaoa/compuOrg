@@ -1,21 +1,41 @@
 <template>
-  <div>
-    <router-link to="/login"></router-link>
-    <router-link to="/index"></router-link>
-    <transition name="fade" mode="out-in" :duration="250">
-          <router-view></router-view>
-    </transition>
-  </div>
+    <component :is='layout' id='app'>
+        <div>
+            <router-link to="/login"></router-link>
+            <router-link to="/index"></router-link>
+            <template>
+                <transition name="fade" mode="out-in" :duration="250">
+                    <router-view></router-view>
+                </transition>
+            </template>
+        </div>
+    </component>
 </template>
 
 <script>
+import teacherLayout from '@/layouts/teacherHeader.vue'
+import emptyLayout from '@/layouts/empty.vue'
+import expLayout from '@/layouts/expHeader.vue'
+import stuLayout from '@/layouts/stuHeader.vue'
 export default {
   name: 'app',
+  components:{
+      'teacherHeader-layout':teacherLayout,
+      'empty-layout':emptyLayout,
+      'expHeader-layout':expLayout,
+      'stuHeader-layout':stuLayout
+  },
   data() {
     return{
       comName:'login',
     }
-  }
+  },
+  computed: {
+        layout() {
+            let layout = (this.$route.meta.layout || "empty") + "-layout";
+            return layout;
+        }
+    }
 }
 </script>
 
