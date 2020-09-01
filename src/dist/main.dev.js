@@ -14,6 +14,8 @@ var _vueDraggableResizable = _interopRequireDefault(require("vue-draggable-resiz
 
 require("vue-draggable-resizable/dist/VueDraggableResizable.css");
 
+var _vueCropper = _interopRequireDefault(require("vue-cropper"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -24,6 +26,9 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 _vue["default"].component('vue-draggable-resizable', _vueDraggableResizable["default"]);
 
+// 截图插件
+_vue["default"].use(_vueCropper["default"]);
+
 _vue["default"].use(_iview["default"]); //使用iview组件 
 
 
@@ -32,7 +37,8 @@ _vue["default"].use(_vueRouter["default"]);
 _vue["default"].config.productionTip = false;
 var routes = [{
   path: '/',
-  redirect: '/login'
+  redirect: '/login' //redirect: '/test'
+
 }, {
   path: "/index",
   component: function component() {
@@ -61,7 +67,18 @@ var routes = [{
       return _interopRequireWildcard(require("./page/experiment1.2.vue"));
     });
   }
-}];
+}, {
+  path: "/PrtScr",
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require("./page/PrtScr.vue"));
+    });
+  }
+} // {
+//   path: "/test",
+//   component: () => import("./page/test.vue")
+// }
+];
 var router = new _vueRouter["default"]({
   routes: routes
 });

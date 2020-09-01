@@ -11,13 +11,16 @@ import VueDraggableResizable from 'vue-draggable-resizable'
 import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
 Vue.component('vue-draggable-resizable', VueDraggableResizable)
 
+import vueCropper from 'vue-cropper' // 截图插件
+Vue.use(vueCropper)
+
 Vue.use(iView) //使用iview组件 
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 const routes = [
   {
     path: '/', 
-    redirect: '/PrtScr'
+    redirect: '/login'
     //redirect: '/test'
   },
   {

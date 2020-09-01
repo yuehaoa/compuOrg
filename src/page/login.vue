@@ -48,7 +48,7 @@ export default {
                 }
                 this.isloading = true;
                 if(this.method === "password") {
-                    axios.post('/compuOrgTest/api/usermanage/login',{userName:this[this.method + "Model"].userName,password:this[this.method + "Model"].password})
+                    axios.post('/compuOrgService/api/usermanage/login',{userName:this[this.method + "Model"].userName,password:this[this.method + "Model"].password})
                     .then(response =>{
                         if(response.data.success){
                             this.$Message.success("用户登录成功");
@@ -86,7 +86,9 @@ export default {
         return {
             method: "password",
             passwordModel: {
-                userName: "admin",
+                //userName: "admin",
+                userName: "小王",
+                //userName: "张老师"
                 password: "88888888"
             },
             isRemember: true,
