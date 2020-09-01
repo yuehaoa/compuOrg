@@ -38,9 +38,23 @@
                    
                 
             <div class="svg-style" id="svg-container" >
+                <vueCropper v-show="centerDialogVisible" class="prtscr"
+                    ref="cropper" 
+                    :img="option.img"  
+                    :info="false" 
+                    :outputSize="option.size"
+                    :outputType="option.outputType"
+                    :fixed-box="option.fixedBox"
+                    :can-move="option.canMove"
+                    :can-move-box="option.canMoveBox"
+                    :auto-crop="option.autoCrop"
+                    :auto-crop-width="option.autoCropWidth"
+                    :auto-crop-height="option.autoCropHeight" >
+                </vueCropper>
+
                     <!-- 截图预览 -->
-                    <img id="image" :src="imgURL" class="prtscr" v-show="centerDialogVisible"> 
-                    <div class="power-source box">
+                    <!-- <img id="image" :src="imgURL" class="prtscr" v-show="centerDialogVisible">  -->
+                    <div class="power-source box" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             
                             <div class="power-source-text text">
@@ -49,21 +63,21 @@
                             
                         </div>
                     </div>
-                    <div class="sys-unit box">
+                    <div class="sys-unit box" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="sys-unit-text text">
                                 SYS单元
                             </div>
                         </div>
                     </div>
-                    <div class="cpld-unit box">
+                    <div class="cpld-unit box" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="cpld-unit-text text">
                                 CPLD单元
                             </div>
                         </div>
                     </div>
-                    <div class="time-control-unit box">
+                    <div class="time-control-unit box" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="time-control-unit-text text">
                                 时序与操作台
@@ -151,7 +165,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="expansion-unit box">
+                    <div class="expansion-unit box" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="expansion-unit-text text">
                                 扩展单元
@@ -159,7 +173,7 @@
                         </div>
                     </div>
                     <!--结果列表栏-->
-                    <div class="box result-unit" v-if="start">
+                    <div class="box result-unit" v-if="start" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="text result-unit-text">
                                 --结果列表栏--
@@ -223,24 +237,24 @@
                         </div>
                         
                     </div>
-                    <div class="cpu-text text">
+                    <div class="cpu-text text" v-show="!centerDialogVisible">
                         CPU
                     </div>
-                    <div class="mc-unit box">
+                    <div class="mc-unit box" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="mc-unit-text text">
                                 MC单元
                             </div>
                         </div>
                     </div>
-                    <div class="ir-unit box">
+                    <div class="ir-unit box" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="ir-unit-text text">
                                 IR单元
                             </div>
                         </div>
                     </div>
-                    <div class="alu-reg-unit box" id= "alu">
+                    <div class="alu-reg-unit box" id= "alu" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="red-buble alu-red-a0" ref="A7"/>
                             <div class="red-buble alu-red-a1"/>
@@ -325,7 +339,7 @@
 
                         </div>
                     </div>
-                    <div class="cpu-bus box">
+                    <div class="cpu-bus box" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="cpu-eightNeedle-1 eightNeedle2" @click="buttonClick('cpuD7-D0-1')" id="cpuD7-D0-1"/>
                             <div class="cpu-eightNeedle-2 eightNeedle2" @click="buttonClick('cpuD7-D0-2')" id="cpuD7-D0-2"/>
@@ -341,7 +355,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pc-ar box">
+                    <div class="pc-ar box" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="pc-ar-text-1 text">
                                 PC及AR
@@ -351,10 +365,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="system-bus-text text">
+                    <div class="system-bus-text text" v-show="!centerDialogVisible">
                         系统总线
                     </div>
-                    <div class="system-bus box select-background">
+                    <div class="system-bus box select-background" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="system-T4-T1 fourNeedle"  @click=" buttonClick('con-bus-T4-T1')" id="con-bus-T4-T1"/>
                             <div class="system-T4-T1-text text">
@@ -436,47 +450,47 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mm-io-text text">
+                    <div class="mm-io-text text" v-show="!centerDialogVisible">
                         主存及外设
                     </div>
-                    <div class="mm box">
+                    <div class="mm box" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="mm-text text">
                                 MEM单元
                             </div>
                         </div>
                     </div>
-                    <div class="eightTwoNine box">
+                    <div class="eightTwoNine box" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="eightTwoNine-text">
                                 8259单元
                             </div>
                         </div>
                     </div>
-                    <div class="expand-bus box">
+                    <div class="expand-bus box" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="expand-bus-text text">
                                 扩展总线
                             </div>
                         </div>
                     </div>
-                    <div class="eightTwoSeven box">
+                    <div class="eightTwoSeven box" v-show="!centerDialogVisible">
                         <div class='wrapper'>
                             <div class="eightTwoSeven-text">
                                 8237单元
                             </div>
                         </div>
                     </div>
-                    <div class="extra box">
+                    <div class="extra box" v-show="!centerDialogVisible">
                     </div>
-                    <div class="out-unit box">
+                    <div class="out-unit box" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="out-unit-text text">
                                 OUT单元
                             </div>
                         </div>
                     </div>
-                    <div class="con-unit box">
+                    <div class="con-unit box" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="con-unit-text text">
                                 CON单元
@@ -642,7 +656,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="in-unit box">
+                    <div class="in-unit box" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             <div class="in-unit-text text">
                                 IN单元
@@ -650,7 +664,7 @@
                         </div>
                     </div>
             </div>
-            <card class="card-menu">
+            <card class="card-menu" v-show="!centerDialogVisible">
                 <div class="time-control-unit box select-background"/>
                 <div class="alu-reg-unit box select-background"/>
                 <div class="cpu-bus box select-background"/>
@@ -668,14 +682,33 @@
     import { SVG } from '@svgdotjs/svg.js'
     import { screenChange } from "../scripts/screen.js"
     import { watermark, deleteMark } from "../scripts/waterMark.js"
-    
+    import { VueCropper } from "vue-cropper"
     
     export default {
         
         data() {
             return{
+                option: {
+               
+                 img: '', //等待裁剪图片路径
+                 size: 1, // 裁剪生成图片的质量
+                 outputType: "jpeg",//截图格式
+                 full: false,      // 输出原图比例截图 props名full
+                 fixedBox: false,  // 固定截图框大小 不允许改变
+                 canMove: true, // 上传图片是否可以移动
+                 canMoveBox: true, // 截图框能否拖动
+                 autoCrop: true,   // 是否默认生成截图框
+                 original: false,// 上传图片按照原始比例渲染
+                 // 只有自动截图开启 宽度高度才生效
+                 // autoCropWidth: 690,
+                 // autoCropHeight: 518,
+                 autoCropWidth: 345,
+                 autoCropHeight: 259,
+                 centerBox: false,  // 是否按照设备的dpr 输出等比例图片
+                 high: true,
+             },
                 centerDialogVisible:false,
-                imgURL:'', //图片资源路径
+                imgURL:'', //裁剪后图片资源路径
                 menuShow: true,
                 count: 0,
                 x1:0,
@@ -733,6 +766,7 @@
                 F:[0,0,0,0,0,0,0,0]
             }
         },
+        components: { VueCropper },
         mounted() {    
            
             screenChange(document,window);
@@ -1401,18 +1435,26 @@
                 ).then(canvas => {    
        
                 let url=canvas.toDataURL('image/jpeg');// toDataURL :图片格式转成 base64
-                this.imgURL = url;
+                //this.imgURL = url;
+                this.option.img=url;
                 this.centerDialogVisible=true;   
                 })
+                // 开始截图
+                this.$refs.cropper.startCrop();
                 //删除水印
                 deleteMark(mark_div);
             }, 
             downImg(){
+                // 完成截图
+                this.$refs.cropper.stopCrop();
                 /*使用a标签下载图片*/
                 let a = document.createElement('a');
-                a.href = this.imgURL;
-                a.download = 'test'; //下载名
-                a.click();
+                a.download = '截图'; //下载名
+                this.$refs.cropper.getCropData((data) => {
+                    this.imgURL = data
+                    a.href = data
+                    a.click()
+                }) 
                 this.centerDialogVisible=false;
             },
             //取消截图
