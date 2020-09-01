@@ -40,9 +40,39 @@ const routes = [
     component: () => import("./page/experiment1.2.vue")
   },
   {
+    path: "/experimentQuiz",
+    name:"ExperimentQuiz",
+    meta:{layout:"expHeader"},
+    component: () => import("./page/experimentQuiz.vue")
+  },
+  {
+    path: "/quizOver",
+    name:'QuizOver',
+    meta:{layout:"expHeader"},
+    component: () => import("./page/quizOver.vue")
+  },
+  {
+    path:'/stuList',
+    meta: {layout: "teacherHeader"},
+    name:'StuList',
+    component: () => import("./page/stuList.vue")
+  },
+  {
+    path:'/exp1_List',
+    meta: {layout: "teacherHeader"},
+    name:'Exp1_List',
+    component: () => import("./page/exp1_List.vue")
+  },
+  {
+    path:'/quizAnswer',
+    meta: {layout: "teacherHeader"},
+    name:'QuizAnswer',
+    component: () => import("./page/quizAnswer.vue")
+  },
+  {
     path: "/PrtScr",
     component: () => import("./page/PrtScr.vue")
-  },
+  }
   // {
   //   path: "/test",
   //   component: () => import("./page/test.vue")
