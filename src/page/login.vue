@@ -86,7 +86,9 @@ export default {
         return {
             method: "password",
             passwordModel: {
-                userName: "admin",
+                //userName: "admin",
+                userName: "小王",
+                //userName: "张老师"
                 password: "88888888"
             },
             isRemember: true,

@@ -29,617 +29,670 @@
                     </div>
                     <Button type="primary" to="experimentQuiz" style="margin-top:20px;" long>开始实验小测</Button>
                     <Button type="primary" style="margin-top:20px;" long @click="download">下载实验报告模板</Button>
+                    <Button type="success" style="float:right;margin-top:10px" @click="getImg" v-show="!centerDialogVisible">截图</Button>
+                    <Button type="success" style="margin-top:10px" @click="downImg" v-show="centerDialogVisible">下载截图</Button>
+                    <Button type="success" style="float:right;margin-top:10px" @click="cancel" v-show="centerDialogVisible">取消截图</Button>
                 </card>
             </div>
         </i-col>
         <i-col span="18">
             <div class="svg-style" id="svg-container">
-                    <div class="power-source box">
-                        <div class="wrapper">
-                            <div class="power-source-text text">
-                                电源
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sys-unit box">
-                        <div class="wrapper">
-                            <div class="sys-unit-text text">
-                                SYS单元
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cpld-unit box">
-                        <div class="wrapper">
-                            <div class="cpld-unit-text text">
-                                CPLD单元
-                            </div>
-                        </div>
-                    </div>
-                    <div class="time-control-unit box">
-                        <div class="wrapper">
-                            <div class="time-control-unit-text text">
-                                时序与操作台
-                            </div>
-                            <div class="clk0 twoNeedle" @click="buttonClick('clk0')" id="clk0"/>
-                            <div class="clk0-text text">
-                                clk0
-                            </div>
-                            <div class="three-hundred-hz twoNeedle invisible"/>
-                            <div class="three-hundred-hz-text text invisible">
-                                300HZ
-                            </div>
-                            <div class="thirty-hz twoNeedle" @click="buttonClick('30HZ')" id="30HZ"/>
-                            <div class="thirty-hz-text text">
-                                30HZ
-                            </div>
-                            <div class="three-hz twoNeedle invisible"/>
-                            <div class="three-hz-text text invisible">
-                                3HZ
-                            </div>
-
-                            <div class="st">
-                                <Dropdown class="white-btn stMenu" placement="right-start">
-                                    <DropdownMenu slot="list">
-                                        <DropdownItem style="width:0.8rem">T1</DropdownItem>
-                                        <DropdownItem style="width:0.8rem">T2</DropdownItem>
-                                        <DropdownItem style="width:0.8rem">T3</DropdownItem>
-                                        <DropdownItem style="width:0.8rem" @click.native="t4Option">T4</DropdownItem>
-                                    </DropdownMenu>
-                                </Dropdown>
-                            </div>
-                            <div class="st-text text">
-                                ST
-                            </div>
-                            <div class="st-text text">
-                                ST
-                            </div>
-                            <div class="start bulb" @click="changeImage" id="kk1Start"/>
-                            <div class="start-text text">
-                                运行
-                            </div>
-                            <div class="text kk1-text">
-                                kk1
-                            </div>
-                            <div class="stop bulb" @click="changeImage"/>
-                            <div class="stop-text text">
-                                停止
-                            </div>
-                            <div class="singleShot bulb" @click="changeImage" id="singleBeat"/>
-                            <div class="singleShot-text text">
-                                单拍
-                            </div>
-                            <div class="singleStep bulb" @click="changeImage"/>
-                            <div class="singleStep-text text">
-                                单步
-                            </div>
-                            <div class="continue bulb" @click="changeImage"/>
-                            <div class="continue-text text">
-                                连续
-                            </div>
-                            <div class="text kk2-text">
-                                kk2
-                            </div>
-                            <div class="program bulb" @click="changeImage"/>
-                            <div class="program-text text">
-                                编程
-                            </div>
-                            <div class="check bulb" @click="changeImage"/>
-                            <div class="check-text text">
-                                校验
-                            </div>
-                            <div class="run bulb" @click="changeImage" id="kk3Start"/>
-                            <div class="run-text text">
-                                运行
-                            </div>
-                            <div class="text kk3-text">
-                                kk3
-                            </div>
-
-                            <div class="tfourNeedle fourNeedle" @click="buttonClick('time-con-T4-T1')" id="time-con-T4-T1"></div>
-
-             
-                            <div class="tfourNeedle-text text">
-                                T4—T1
-                            </div>
-                        </div>
-                    </div>
-                    <div class="expansion-unit box">
-                        <div class="wrapper">
-                            <div class="expansion-unit-text text">
-                                扩展单元
-                            </div>
-                        </div>
-                    </div>
-                    <!--结果列表栏-->
-                    <div class="box result-unit" v-if="start">
-                        <div class="wrapper">
-                            <div class="text result-unit-text">
-                                --结果列表栏--
-                            </div>
-                            <div>
-                                <br>
-                                <br>
-                                <div style="text-align:center;margin-top:10px">
-                                    <span class="result">F: {{F.toString().replace(/,/g," ")}}</span>
+                    <vueCropper v-show="centerDialogVisible"
+                        ref="cropper" 
+                        :img="option.img"  
+                        :info="false" 
+                        :outputSize="option.size"
+                        :outputType="option.outputType"
+                        :fixed-box="option.fixedBox"
+                        :can-move="option.canMove"
+                        :can-move-box="option.canMoveBox"
+                        :auto-crop="option.autoCrop"
+                        :auto-crop-width="option.autoCropWidth"
+                        :auto-crop-height="option.autoCropHeight" >
+                    </vueCropper>
+                    <div v-show="!centerDialogVisible">
+                        <div class="power-source box">
+                            <div class="wrapper">
+                                <div class="power-source-text text">
+                                    电源
                                 </div>
-                                <br>
-                                <div style="margin-left:18px" v-for="(value,index) in S3_0_Flag" v-bind:key="index">
-                                    <span class="result">
-                                        S{{3-index}}: {{value}}
-                                        <br>
-                                        <br>
-                                    </span>
-                                </div>
-                                <div style="margin-left:18px">
-                                    <span class="result">
-                                        ALU_B: {{alu_b}}
-                                    </span>
-                                </div>
-                                <br>
-                                <br>
-                                <div style="margin-left:18px">
-                                    <span class="result">
-                                        LDA: {{lda}}
-                                    </span>
-                                </div>
-                                <br>
-                                <br>
-                                <div style="margin-left:18px">
-                                    <span class="result">
-                                        LDB: {{ldb}}
-                                    </span>
-                                </div>
-                                <br>
-                                <br>
-                                <div style="margin-left:18px">
-                                    <span class="result">
-                                        Cn: {{conCn}}
-                                    </span>
-                                </div>
-                                <br>
-                                <br>
-                                <div style="margin-left:18px">
-                                    <span class="result">
-                                        FZ: {{FZ}}
-                                    </span>
-                                </div>
-                                <br>
-                                <br>
-                                <div style="margin-left:18px">
-                                    <span class="result">
-                                        FC: {{FC}}
-                                    </span>
-                                </div>
-                                
                             </div>
                         </div>
-                        
-                    </div>
-                    <div class="cpu-text text">
-                        CPU
-                    </div>
-                    <div class="mc-unit box">
-                        <div class="wrapper">
-                            <div class="mc-unit-text text">
-                                MC单元
+                        <div class="sys-unit box">
+                            <div class="wrapper">
+                                <div class="sys-unit-text text">
+                                    SYS单元
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="ir-unit box">
-                        <div class="wrapper">
-                            <div class="ir-unit-text text">
-                                IR单元
+                        <div class="cpld-unit box">
+                            <div class="wrapper">
+                                <div class="cpld-unit-text text">
+                                    CPLD单元
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="alu-reg-unit box">
-                        <div class="wrapper">
-                            <div class="red-buble alu-red-a0" ref="A7"/>
-                            <div class="red-buble alu-red-a1"/>
-                            <div class="red-buble alu-red-a2"/>
-                            <div class="red-buble alu-red-a3"/>
-                            <div class="red-buble alu-red-a4"/>
-                            <div class="red-buble alu-red-a5"/>
-                            <div class="red-buble alu-red-a6"/>
-                            <div class="red-buble alu-red-a7"/>
-                            <div class="green-buble alu-green-a0"/>
-                            <div class="green-buble alu-green-a1"/>
-                            <div class="green-buble alu-green-a2"/>
-                            <div class="green-buble alu-green-a3"/>
-                            <div class="green-buble alu-green-a4"/>
-                            <div class="green-buble alu-green-a5"/>
-                            <div class="green-buble alu-green-a6"/>
-                            <div class="green-buble alu-green-a7"/>
-                            <div class="memA text">
-                                {{memA.toString().replace(/,/g," ")}}
-                            </div>
-                            <div class="memB text">
-                                {{memB.toString().replace(/,/g," ")}}
-                            </div>
-                            <div class="alu-twoNeedle-rob twoNeedle invisible"/>
-                            <div class="alu-twoNeedle-rob-text text invisible">
-                                R0_B
-                            </div>
-                            <div class="alu-twoNeedle-ldro twoNeedle invisible"/>
-                            <div class="alu-twoNeedle-ldro-text text invisible">
-                                LDRO
-                            </div>
-                            <div class="alu-eightNeedle-in eightNeedle" @click="buttonClick('aluIN7-IN0')" id="aluIN7-IN0"/>
-                            <div class="alu-eightNeedle-in-text text">
-                                IN7—IN0
-                            </div>
-                            <div class="alu-fourNeedle-fzfc fourNeedle invisible"/>
-                            <div class="text alu-fourNeedle-fzfc-text invisible">
-                                FZ-FC
-                            </div>
-                            <div class="alu-fourNeedle-s3s0 fourNeedle" @click="buttonClick('aluS3-S0')" id="aluS3-S0"/>
-                            <div class="text alu-fourNeedle-s3s0-text">
-                                S3-S0
-                            </div>
+                        <vue-draggable-resizable
+                            w="auto"
+                            h="auto"
+                            :grid="[20,40]"
+                            :resizable="false"
+                        >
+                            <div class="time-control-unit box" ref="timeControl" @wheel.prevent="handleTableWheel(0,$event)">
+                                <div class="wrapper">
+                                    <div class="time-control-unit-text text">
+                                        时序与操作台
+                                    </div>
+                                    <div class="clk0 twoNeedle" @click="buttonClick('clk0')" id="clk0"/>
+                                    <div class="clk0-text text">
+                                        clk0
+                                    </div>
+                                    <div class="three-hundred-hz twoNeedle invisible"/>
+                                    <div class="three-hundred-hz-text text invisible">
+                                        300HZ
+                                    </div>
+                                    <div class="thirty-hz twoNeedle" @click="buttonClick('30HZ')" id="30HZ"/>
+                                    <div class="thirty-hz-text text">
+                                        30HZ
+                                    </div>
+                                    <div class="three-hz twoNeedle invisible"/>
+                                    <div class="three-hz-text text invisible">
+                                        3HZ
+                                    </div>
 
-                            <div class="alu-twoNeedle-cn twoNeedle" @click="buttonClick('aluCn')" id="aluCn"/>
-                            <div class="text alu-twoNeedle-cn-text">
-                                Cn
-                            </div>
+                                    <div class="st">
+                                        <Dropdown class="white-btn stMenu" placement="right-start">
+                                            <DropdownMenu slot="list">
+                                                <DropdownItem style="width:0.8rem">T1</DropdownItem>
+                                                <DropdownItem style="width:0.8rem">T2</DropdownItem>
+                                                <DropdownItem style="width:0.8rem">T3</DropdownItem>
+                                                <DropdownItem style="width:0.8rem" @click.native="t4Option">T4</DropdownItem>
+                                            </DropdownMenu>
+                                        </Dropdown>
+                                    </div>
+                                    <div class="st-text text">
+                                        ST
+                                    </div>
+                                    <div class="st-text text">
+                                        ST
+                                    </div>
+                                    <div class="start bulb" @click="changeImage" id="kk1Start"/>
+                                    <div class="start-text text">
+                                        运行
+                                    </div>
+                                    <div class="text kk1-text">
+                                        kk1
+                                    </div>
+                                    <div class="stop bulb" @click="changeImage"/>
+                                    <div class="stop-text text">
+                                        停止
+                                    </div>
+                                    <div class="singleShot bulb" @click="changeImage" id="singleBeat"/>
+                                    <div class="singleShot-text text">
+                                        单拍
+                                    </div>
+                                    <div class="singleStep bulb" @click="changeImage"/>
+                                    <div class="singleStep-text text">
+                                        单步
+                                    </div>
+                                    <div class="continue bulb" @click="changeImage"/>
+                                    <div class="continue-text text">
+                                        连续
+                                    </div>
+                                    <div class="text kk2-text">
+                                        kk2
+                                    </div>
+                                    <div class="program bulb" @click="changeImage"/>
+                                    <div class="program-text text">
+                                        编程
+                                    </div>
+                                    <div class="check bulb" @click="changeImage"/>
+                                    <div class="check-text text">
+                                        校验
+                                    </div>
+                                    <div class="run bulb" @click="changeImage" id="kk3Start"/>
+                                    <div class="run-text text">
+                                        运行
+                                    </div>
+                                    <div class="text kk3-text">
+                                        kk3
+                                    </div>
 
-                            <div class="alu-fourNeedle-ldaldb fourNeedle" @click="buttonClick('aluLDA-LDB')" id="aluLDA-LDB"/>
-                            <div class="text alu-fourNeedle-ldaldb-text">
-                                LDA-LDB
-                            </div>
-                            <div class="alu-eightNeedle-d0d7 eightNeedle" @click="buttonClick('aluD7-D0')" id="aluD7-D0"/>
-                            <div class="text alu-eightNeedle-d0d7-text">
-                                D7——D0
-                            </div>
-                            <div class="alu-twoNeedle-alub twoNeedle" @click="buttonClick('aluALU_B')" id="aluALU_B"/>
-                            <div class="text alu-twoNeedle-alub-text">
-                                ALU_B
-                            </div>
-                            <div class="alu-eightNeedle2-out eightNeedle2" @click="buttonClick('outD7-D0')" id="outD7-D0"/>
-                            <div class="text alu-eightNeedle2-out-text-1">
-                                OUT7
-                            </div>
-                            <div class="text alu-eightNeedle2-out-text-2">
-                                OUT0
-                            </div>
+                                    <div class="tfourNeedle fourNeedle" @click="buttonClick('time-con-T4-T1')" id="time-con-T4-T1"></div>
 
-                            <div class="alu-reg-unit-text text">
-                                ALU及REG单元
+                    
+                                    <div class="tfourNeedle-text text">
+                                        T4—T1
+                                    </div>
+                                </div>
                             </div>
-                            <div class="memA-text text">
-                                LDA:
-                            </div>
-                            <div class="notice text">
-                                灯泡从左到右依次表示第高位-第低位
-                            </div>
-                            <div class="memB-text text">
-                                LDB:
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="cpu-bus box">
-                        <div class="wrapper">
-                            <div class="cpu-eightNeedle-1 eightNeedle2" @click="buttonClick('cpuD7-D0-1')" id="cpuD7-D0-1"/>
-                            <div class="cpu-eightNeedle-2 eightNeedle2" @click="buttonClick('cpuD7-D0-2')" id="cpuD7-D0-2"/>
-                            <div class="cpu-eightNeedle-3 eightNeedle2" @click="buttonClick('cpuD7-D0-3')" id="cpuD7-D0-3"/>
-                            <div class="text cpu-eightNeedle-text-d7">
-                                D7
-                            </div>
-                            <div class="text cpu-eightNeedle-text-d0">
-                                D0
-                            </div>
-                            <div class="cpu-bus-text text">
-                                CPU内总线
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pc-ar box">
-                        <div class="wrapper">
-                            <div class="pc-ar-text-1 text">
-                                PC及AR
-                            </div>
-                            <div class="pc-ar-text-2 text">
-                                单元
+                        </vue-draggable-resizable>
+                        <div class="expansion-unit box">
+                            <div class="wrapper">
+                                <div class="expansion-unit-text text">
+                                    扩展单元
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="system-bus-text text">
-                        系统总线
-                    </div>
-                    <div class="system-bus box select-background">
-                        <div class="wrapper">
-                            <div class="system-T4-T1 fourNeedle"  @click=" buttonClick('con-bus-T4-T1')" id="con-bus-T4-T1"/>
-                            <div class="system-T4-T1-text text">
-                                T4 - T1
-                            </div>
-                            <div class="red-buble system-red-buble-1"/>
-                            <div class="red-buble system-red-buble-2"/>z
-                            <div class="red-buble system-red-buble-3"/>
-                            <div class="red-buble system-red-buble-4"/>
-                            <div class="twoNeedle system-twoNeedle-xiow invisible"/>
-                            <div class="text system-twoNeedle-xiow-text invisible">
-                                XIOW
-                            </div>
-
-                            <div class="twoNeedle system-twoNeedle-xior invisible"/>
-                            <div class="text system-twoNeedle-xior-text invisible">
-                                XIOR
-                            </div>
-
-                            <div class="fourNeedle system-fourNeedle-xmwr invisible"/>
-                            <div class="text system-fourNeedle-xmwr-text invisible">
-                                XMWR-XMRD
-                            </div>
-
-                            <div class="twoNeedle system-twoNeedle-hold invisible"/>
-                            <div class="text system-twoNeedle-hold-text invisible">
-                                HOLD
-                            </div>
-
-                            <div class="fourNeedle system-fourNeedle-iom invisible"/>
-                            <div class="text system-fourNeedle-iom-text invisible">
-                                WR-RD-IOM
+                        <!--结果列表栏-->
+                        <div class="box result-unit" v-if="start">
+                            <div class="wrapper">
+                                <div class="text result-unit-text">
+                                    --结果列表栏--
+                                </div>
+                                <div>
+                                    <br>
+                                    <br>
+                                    <div style="text-align:center;margin-top:10px">
+                                        <span class="result">F: {{F.toString().replace(/,/g," ")}}</span>
+                                    </div>
+                                    <br>
+                                    <div style="margin-left:18px" v-for="(value,index) in S3_0_Flag" v-bind:key="index">
+                                        <span class="result">
+                                            S{{3-index}}: {{value}}
+                                            <br>
+                                            <br>
+                                        </span>
+                                    </div>
+                                    <div style="margin-left:18px">
+                                        <span class="result">
+                                            ALU_B: {{alu_b}}
+                                        </span>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div style="margin-left:18px">
+                                        <span class="result">
+                                            LDA: {{lda}}
+                                        </span>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div style="margin-left:18px">
+                                        <span class="result">
+                                            LDB: {{ldb}}
+                                        </span>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div style="margin-left:18px">
+                                        <span class="result">
+                                            Cn: {{conCn}}
+                                        </span>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div style="margin-left:18px">
+                                        <span class="result">
+                                            FZ: {{FZ}}
+                                        </span>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <div style="margin-left:18px">
+                                        <span class="result">
+                                            FC: {{FC}}
+                                        </span>
+                                    </div>
+                                    
+                                </div>
                             </div>
                             
-                            <div class="eightNeedle2 system-eightNeedle-xd-1 invisible"/>
-                            <div class="eightNeedle2 system-eightNeedle-xd-2 invisible"/>
-                            <div class="text system-eightNeedle-xd7-text invisible">
-                                XD7
-                            </div>
-                            <div class="text system-eightNeedle-xd0-text invisible">
-                                XD0
-                            </div>
-
-                            <div class="system-eightNeedle-xa eightNeedle2 invisible"/>
-                            <div class="text system-eightNeedle-xa7-text invisible">
-                                XA7
-                            </div>
-                            <div class="text system-eightNeedle-xa0-text invisible">
-                                XA0
-                            </div>
-
-                            <!----->
-                            <div class="red-buble system-red-buble-a7" name="buble_F"/>
-                            <div class="red-buble system-red-buble-a6" name="buble_F"/>
-                            <div class="red-buble system-red-buble-a5" name="buble_F"/>
-                            <div class="red-buble system-red-buble-a4" name="buble_F"/>
-                            <div class="text system-red-buble-text">
-                                A7-----A0 代表F的值
-                            </div>
-                            <div class="green-buble system-green-buble-a3" name="buble_F"/>
-                            <div class="green-buble system-green-buble-a2" name="buble_F"/>
-                            <div class="green-buble system-green-buble-a1" name="buble_F"/>
-                            <div class="green-buble system-green-buble-a0" name="buble_F"/>
-                            <!---->
-
-
-
-                            <div class="system-bus-text-1 text">
-                                控制总线
-                            </div>
-                            <div class="system-bus-text-2 text">
-                                数据总线
-                            </div>
-                            <div class="system-bus-text-3 text">
-                                地址总线
+                        </div>
+                        <div class="cpu-text text">
+                            CPU
+                        </div>
+                        <div class="mc-unit box">
+                            <div class="wrapper">
+                                <div class="mc-unit-text text">
+                                    MC单元
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="mm-io-text text">
-                        主存及外设
-                    </div>
-                    <div class="mm box">
-                        <div class="wrapper">
-                            <div class="mm-text text">
-                                MEM单元
+                        <div class="ir-unit box">
+                            <div class="wrapper">
+                                <div class="ir-unit-text text">
+                                    IR单元
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="eightTwoNine box">
-                        <div class="wrapper">
-                            <div class="eightTwoNine-text">
-                                8259单元
-                            </div>
-                        </div>
-                    </div>
-                    <div class="expand-bus box">
-                        <div class="wrapper">
-                            <div class="expand-bus-text text">
-                                扩展总线
-                            </div>
-                        </div>
-                    </div>
-                    <div class="eightTwoSeven box">
-                        <div class='wrapper'>
-                            <div class="eightTwoSeven-text">
-                                8237单元
-                            </div>
-                        </div>
-                    </div>
-                    <div class="extra box">
-                    </div>
-                    <div class="out-unit box">
-                        <div class="wrapper">
-                            <div class="out-unit-text text">
-                                OUT单元
-                            </div>
-                        </div>
-                    </div>
-                    <div class="con-unit box">
-                        <div class="wrapper">
-                            <div class="con-unit-text text">
-                                CON单元
-                            </div>
-                            <div class="switch SD20" @click="changeSwitch" />
-                            <div class="SD20-text text">
-                                SD20  K0
-                            </div>
-                            <div class="switch SD21" @click="changeSwitch" />
-                            <div class="SD21-text text">
-                                21  K1
+                        <vue-draggable-resizable
+                            w="auto"
+                            h="auto"
+                            :grid="[20,40]"
+                            :resizable="false"
+                        >
+                            <div class="alu-reg-unit box" ref="aluReg" @wheel.prevent="handleTableWheel(1,$event)">
+                                <div class="wrapper">
+                                <div class="red-buble alu-red-a0" ref="A7"/>
+                                <div class="red-buble alu-red-a1"/>
+                                <div class="red-buble alu-red-a2"/>
+                                <div class="red-buble alu-red-a3"/>
+                                <div class="red-buble alu-red-a4"/>
+                                <div class="red-buble alu-red-a5"/>
+                                <div class="red-buble alu-red-a6"/>
+                                <div class="red-buble alu-red-a7"/>
+                                <div class="green-buble alu-green-a0"/>
+                                <div class="green-buble alu-green-a1"/>
+                                <div class="green-buble alu-green-a2"/>
+                                <div class="green-buble alu-green-a3"/>
+                                <div class="green-buble alu-green-a4"/>
+                                <div class="green-buble alu-green-a5"/>
+                                <div class="green-buble alu-green-a6"/>
+                                <div class="green-buble alu-green-a7"/>
+                                <div class="memA text">
+                                    {{memA.toString().replace(/,/g," ")}}
+                                </div>
+                                <div class="memB text">
+                                    {{memB.toString().replace(/,/g," ")}}
+                                </div>
+                                <div class="alu-twoNeedle-rob twoNeedle invisible"/>
+                                <div class="alu-twoNeedle-rob-text text invisible">
+                                    R0_B
+                                </div>
+                                <div class="alu-twoNeedle-ldro twoNeedle invisible"/>
+                                <div class="alu-twoNeedle-ldro-text text invisible">
+                                    LDRO
+                                </div>
+                                <div class="alu-eightNeedle-in eightNeedle" @click="buttonClick('aluIN7-IN0')" id="aluIN7-IN0"/>
+                                <div class="alu-eightNeedle-in-text text">
+                                    IN7—IN0
+                                </div>
+                                <div class="alu-fourNeedle-fzfc fourNeedle invisible"/>
+                                <div class="text alu-fourNeedle-fzfc-text invisible">
+                                    FZ-FC
+                                </div>
+                                <div class="alu-fourNeedle-s3s0 fourNeedle" @click="buttonClick('aluS3-S0')" id="aluS3-S0"/>
+                                <div class="text alu-fourNeedle-s3s0-text">
+                                    S3-S0
+                                </div>
+
+                                <div class="alu-twoNeedle-cn twoNeedle" @click="buttonClick('aluCn')" id="aluCn"/>
+                                <div class="text alu-twoNeedle-cn-text">
+                                    Cn
+                                </div>
+
+                                <div class="alu-fourNeedle-ldaldb fourNeedle" @click="buttonClick('aluLDA-LDB')" id="aluLDA-LDB"/>
+                                <div class="text alu-fourNeedle-ldaldb-text">
+                                    LDA-LDB
+                                </div>
+                                <div class="alu-eightNeedle-d0d7 eightNeedle" @click="buttonClick('aluD7-D0')" id="aluD7-D0"/>
+                                <div class="text alu-eightNeedle-d0d7-text">
+                                    D7——D0
+                                </div>
+                                <div class="alu-twoNeedle-alub twoNeedle" @click="buttonClick('aluALU_B')" id="aluALU_B"/>
+                                <div class="text alu-twoNeedle-alub-text">
+                                    ALU_B
+                                </div>
+                                <div class="alu-eightNeedle2-out eightNeedle2" @click="buttonClick('outD7-D0')" id="outD7-D0"/>
+                                <div class="text alu-eightNeedle2-out-text-1">
+                                    OUT7
+                                </div>
+                                <div class="text alu-eightNeedle2-out-text-2">
+                                    OUT0
+                                </div>
+
+                                <div class="alu-reg-unit-text text">
+                                    ALU及REG单元
+                                </div>
+                                <div class="memA-text text">
+                                    LDA:
+                                </div>
+                                <div class="notice text">
+                                    灯泡从左到右依次表示第高位-第低位
+                                </div>
+                                <div class="memB-text text">
+                                    LDB:
+                                </div>
 
                             </div>
-                            <div class="switch SD22" @click="changeSwitch" />
-                            <div class="SD22-text text">
-                                22  K2
+                        </div>
+                        </vue-draggable-resizable>
+                        <vue-draggable-resizable
+                            w="auto"
+                            h="auto"
+                            :grid="[20,40]"
+                            :resizable="false"
+                        >
+                            <div class="cpu-bus box" ref="cpuBus" @wheel.prevent="handleTableWheel(2,$event)">
+                                <div class="wrapper">
+                                    <div class="cpu-eightNeedle-1 eightNeedle2" @click="buttonClick('cpuD7-D0-1')" id="cpuD7-D0-1"/>
+                                    <div class="cpu-eightNeedle-2 eightNeedle2" @click="buttonClick('cpuD7-D0-2')" id="cpuD7-D0-2"/>
+                                    <div class="cpu-eightNeedle-3 eightNeedle2" @click="buttonClick('cpuD7-D0-3')" id="cpuD7-D0-3"/>
+                                    <div class="text cpu-eightNeedle-text-d7">
+                                        D7
+                                    </div>
+                                    <div class="text cpu-eightNeedle-text-d0">
+                                        D0
+                                    </div>
+                                    <div class="cpu-bus-text text">
+                                        CPU内总线
+                                    </div>
+                                </div>
                             </div>
-                            <div class="switch SD23" @click="changeSwitch" />
-                            <div class="SD23-text text">
-                                23  K3
-                            </div>
-                            <div class="switch SD24" @click="changeSwitch"/>
-                            <div class="SD24-text text">
-                                24  K4
-                            </div>
-                            <div class="switch SD25" @click="changeSwitch"/>
-                            <div class="SD25-text text">
-                                25  K5
-                            </div>
-
-
-                            <div class="switch SD26" @click="changeSwitch"/>
-                            <div class="SD26-text text">
-                                26  K6
-                            </div>
-                            <div class="switch SD27" @click="changeSwitch" ref="num7"/>
-                            <div class="SD27-text text">
-                                SD27  K7
-                            </div>
-
-                            <div class="switch SD17 invisible" @click="changeSwitch" id="ALU_B"/>
-                            <div class="SD17-text text invisible">
-                                SD17  ALU_B
-                            </div>
-                            <div class="switch SD16" @click="changeSwitch" name="SD03-00"/>
-                            <div class="SD16-text text">
-                                16  S3
-                            </div>
-                            <div class="switch SD15" @click="changeSwitch" name="SD03-00"/>
-                            <div class="SD15-text text">
-                                15  S2
-                            </div>
-                            <div class="switch SD14" @click="changeSwitch" name="SD03-00"/>
-                            <div class="SD14-text text">
-                                14  S1
-                            </div>
-                            <div class="switch SD13" @click="changeSwitch" name="SD03-00"/>
-                            <div class="SD13-text text">
-                                13  S0
-                            </div>
-                            <div class="switch SD12" @click="changeSwitch" id="SD_Cn"/>
-              
-                            <div class="SD12-text text">
-                                12  Cn
-                            </div>
-                            <div class="switch SD11" @click="changeSwitch" ref="lda"/>
-                            <div class="SD11-text text">
-                                11  LDA
-                            </div>
-                            <div class="switch SD10" @click="changeSwitch" ref="ldb"/>
-                            <div class="SD10-text text">
-                                SD10  LDB
-                            </div>
-                            <div class="switch SD7 invisible"/>
-                            <div class="SD7-text text invisible">
-                                SD07  WR
-                            </div>
-                            <div class="switch SD6 invisible"/>
-                            <div class="SD6-text text invisible">
-                                06  RD
-                            </div>
-                            <div class="switch SD5 invisible"/>
-                            <div class="SD5-text text invisible">
-                                05  IOM
-                            </div>
-                            <div class="switch SD4 invisible"/>
-                            <div class="SD4-text text invisible">
-                                04
-                            </div>
-                            <div class="switch SD3 invisible"/>
-                            <div class="SD3-text text invisible">
-                                03
-                            </div>
-                            <div class="switch SD2 invisible"/>
-                            <div class="SD2-text text invisible">
-                                02
-                            </div>
-                            <div class="switch SD1 invisible"/>
-                            <div class="SD1-text text invisible">
-                                01  LDAR
-                            </div>
-                            <div class="switch SD0 invisible"/>
-                            <div class="SD0-text text invisible">
-                                SD00 LOR
-                            </div>
-                            <div class="clr-white-btn white-btn" @click="clear()"/>
-                            <div class="white-btn-text text">
-                                CLR
-                            </div>
-                            <div class="fourNeedle-k7k6 fourNeedle invisible"/>
-                            <div class="fourNeedle-k7k6-text text invisible">
-                                K7--K6
-                            </div>
-                            <div class="fourNeedle-k5k4 fourNeedle invisible"/>
-                            <div class="fourNeedle-k5k4-text text invisible">
-                                K5--K4
-                            </div>
-                            <div class="fourNeedle-k3k2 fourNeedle invisible"/>
-                            <div class="fourNeedle-k3k2-text text invisible">
-                                K3--K0
-                            </div>
-                            <div class="eightNeedle-SD27 eightNeedle" @click="buttonClick('SD27-SD20')" id="SD27-SD20"/>
-                            <div class="eightNeedle-SD27-text text">
-                                SD27-SD20
-                            </div>
-                            <div class="twoNeedle-alu twoNeedle" @click="buttonClick('conALU_B')" id="conALU_B"/>
-                            <div class="twoNeedle-alu-text text">
-                                ALU_B
-                            </div>
-                            <div class="fourNeedle-s3s0 fourNeedle" @click="buttonClick('conS3-S0')" id="conS3-S0"/>
-                            <div class="fourNeedle-s3s0-text text">
-                                S3-S0
-                            </div>
-
-                            <div class="twoNeedle-cn twoNeedle" @click="buttonClick('conCn')" id="conCn"/>
-
-                            <div class="twoNeedle-cn-text text">
-                                Cn
-                            </div>
-                            <div class="fourNeedle-ldaldb fourNeedle" @click="buttonClick('conLDA-LDB')" id="conLDA-LDB"/>
-                            <div class="fourNeedle-ldaldb-text text">
-                                LDA--LDB
-                            </div>
-                            <div class="eightNeedle-SD17 eightNeedle invisible"/>
-                            <div class="eightNeedle-SD17-text text invisible">
-                                SD17-SD10
-                            </div>
-                            <div class="fourNeedle-iom fourNeedle invisible"/>
-                            <div class="fourNeedle-iom-text text invisible">
-                                WR-RD-IOM
-                            </div>
-                            <div class="twoNeedle-ldar twoNeedle invisible"/>
-                            <div class="twoNeedle-ldar-text text invisible">
-                                LDAR
-                            </div>
-                            <div class="twoNeedle-ior twoNeedle invisible"/>
-                            <div class="twoNeedle-ior-text text invisible">
-                                IOR
-                            </div>
-                            <div class="eightNeedle-SD07 eightNeedle invisible"/>
-                            <div class="eightNeedle-SD07-text text invisible">
-                                SD07-SD00
+                        </vue-draggable-resizable>
+                        <div class="pc-ar box">
+                            <div class="wrapper">
+                                <div class="pc-ar-text-1 text">
+                                    PC及AR
+                                </div>
+                                <div class="pc-ar-text-2 text">
+                                    单元
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="in-unit box">
-                        <div class="wrapper">
-                            <div class="in-unit-text text">
-                                IN单元
+                        <div class="system-bus-text text">
+                            系统总线
+                        </div>
+                        <vue-draggable-resizable
+                            w="auto"
+                            h="auto"
+                            :grid="[20,40]"
+                            :resizable="false"
+                        >
+                            <div class="system-bus box select-background" ref="systemBus" @wheel.prevent="handleTableWheel(3,$event)">
+                            <div class="wrapper">
+                                <div class="system-T4-T1 fourNeedle"  @click=" buttonClick('con-bus-T4-T1')" id="con-bus-T4-T1"/>
+                                <div class="system-T4-T1-text text">
+                                    T4 - T1
+                                </div>
+                                <div class="red-buble system-red-buble-1"/>
+                                <div class="red-buble system-red-buble-2"/>z
+                                <div class="red-buble system-red-buble-3"/>
+                                <div class="red-buble system-red-buble-4"/>
+                                <div class="twoNeedle system-twoNeedle-xiow invisible"/>
+                                <div class="text system-twoNeedle-xiow-text invisible">
+                                    XIOW
+                                </div>
+
+                                <div class="twoNeedle system-twoNeedle-xior invisible"/>
+                                <div class="text system-twoNeedle-xior-text invisible">
+                                    XIOR
+                                </div>
+
+                                <div class="fourNeedle system-fourNeedle-xmwr invisible"/>
+                                <div class="text system-fourNeedle-xmwr-text invisible">
+                                    XMWR-XMRD
+                                </div>
+
+                                <div class="twoNeedle system-twoNeedle-hold invisible"/>
+                                <div class="text system-twoNeedle-hold-text invisible">
+                                    HOLD
+                                </div>
+
+                                <div class="fourNeedle system-fourNeedle-iom invisible"/>
+                                <div class="text system-fourNeedle-iom-text invisible">
+                                    WR-RD-IOM
+                                </div>
+                                
+                                <div class="eightNeedle2 system-eightNeedle-xd-1 invisible"/>
+                                <div class="eightNeedle2 system-eightNeedle-xd-2 invisible"/>
+                                <div class="text system-eightNeedle-xd7-text invisible">
+                                    XD7
+                                </div>
+                                <div class="text system-eightNeedle-xd0-text invisible">
+                                    XD0
+                                </div>
+
+                                <div class="system-eightNeedle-xa eightNeedle2 invisible"/>
+                                <div class="text system-eightNeedle-xa7-text invisible">
+                                    XA7
+                                </div>
+                                <div class="text system-eightNeedle-xa0-text invisible">
+                                    XA0
+                                </div>
+
+                                <!----->
+                                <div class="red-buble system-red-buble-a7" name="buble_F"/>
+                                <div class="red-buble system-red-buble-a6" name="buble_F"/>
+                                <div class="red-buble system-red-buble-a5" name="buble_F"/>
+                                <div class="red-buble system-red-buble-a4" name="buble_F"/>
+                                <div class="text system-red-buble-text">
+                                    A7-----A0 代表F的值
+                                </div>
+                                <div class="green-buble system-green-buble-a3" name="buble_F"/>
+                                <div class="green-buble system-green-buble-a2" name="buble_F"/>
+                                <div class="green-buble system-green-buble-a1" name="buble_F"/>
+                                <div class="green-buble system-green-buble-a0" name="buble_F"/>
+                                <!---->
+
+
+
+                                <div class="system-bus-text-1 text">
+                                    控制总线
+                                </div>
+                                <div class="system-bus-text-2 text">
+                                    数据总线
+                                </div>
+                                <div class="system-bus-text-3 text">
+                                    地址总线
+                                </div>
+                            </div>
+                            </div>
+                        </vue-draggable-resizable>
+                        <div class="mm-io-text text">
+                            主存及外设
+                        </div>
+                        <div class="mm box">
+                            <div class="wrapper">
+                                <div class="mm-text text">
+                                    MEM单元
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="eightTwoNine box">
+                            <div class="wrapper">
+                                <div class="eightTwoNine-text">
+                                    8259单元
+                                </div>
+                            </div>
+                        </div>
+                        <div class="expand-bus box">
+                            <div class="wrapper">
+                                <div class="expand-bus-text text">
+                                    扩展总线
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eightTwoSeven box">
+                            <div class='wrapper'>
+                                <div class="eightTwoSeven-text">
+                                    8237单元
+                                </div>
+                            </div>
+                        </div>
+                        <div class="extra box">
+                        </div>
+                        <div class="out-unit box">
+                            <div class="wrapper">
+                                <div class="out-unit-text text">
+                                    OUT单元
+                                </div>
+                            </div>
+                        </div>
+                        <vue-draggable-resizable
+                            w="auto"
+                            h="auto"
+                            :grid="[20,40]"
+                            :resizable="false"
+                        >
+                            <div class="con-unit box" ref="conUnit" @wheel.prevent="handleTableWheel(4,$event)">
+                                <div class="wrapper">
+                                    <div class="con-unit-text text">
+                                        CON单元
+                                    </div>
+                                    <div class="switch SD20" @click="changeSwitch" />
+                                    <div class="SD20-text text">
+                                        SD20  K0
+                                    </div>
+                                    <div class="switch SD21" @click="changeSwitch" />
+                                    <div class="SD21-text text">
+                                        21  K1
+
+                                    </div>
+                                    <div class="switch SD22" @click="changeSwitch" />
+                                    <div class="SD22-text text">
+                                        22  K2
+                                    </div>
+                                    <div class="switch SD23" @click="changeSwitch" />
+                                    <div class="SD23-text text">
+                                        23  K3
+                                    </div>
+                                    <div class="switch SD24" @click="changeSwitch"/>
+                                    <div class="SD24-text text">
+                                        24  K4
+                                    </div>
+                                    <div class="switch SD25" @click="changeSwitch"/>
+                                    <div class="SD25-text text">
+                                        25  K5
+                                    </div>
+
+
+                                    <div class="switch SD26" @click="changeSwitch"/>
+                                    <div class="SD26-text text">
+                                        26  K6
+                                    </div>
+                                    <div class="switch SD27" @click="changeSwitch" ref="num7"/>
+                                    <div class="SD27-text text">
+                                        SD27  K7
+                                    </div>
+
+                                    <div class="switch SD17 invisible" @click="changeSwitch" id="ALU_B"/>
+                                    <div class="SD17-text text invisible">
+                                        SD17  ALU_B
+                                    </div>
+                                    <div class="switch SD16" @click="changeSwitch" name="SD03-00"/>
+                                    <div class="SD16-text text">
+                                        16  S3
+                                    </div>
+                                    <div class="switch SD15" @click="changeSwitch" name="SD03-00"/>
+                                    <div class="SD15-text text">
+                                        15  S2
+                                    </div>
+                                    <div class="switch SD14" @click="changeSwitch" name="SD03-00"/>
+                                    <div class="SD14-text text">
+                                        14  S1
+                                    </div>
+                                    <div class="switch SD13" @click="changeSwitch" name="SD03-00"/>
+                                    <div class="SD13-text text">
+                                        13  S0
+                                    </div>
+                                    <div class="switch SD12" @click="changeSwitch" id="SD_Cn"/>
+                    
+                                    <div class="SD12-text text">
+                                        12  Cn
+                                    </div>
+                                    <div class="switch SD11" @click="changeSwitch" ref="lda"/>
+                                    <div class="SD11-text text">
+                                        11  LDA
+                                    </div>
+                                    <div class="switch SD10" @click="changeSwitch" ref="ldb"/>
+                                    <div class="SD10-text text">
+                                        SD10  LDB
+                                    </div>
+                                    <div class="switch SD7 invisible"/>
+                                    <div class="SD7-text text invisible">
+                                        SD07  WR
+                                    </div>
+                                    <div class="switch SD6 invisible"/>
+                                    <div class="SD6-text text invisible">
+                                        06  RD
+                                    </div>
+                                    <div class="switch SD5 invisible"/>
+                                    <div class="SD5-text text invisible">
+                                        05  IOM
+                                    </div>
+                                    <div class="switch SD4 invisible"/>
+                                    <div class="SD4-text text invisible">
+                                        04
+                                    </div>
+                                    <div class="switch SD3 invisible"/>
+                                    <div class="SD3-text text invisible">
+                                        03
+                                    </div>
+                                    <div class="switch SD2 invisible"/>
+                                    <div class="SD2-text text invisible">
+                                        02
+                                    </div>
+                                    <div class="switch SD1 invisible"/>
+                                    <div class="SD1-text text invisible">
+                                        01  LDAR
+                                    </div>
+                                    <div class="switch SD0 invisible"/>
+                                    <div class="SD0-text text invisible">
+                                        SD00 LOR
+                                    </div>
+                                    <div class="clr-white-btn white-btn" @click="clear()"/>
+                                    <div class="white-btn-text text">
+                                        CLR
+                                    </div>
+                                    <div class="fourNeedle-k7k6 fourNeedle invisible"/>
+                                    <div class="fourNeedle-k7k6-text text invisible">
+                                        K7--K6
+                                    </div>
+                                    <div class="fourNeedle-k5k4 fourNeedle invisible"/>
+                                    <div class="fourNeedle-k5k4-text text invisible">
+                                        K5--K4
+                                    </div>
+                                    <div class="fourNeedle-k3k2 fourNeedle invisible"/>
+                                    <div class="fourNeedle-k3k2-text text invisible">
+                                        K3--K0
+                                    </div>
+                                    <div class="eightNeedle-SD27 eightNeedle" @click="buttonClick('SD27-SD20')" id="SD27-SD20"/>
+                                    <div class="eightNeedle-SD27-text text">
+                                        SD27-SD20
+                                    </div>
+                                    <div class="twoNeedle-alu twoNeedle" @click="buttonClick('conALU_B')" id="conALU_B"/>
+                                    <div class="twoNeedle-alu-text text">
+                                        ALU_B
+                                    </div>
+                                    <div class="fourNeedle-s3s0 fourNeedle" @click="buttonClick('conS3-S0')" id="conS3-S0"/>
+                                    <div class="fourNeedle-s3s0-text text">
+                                        S3-S0
+                                    </div>
+
+                                    <div class="twoNeedle-cn twoNeedle" @click="buttonClick('conCn')" id="conCn"/>
+
+                                    <div class="twoNeedle-cn-text text">
+                                        Cn
+                                    </div>
+                                    <div class="fourNeedle-ldaldb fourNeedle" @click="buttonClick('conLDA-LDB')" id="conLDA-LDB"/>
+                                    <div class="fourNeedle-ldaldb-text text">
+                                        LDA--LDB
+                                    </div>
+                                    <div class="eightNeedle-SD17 eightNeedle invisible"/>
+                                    <div class="eightNeedle-SD17-text text invisible">
+                                        SD17-SD10
+                                    </div>
+                                    <div class="fourNeedle-iom fourNeedle invisible"/>
+                                    <div class="fourNeedle-iom-text text invisible">
+                                        WR-RD-IOM
+                                    </div>
+                                    <div class="twoNeedle-ldar twoNeedle invisible"/>
+                                    <div class="twoNeedle-ldar-text text invisible">
+                                        LDAR
+                                    </div>
+                                    <div class="twoNeedle-ior twoNeedle invisible"/>
+                                    <div class="twoNeedle-ior-text text invisible">
+                                        IOR
+                                    </div>
+                                    <div class="eightNeedle-SD07 eightNeedle invisible"/>
+                                    <div class="eightNeedle-SD07-text text invisible">
+                                        SD07-SD00
+                                    </div>
+                                </div>
+                            </div>
+                        </vue-draggable-resizable>
+                        <div class="in-unit box">
+                            <div class="wrapper">
+                                <div class="in-unit-text text">
+                                    IN单元
+                                </div>
+                            </div>
+                        </div>
+                </div>
             </div>
-            <card class="card-menu">
+            <card class="card-menu" v-show="!centerDialogVisible">
                 <div class="time-control-unit box select-background"/>
                 <div class="alu-reg-unit box select-background"/>
                 <div class="cpu-bus box select-background"/>
@@ -649,13 +702,39 @@
     </row>
 </template>
 <script>
+    const axios = require("axios");
+    import html2canvas from 'html2canvas'
+    import VueDraggableResizable from "vue-draggable-resizable";
     import { SVG } from '@svgdotjs/svg.js'
     import { screenChange } from "../scripts/screen.js"
+    import { watermark, deleteMark } from "../scripts/waterMark.js"
+    import { VueCropper } from "vue-cropper" 
     export default {
-
+        components: {
+            VueCropper,
+        },
         data() {
             return{
+                option: {              
+                    img: '', //等待裁剪图片路径
+                    size: 1, // 裁剪生成图片的质量
+                    outputType: "jpeg",//截图格式
+                    full: false,      // 输出原图比例截图 props名full
+                    fixedBox: false,  // 固定截图框大小 不允许改变
+                    canMove: true, // 上传图片是否可以移动
+                    canMoveBox: true, // 截图框能否拖动
+                    autoCrop: true,   // 是否默认生成截图框
+                    original: false,// 上传图片按照原始比例渲染
+                    // 只有自动截图开启 宽度高度才生效
+                    autoCropWidth: 345,
+                    autoCropHeight: 259,
+                    centerBox: false,  // 是否按照设备的dpr 输出等比例图片
+                    high: true,
+                },
+                centerDialogVisible:false,
+                imgURL:'', //裁剪后图片资源路径
                 menuShow: true,
+                show: false,
                 count: 0,
                 x1:0,
                 x2:0,
@@ -711,13 +790,69 @@
                 S3_0_Flag:[0,0,0,0], //运算指令
                 memA:[0,0,0,0,0,0,0,0],  //暂存器A
                 memB:[0,0,0,0,0,0,0,0],  //暂存器B
-                F:[0,0,0,0,0,0,0,0]
+                F:[0,0,0,0,0,0,0,0],
+                resize: [
+
+                ],
+                exams: []
             }
         },
         mounted() {
             screenChange(document,window);
+            let obj = [
+                this.$refs.timeControl,
+                this.$refs.aluReg,
+                this.$refs.cpuBus,
+                this.$refs.systemBus,
+                this.$refs.conUnit,
+            ]
+            this.resize = obj;
+            this.test3();
         },
         methods: {
+            test() {
+                axios.post("/compuOrgService/api/exammanage/generateExam", {flag: "001"})
+                .then(response =>{
+                    this.exams = response.data.data;
+                    this.test2();
+                })
+            },
+            test3() {
+                axios.post("/compuOrgService/api/exammanage/getStudentExam", {expID: "001" , studentId: "002"})
+                .then(response =>{
+                    console.log(response);
+                })
+            },
+            test2() {
+                /* let i =0;
+                let exams = [];
+                for(;i<this.exams.length;i++) {
+                    let temp = {"examID": this.exams[i].examID, "answer": "测试"};
+                    exams.push(temp);
+                }
+                console.log(exams); */
+               axios.post("/compuOrgService/api/exammanage/uploadTest", {expID: "001" , studentId: "002", score: 97})
+                .then(response =>{
+                    console.log(response);
+                })
+            },
+            showImg() {
+                this.show = !this.show;
+            },
+            handleTableWheel(i, event) {
+                let obj = this.resize[i];
+                return this.tableZoom(obj, event);
+            },
+            tableZoom(obj, event) {
+                // 一开始默认是100%
+                let zoom = parseInt(obj.style.zoom, 10) || 100;
+                // 滚轮滚一下wheelDelta的值增加或减少120
+                zoom += event.wheelDelta / 120;
+                if (zoom > 0) {
+                    obj.style.zoom = zoom + "%";
+                }
+                return false;
+            },
             backWords() {
                 this.menuShow = !this.menuShow;
                 if(this.temp.length!=0) {
@@ -1417,6 +1552,49 @@
                 link.click(); //执行a标签*/
                 document.body.removeChild(link);
             }
+            //截图方法
+            getImg(){
+                //获取水印id，方便一会删除
+                var mark_div=watermark();
+               
+                //html2canvas方法获取浏览器截图
+                html2canvas(
+                //获取截图内容的元素，svg-container即整个面板，若想获得特定截图，可将节点id传入    
+                document.getElementById('svg-container'),  
+                {
+                   backgroundColor:'#244475',//画出来的图片有白色的边框,不要可设置背景为透明色（null）
+                   useCORS: true,//支持图片跨域
+                   scale:2,//设置放大的倍数
+                }
+                ).then(canvas => {    
+       
+                let url=canvas.toDataURL('image/jpeg');// toDataURL :图片格式转成 base64
+                //this.imgURL = url;
+                this.option.img=url;
+                this.centerDialogVisible=true;   
+                })
+                // 开始截图
+                this.$refs.cropper.startCrop();
+                //删除水印
+                deleteMark(mark_div);
+            }, 
+            downImg(){
+                // 完成截图
+                this.$refs.cropper.stopCrop();
+                /*使用a标签下载图片*/
+                let a = document.createElement('a');
+                a.download = '截图'; //下载名
+                this.$refs.cropper.getCropData((data) => {
+                    this.imgURL = data
+                    a.href = data
+                    a.click()
+                }) 
+                this.centerDialogVisible=false;
+            },
+            //取消截图
+            cancel(){
+                this.centerDialogVisible=false;
+            } 
         }
     }
 </script>
