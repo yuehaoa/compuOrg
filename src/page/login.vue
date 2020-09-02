@@ -7,20 +7,40 @@
             <div class="main-title">计算机组成原理实验平台</div>
             <div class="sub-title">厦门大学信息学院</div>
         </div>
-        <i-form v-show="method === 'password'" :model="passwordModel" :rules="passwordRules" ref="password">
-            <form-item prop="userName">
-                <i-input placeholder="手机号或邮箱" prefix="ios-contact" size="large" style="width:340px" v-model="passwordModel.userName"/>
-            </form-item>
-            <form-item prop="password">
-                <i-input placeholder="密码" v-model="passwordModel.password" @keyup.enter.native="login()" @input="isPwd=true" prefix="ios-lock" size="large" type="password" style="width:340px"/>
+        <Form v-show="method === 'password'" :model="passwordModel" :rules="passwordRules" ref="password">
+            <FormItem prop="userName">
+                <Input placeholder="手机号或邮箱" prefix="ios-contact" size="large" style="width:340px" v-model="passwordModel.userName"/>
+            </FormItem>
+            <FormItem prop="password">
+                <Input placeholder="密码" v-model="passwordModel.password" @keyup.enter.native="login()" @input="isPwd=true" prefix="ios-lock" size="large" type="password" style="width:340px"/>
                 <checkbox v-model="isRemember" style="float:left;font-size:15px">记住密码</checkbox>
                 <a class="forgot-link" :to="{name:'Forgot'}">忘记密码?</a>
-            </form-item>
-            <form-item>
+            </FormItem>
+            <FormItem prop="role">
+                <Row type="flex" style="margin-top:0px;">
+                    <i-col span='8'>
+                        <span class='identity-text'>登录身份：</span>
+                    </i-col>
+                    <i-col span="16">
+                        <RadioGroup size='large' v-model="passwordModel.role">
+                            <Radio label="teacher">
+                                <span class='identity-text'>教师</span>
+                            </Radio>
+                            <Radio label="student">
+                                <span class='identity-text'>学生</span>
+                            </Radio>
+                            <Radio label="administrator">
+                                <span class='identity-text'>管理员</span>
+                            </Radio>
+                        </RadioGroup>
+                    </i-col>
+                </Row>
+            </FormItem>
+            <FormItem>
                 <i-button long size="large" type="primary" style="width:340px" @click="login()" :loading="isloading">登 录</i-button>
                 <a href="javascript:;" class="to-mobile" @click="method='mobile'">使用手机短信登录</a>
-            </form-item>
-        </i-form>
+            </FormItem>
+        </Form>
         <i-form v-show="method === 'mobile'" :model="mobileModel" ref="mobile" :rules="mobileRules">
             <form-item prop="userName">
                 <i-input placeholder="手机号" prefix="ios-contact" size="large" style="width:340px" v-model="mobileModel.userName" />
@@ -39,6 +59,7 @@ let regex = require("@/regex")
 export default {
     methods: {
         login () {
+            console.log(this.passwordModel.role);
             let userName = this[this.method + "Model"].userName;
             let password = this[this.method + "Model"].password;
             let form = this.$refs[this.method];
@@ -48,12 +69,18 @@ export default {
                 }
                 this.isloading = true;
                 if(this.method === "password") {
-                    axios.post('/compuOrgService/api/usermanage/login',{userName:this[this.method + "Model"].userName,password:this[this.method + "Model"].password})
+                    axios.post('/compuOrgServer/api/usermanage/login',
+                    {userName:this[this.method + "Model"].userName,
+                    password:this[this.method + "Model"].password,
+                    role:this.passwordModel.role})
                     .then(response =>{
                         if(response.data.success){
                             this.$Message.success("用户登录成功");
                             setTimeout(()=>{
-                                this.$router.push("/index");
+                                if(this.passwordModel.role==="teacher")
+                                    this.$router.push("/stuList");
+                                else
+                                    this.$router.push("/index");
                             },1500);
                         }else{
                             this.$Message.error(response.data.msg);
@@ -89,7 +116,8 @@ export default {
                 //userName: "admin",
                 userName: "小王",
                 //userName: "张老师"
-                password: "88888888"
+                password: "88888888",
+                role:""
             },
             isRemember: true,
             isloading: false,
@@ -101,7 +129,8 @@ export default {
                 userName: [
                     { required: true, message: "请输入正确的手机号或邮箱", trigger: 'submit' }
                 ],
-                password: { required: true, message: "请输入密码", trigger: 'submit' }
+                password: { required: true, message: "请输入密码", trigger: 'submit' },
+                role:[{ required: true, message: "请选择登录身份", trigger: 'submit'} ]
             },
             mobileRules: {
                 userName: { required: true, pattern: regex.mobile, message: "请输入正确的手机号", trigger: 'submit' },
@@ -162,5 +191,8 @@ export default {
     margin-top: 8px;
     font-size: 18px;
     margin-bottom: 10px;
+}
+.identity-text{
+    font-size: 18px;
 }
 </style>
