@@ -8,6 +8,14 @@
                     </div>
                 </div>
             </div>
+            <div class='layout-button'>
+                <Button type="primary" style="margin-top:5px;" long @click="toQuiz">开始实验小测</Button>
+            </div>
+            <div class='layout-button2'>
+                <Button type="success" style="float:right;margin-top:15px;margin-right:45px" @click="getImg" v-show="!centerDialogVisible">截图</Button>
+                <Button type="success" style="float:right;margin-right:15px;margin-top:15px" @click="downImg" v-show="centerDialogVisible">下载截图</Button>
+                <Button type="success" style="float:right;margin-top:15px;margin-right:15px" @click="cancel" v-show="centerDialogVisible">取消截图</Button>
+            </div>
         </Menu>
         <i-col span="4">
             <div v-if="menuShow">
@@ -27,11 +35,6 @@
                     <div style="margin-bottom:.2rem" v-if="tableShow">
                         <Button type="success" style="float:left" @click="lineCheck()">校验所有连线</Button>
                     </div>
-                    <Button type="primary" to="experimentQuiz" style="margin-top:20px;" long>开始实验小测</Button>
-                    <Button type="primary" style="margin-top:20px;" long @click="download">下载实验报告模板</Button>
-                    <Button type="success" style="float:right;margin-top:10px" @click="getImg" v-show="!centerDialogVisible">截图</Button>
-                    <Button type="success" style="margin-top:10px" @click="downImg" v-show="centerDialogVisible">下载截图</Button>
-                    <Button type="success" style="float:right;margin-top:10px" @click="cancel" v-show="centerDialogVisible">取消截图</Button>
                 </card>
             </div>
         </i-col>
@@ -807,16 +810,9 @@
                 this.$refs.conUnit,
             ]
             this.resize = obj;
-            this.test3();
+            // this.test3();
         },
         methods: {
-            test() {
-                axios.post("/compuOrgService/api/exammanage/generateExam", {flag: "001"})
-                .then(response =>{
-                    this.exams = response.data.data;
-                    this.test2();
-                })
-            },
             test3() {
                 axios.post("/compuOrgService/api/exammanage/getStudentExam", {expID: "001" , studentId: "002"})
                 .then(response =>{
@@ -835,6 +831,14 @@
                 .then(response =>{
                     console.log(response);
                 })
+            },
+            toQuiz() {
+                this.$router.push({
+                    name: 'ExperimentQuiz', 
+                    params: { 
+                    name: 'flag', 
+                    dataObj: '001'}
+                });
             },
             showImg() {
                 this.show = !this.show;
@@ -1543,15 +1547,6 @@
                 this.drawLine(currentRow, draw)
                 this.temp.push(draw)
             },
-             download(){
-                let link = document.createElement('a'); //创建a标签
-                link.style.display = 'none';  //将a标签隐藏
-                link.href = 'http://47.115.31.88:8080/实验模板.docx';  //给a标签添加下载链接
-                link.setAttribute('download', '实验模板.doc'); // 要给a标签添加一个download属性，属性值就是文件名称 否则下载出来的文件是没有属性的
-                document.body.appendChild(link);
-                link.click(); //执行a标签*/
-                document.body.removeChild(link);
-            }
             //截图方法
             getImg(){
                 //获取水印id，方便一会删除

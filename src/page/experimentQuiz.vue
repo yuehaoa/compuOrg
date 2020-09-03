@@ -8,10 +8,9 @@
                         <FormItem v-for="(item,index) in quizQuestion"
                         v-bind:key="index">
                             <template slot="label" >
-                                <div>{{index+1}}、{{item}}</div>
-                            </template>
-                        
-                            <Input :v-model="item" v-bind:key="index" type="textarea" :rows="3" placeholder="Enter something..." />
+                                <div style="font-size:20px">{{index+1}}、{{item.title}}</div>
+                            </template>                      
+                            <Input v-model="item.answer" type="textarea" :rows="3" placeholder="Enter something..." />
                         </FormItem>
                     </Form>
                 </Content>
@@ -30,17 +29,21 @@
 </template>
 
 <script>
+const axios = require("axios");
 export default {
     data(){
         return{
-            quizQuestion:['题目一','题目二','题目三'],
+            quizQuestion:[],
             answerSet:[],
-            minutes:0,
-            seconds:10
+            minutes:30,
+            seconds:0,
+            flag: ''
         }
     },
     mounted(){
+        this.flag = this.$route.params.dataObj;
         this.add();
+        this.generateExam();
     },
     computed:{
         second: function () {
@@ -63,13 +66,35 @@ export default {
         },
     },
     methods:{
+        generateExam() {
+            axios.post("/compuOrgService/api/exammanage/generateExam", {flag: this.flag})
+            .then(response =>{
+                this.quizQuestion = response.data.data;
+                let i= 0;
+                for(;i<this.quizQuestion.length;i++) {
+                    this.quizQuestion[i].answer = "";
+                }
+            })
+        },
+        submit() {
+            if(confirm("确认提交答案")===true){
+                axios.post("/compuOrgService/api/exammanage/uploadTest", {expID: this.flag , exams: this.quizQuestion})
+                .then(response =>{
+                    if(response.data.success) {
+                        this.$Message.success("提交成功");
+                        setTimeout(()=>{
+                            this.$router.push('/experiment1');
+                        },1500);
+                    }
+                })
+            }
+        },
         num:function (n){
             return n<10?'0'+n:''+n
         },
         add(){
             var _this=this;
             var time= setInterval( ()=> {
-               console.log(_this.minutes+":"+_this.seconds);
                     if (_this.minutes != 0 &&_this.seconds === 0) {
                         _this.minutes -=1;
                         _this.seconds = 59;
@@ -81,11 +106,6 @@ export default {
                        _this.seconds -= 1;
                     }
                 }, 1000)
-        },
-        submit(){
-            if(confirm("确认提交答案")===true){
-                this.$router.push('/experiment1');
-            }
         }
     }
 }

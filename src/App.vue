@@ -33,6 +33,7 @@ export default {
   computed: {
         layout() {
             let layout = (this.$route.meta.layout || "empty") + "-layout";
+            console.log(layout)
             return layout;
         }
     }

@@ -52,8 +52,12 @@ export default {
                     .then(response =>{
                         if(response.data.success){
                             this.$Message.success("用户登录成功");
+                            let roles = response.data.roles;
+                            let direct = "";
+                            if(roles.indexOf("student")>-1) direct = "/index";
+                            else if(roles.indexOf("teacher")>-1) direct = "/exp1_List";
                             setTimeout(()=>{
-                                this.$router.push("/index");
+                                this.$router.push(direct);
                             },1500);
                         }else{
                             this.$Message.error(response.data.msg);

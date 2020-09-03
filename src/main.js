@@ -25,6 +25,8 @@ const routes = [
   },
   {
     path: "/index",
+    name: 'stuIndex',
+    meta:{layout:"stuHeader"},
     component: () => import("./page/index.vue")
   },
   {
@@ -33,6 +35,7 @@ const routes = [
   },
   {
     path: "/experiment1",
+    name: "Experiment1",
     component: () => import("./page/experiment1.vue")
   },
   {

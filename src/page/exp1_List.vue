@@ -14,27 +14,60 @@
                     </template>
                 </Table>
             </TabPane>
-            <TabPane label="已批改" name="已批改">标签二的内容</TabPane>
+            <TabPane label="已批改" name="已批改">
+                <Table stripe :columns="columns2" :data="this.stulistFinished" ref="stuTable">
+                    <template slot-scope="{ row }" slot="score">
+                        <p>{{ row.score }}分</p>
+                    </template>
+                    <template v-slot:action="props">
+                        <Button type="primary" @click="toDetail(props.row)">修改</Button>
+                    </template>
+                </Table>
+            </TabPane>
         </Tabs>
     </Card>
 </template>
 
 <script>
+const axios = require("axios");
 export default {
     data(){
         return{
              columns: [
                 {
                     title:"姓名",
-                    key:"stuName"
+                    key:"name"
                 },
                 {
                     title:"班级",
-                    key:"class"
+                    key:"classname"
                 },
                 {
                     title:"年级",
                     key:"grade"
+                },
+                {
+                    title: '操作',
+                    slot: 'action',
+                    align: 'center'
+                }
+            ],
+            columns2: [
+                {
+                    title:"姓名",
+                    key:"name"
+                },
+                {
+                    title:"班级",
+                    key:"classname"
+                },
+                {
+                    title:"年级",
+                    key:"grade"
+                },
+                {
+                    title:"成绩",
+                    slot:"score"
                 },
                 {
                     title: '操作',
@@ -58,16 +91,42 @@ export default {
                     class:"1班",
                     grade:"2018级本科"
                 }
-            ]
+            ],
+            stulistFinished: []
         }
     },
+    mounted() {
+        this.getStudents();
+        this.getFinishedStudent();
+    },
     methods:{
+        getStudents() {
+            axios.post("/compuOrgService/api/usermanage/getStudents", {})
+             .then(response=>{
+                 this.stulist = response.data.students;
+             })
+        },
+        getFinishedStudent() {
+            axios.post("/compuOrgService/api/usermanage/getStudents", {finished: true})
+             .then(response=>{
+                 this.stulistFinished = response.data.students;
+                 this.getStudents();
+             })
+        },
         searchStudent(condition){
             return condition;
             //this.stulist = this.data.filter(e => e.stuName.indexOf(condition) !== -1 );
         },
-        toDetail(){
-            this.$router.push({name:'QuizAnswer'});
+        toDetail(row){
+            this.$router.push({
+                name:'QuizAnswer',
+                params: {
+                    name: 'studentId',
+                    studentId: row.studentId,
+                    flag: "001",
+                    isStudent: false
+                }
+            });
         },
         delStu(){
 
