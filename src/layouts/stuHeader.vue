@@ -13,6 +13,12 @@
                     <div class="layout-button">
                         <Button type="primary" long @click="download">下载实验报告模板</Button>
                     </div>
+                     <div class="layout-button2">
+                        <Button type="primary" style="float:right;margin-right:15px;margin-top:15px" @click="sign('signOutTime')" v-if="isSignIn">签退</Button>
+                    </div>
+                     <div class="layout-button2">
+                        <Button type="primary" style="float:right;margin-top:15px;margin-right:15px" @click="sign('signInTime')" :disabled="isSignIn">签到</Button>
+                    </div>
                 </Menu>
             </Header>
             <Layout>
@@ -69,11 +75,24 @@
 </template>
 
 <script>
+const axios = require("axios");
 export default {
     data(){
         return{
-            activeMenu:this.$route.name
+            activeMenu:this.$route.name,
+            isSignIn: false,
+            date: '',
+            hour: '',
+            minute: ''
         }
+    },
+    mounted() {
+        let _this = this; // 声明一个变量指向Vue实例this，保证作用域一致
+        this.timer = setInterval(() => {
+            _this.date = new Date(); // 修改数据date
+            _this.hour = _this.date.getHours();
+            _this.minute = _this.date.getMinutes();
+        }, 1000)
     },
     methods:{
         download(){
@@ -85,6 +104,20 @@ export default {
             link.click(); //执行a标签*/
             document.body.removeChild(link);
         },
+        sign(option){
+            axios.post("/compuOrgService/api/usermanage/SignInOrOut", {signState: option})
+                .then(response=>{
+                    if(response.data.success) {
+                        if(option === 'signInTime') {
+                            this.$Message.success("签到成功")
+                            this.isSignIn = !this.isSignIn;
+                        }
+                        else if(option === 'signOutTime') {
+                             this.$Message.success("签退成功")
+                        }
+                    }
+                })
+        }
     }
 }
 </script>
