@@ -52,8 +52,7 @@
                     :auto-crop-height="option.autoCropHeight" >
                 </vueCropper>
 
-                    <!-- 截图预览 -->
-                    <!-- <img id="image" :src="imgURL" class="prtscr" v-show="centerDialogVisible">  -->
+                    
                     <div class="power-source box" v-show="!centerDialogVisible">
                         <div class="wrapper">
                             

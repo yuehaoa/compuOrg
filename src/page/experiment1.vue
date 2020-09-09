@@ -682,7 +682,7 @@
     </row>
 </template>
 <script>
-    import VueDraggableResizable from "vue-draggable-resizable";
+    //import VueDraggableResizable from "vue-draggable-resizable";
     import { SVG } from '@svgdotjs/svg.js'
     import { screenChange } from "../scripts/screen.js"
     export default {
