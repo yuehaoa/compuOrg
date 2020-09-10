@@ -1,0 +1,236 @@
+.memA-text{
+    left: 1.4rem;
+    top: 1.0rem;
+    width:.636rem;
+    height:.276rem;
+    
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.notice{
+    left: .1rem;
+    top: .5rem;
+    width: 1.3rem;
+}
+.alu-red-a0{
+    left:1.92rem;
+    top:.96rem;
+}
+.alu-red-a1{
+    left:2.22rem;
+    top:.96rem;
+}
+.alu-red-a2{
+    left:2.52rem;
+    top:.96rem;
+}
+.alu-red-a3{
+    left:2.82rem;
+    top:.96rem;
+}
+.alu-red-a4{
+    left:3.22rem;
+    top:.96rem;
+}
+.alu-red-a5{
+    left:3.52rem;
+    top:.96rem;  
+}
+.alu-red-a6{
+    left:3.82rem;
+    top:.96rem;
+}
+.alu-red-a7{
+    left:4.12rem;
+    top:.96rem;
+}
+.memA{
+    left: 4.4rem;
+    top:.96rem;
+}
+.alu-green-a0{
+    left:1.92rem;
+    top:1.36rem;   
+}
+.alu-green-a1{
+    left:2.22rem;
+    top:1.36rem;
+}
+.alu-green-a2{
+    left:2.52rem;
+    top:1.36rem;
+}
+.alu-green-a3{
+    left:2.82rem;
+    top:1.36rem;
+}
+.alu-green-a4{
+    left:3.22rem;
+    top:1.36rem;
+}
+.alu-green-a5{
+    left:3.52rem;
+    top:1.36rem;
+}
+.alu-green-a6{
+    left:3.82rem;
+    top:1.36rem;
+}
+.memB{
+    left: 4.4rem;
+    top:1.36rem;
+}
+.alu-green-a7{
+    left:4.12rem;
+    top:1.36rem;
+}
+.memB-text{
+    left: 1.4rem;
+    top: 1.4rem;
+    width:.636rem;
+    height:.276rem;
+    
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.alu-twoNeedle-rob{
+
+    left: 0.46rem;
+    top: 0.26rem;
+}
+.alu-twoNeedle-rob-text{
+    left: 0.5rem;
+    top: 0.65rem;
+    width:.636rem;
+    height:.276rem;
+    
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.alu-twoNeedle-ldro{
+    left: 1.5rem;
+    top: 0.26rem;
+}
+.alu-twoNeedle-ldro-text{
+    left: 1.55rem;
+    top: 0.65rem;
+    width:.636rem;
+    height:.276rem;
+    
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.alu-eightNeedle-in{
+    left: 5.0rem;
+    top: 0.26rem;
+}
+.alu-eightNeedle-in-text{
+    left: 5.2rem;
+    top:0.66rem;
+    width:1.236rem;
+    height:.276rem;
+    
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.alu-red-left{
+    left: .5rem;
+    top: 1.0rem;
+}
+.alu-green-left{
+    left: 0.8rem;
+    top: 1.0rem;
+}
+.alu-fourNeedle-fzfc{
+    left: .5rem;
+    top: 2.4rem;
+}
+.alu-fourNeedle-fzfc-text{
+    left: .55rem;
+    top: 2.8rem;
+    width: 1.236rem;
+    height: .276rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.alu-fourNeedle-s3s0{
+    left: 1.45rem;
+    top: 2.4rem;
+}
+.alu-fourNeedle-s3s0-text{
+    left: 1.46rem;
+    top: 2.8rem;
+    width: 1.236rem;
+    height: .276rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.alu-twoNeedle-cn{
+    left: 2.45rem;
+    top: 2.42rem;
+}
+.alu-twoNeedle-cn-text{
+    left: 2.6rem;
+    top: 2.8rem;
+    width: 1.236rem;
+    height: .276rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.alu-fourNeedle-ldaldb{
+    left: 3.5rem;
+    top: 2.4rem;
+}
+.alu-fourNeedle-ldaldb-text{
+    left: 3.45rem;
+    top: 2.8rem;
+    width: 1.0rem;
+    height: .276rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.alu-eightNeedle-d0d7{
+    left: 4.5rem;
+    top: 2.4rem;
+}
+.alu-eightNeedle-d0d7-text{
+    left: 4.7rem;
+    top: 2.8rem;
+    width: 1.536rem;
+    height: .276rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.alu-twoNeedle-alub{
+    left: 6.2rem;
+    top: 2.4rem;
+}
+.alu-twoNeedle-alub-text{
+    left: 6.2rem;
+    top: 2.8rem;
+    width: 1.236rem;
+    height: .276rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.alu-eightNeedle2-out{
+    left: 6.5rem;
+    top: 0.96rem;
+}
+.alu-eightNeedle2-out-text-1{
+    left: 5.9rem;
+    top: 0.96rem;
+    width: 1.0rem;
+    height: .276rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.alu-eightNeedle2-out-text-2{
+    left: 5.9rem;
+    top: 1.96rem;
+    width: 1.0rem;
+    height: .276rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+

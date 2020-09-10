@@ -1,0 +1,78 @@
+.text{
+    position: absolute;
+    color: #fff;
+}
+.select-background{
+    background-color: #697a96;
+}
+.invisible{
+    opacity: .3
+}
+.card-menu{
+    width:23rem;
+    height:13rem;
+    left:4.8rem;
+    top:1.26rem;
+    background: #244475;
+    position: absolute;
+}
+.table-style{
+    top:1.26rem;
+    left:2rem;
+}
+.box{
+    border-style: solid;
+    border-color: #ffffff;
+}
+.wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.head-menu{
+    width:28.5rem;
+    height:1.06rem;
+    position: absolute;
+}
+.tree{
+    width:3rem;
+    height:18rem;
+    top:1.06rem;
+    position:absolute;
+    background-color:#fff;
+}
+.tree2{
+    width:4.7rem;
+    height:18rem;
+    top:1.06rem;
+    position:absolute;
+    background-color:#fff;
+}
+.tree-menu{
+    width:3rem;
+    height:18rem;
+    position:absolute;
+    background-color:#fff;
+}
+.layout-logo{
+    width: 1.85rem;
+    height: .58rem;
+    left:.4rem;
+    top:.3rem;
+    background: #5b6270;
+    position: absolute;
+}
+.layout-logo-text{
+    width:1.06rem;
+    height:.34rem;
+    color: #fff;
+    position:absolute;
+    line-height:.2rem;
+    font-size:.2rem;
+    left: .4rem;
+    top:.2rem;
+}
+.layout-button{
+    left:4rem;
+    position: absolute;
+}
