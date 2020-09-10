@@ -19,8 +19,9 @@ Vue.use(VueRouter)
 Vue.config.productionTip = false
 const routes = [
   {
+    
     path: '/', 
-    redirect: '/login'
+    redirect: '/experiment2'
     //redirect: '/test'
   },
   {
@@ -75,11 +76,11 @@ const routes = [
   {
     path: "/PrtScr",
     component: () => import("./page/PrtScr.vue")
-  }
-  // {
-  //   path: "/test",
-  //   component: () => import("./page/test.vue")
-  // }
+  },
+  {
+     path: "/experiment2",
+     component: () => import("./page/experiment2.vue")
+ }
 ]
 const router = new VueRouter({
   routes
