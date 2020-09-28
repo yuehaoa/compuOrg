@@ -26,7 +26,7 @@
                                             实验选择
                                         </template>
                                         <MenuItem name="1-1" to="experiment1">运算器</MenuItem>
-                                        <MenuItem name="1-2">存储器</MenuItem>
+                                        <MenuItem name="1-2" to="experiment2">存储器</MenuItem>
                                         <MenuItem name="1-3">系统总线</MenuItem>
                                     </Submenu>
                                     <Submenu name="2">
