@@ -1,0 +1,60 @@
+.MEM-eightNeedle-1{
+    left:1.0rem;
+    top: 0.1rem;
+}
+.MEM-eightNeedle-D7-text{
+    width: .5rem;
+    height: 0.5rem;
+    position: absolute;
+    left: 1.0rem;
+    top: 0.5rem;
+    font-size: .192rem;
+}
+.MEM-eightNeedle-D0-text{
+    width: .5rem;
+    height: 0.5rem;
+    position: absolute;
+    left: 2.0rem;
+    top: 0.5rem;
+    font-size: .192rem;
+}
+.MEM-eightNeedle-2{
+    left:0.5rem;
+    top: 0.9rem;
+}
+.MEM-eightNeedle-A7-text{
+    width: .5rem;
+    height: 0.5rem;
+    position: absolute;
+    left: 0.5rem;
+    top: 1.3rem;
+    font-size: .192rem;
+}
+.MEM-eightNeedle-A0-text{
+    width: .5rem;
+    height: 0.5rem;
+    position: absolute;
+    left: 1.5rem;
+    top: 1.3rem;
+    font-size: .192rem;
+}
+.MEM-fourNeedle{
+    left:2.4rem;
+    top: 0.9rem;
+}
+.MEM-fourNeedle-WR-text{
+    width: .5rem;
+    height: 0.5rem;
+    position: absolute;
+    left: 2.2rem;
+    top: 1.3rem;
+    font-size: .192rem;
+}
+.MEM-fourNeedle-RD-text{
+    width: .5rem;
+    height: 0.5rem;
+    position: absolute;
+    left: 2.9rem;
+    top: 1.3rem;
+    font-size: .192rem;
+}
