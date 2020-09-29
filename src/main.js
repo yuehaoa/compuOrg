@@ -83,8 +83,6 @@ const routes = [
   {
      path: "/experiment2",
      component: () => import("./page/experiment2.vue")
- }
-
   }
   // {
   //   path: "/test",
