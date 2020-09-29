@@ -64,31 +64,7 @@
     line-height: .192rem;
     font-weight: bold;
 }
-.pc-ar{
-    width:3.6rem;
-    height:1.56rem;
-    position:absolute;
-    left:8.77rem;
-    top:8.51rem;
-}
-.pc-ar-text-1{
-    width:1.464rem;
-    height:.4rem;
-    position:absolute;
-    left:.25rem;
-    top:.66rem;
-    font-size: .192rem;
-    line-height: .192rem;
-}
-.pc-ar-text-2{
-    width:1.464rem;
-    height:.4rem;
-    position:absolute;
-    left:.35rem;
-    top:.996rem;
-    font-size: .192rem;
-    line-height: .192rem;
-}
+
 .cpu-text{
     width:9.24rem;
     height:3.96rem;
