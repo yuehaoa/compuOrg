@@ -1,0 +1,103 @@
+.in-unit-fourNeedle{
+    left:1.0rem;
+    top:.1rem;
+}
+.in-unit-fourNeedle-IN_B-RD-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:0.95rem;
+    top:.5rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.in-unit-eightNeedle{
+    left:2.0rem;
+    top:.1rem;
+}
+.in-unit-eightNeedle-D7-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:2.0rem;
+    top:.5rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.in-unit-eightNeedle-D0-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:3.0rem;
+    top:.5rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.in-unit-D7{
+    left:0.5rem;
+    top:0.7rem;
+}
+.in-unit-D6{
+    left:1.1rem;
+    top:0.7rem;
+}
+.in-unit-D5{
+    left:1.7rem;
+    top:0.7rem;
+}
+.in-unit-D4{
+    left:2.3rem;
+    top:0.7rem;
+}
+.in-unit-D3{
+    left:0.5rem;
+    top:1.35rem;
+}
+.in-unit-D2{
+    left:1.1rem;
+    top:1.35rem;
+}
+.in-unit-D1{
+    left:1.7rem;
+    top:1.35rem;
+}
+.in-unit-D0{
+    left:2.3rem;
+    top:1.35rem;
+}
+.in-unit-D7-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:0.2rem;
+    top:0.9rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.in-unit-D4-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:2.9rem;
+    top:0.9rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.in-unit-D3-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:0.2rem;
+    top:1.55rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.in-unit-D0-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:2.9rem;
+    top:1.55rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
