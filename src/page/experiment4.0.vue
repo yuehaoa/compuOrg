@@ -331,7 +331,7 @@
                             <div class="alu-reg-unit-Cn-text text">Cn</div>
                             <div class="alu-reg-unit-red-buble red-buble"/>
                             <div class="alu-reg-unit-green-buble green-buble"/>
-                            <div class="alu-reg-unit-fourNeedle-1 fourNeedle"></div>
+                            <div class="alu-reg-unit-fourNeedle-FZ-FC fourNeedle"></div>
                             <div class="alu-reg-unit-FZ-text text">FZ</div>
                             <div class="alu-reg-unit-FC-text text">FC</div>
                             <div class="alu-reg-unit-fourNeedle-2 fourNeedle" @click="buttonClick('alu-reg-unit-S3-S0')"></div>
