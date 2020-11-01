@@ -30,6 +30,16 @@
     background: url('../assets/off.png') no-repeat 50% 50%;
     background-size: cover;
 }
+.power-switch{
+    width:.5rem;
+    height:.6rem;
+    left: 0.5rem;
+    top: 1.0rem;
+    position:absolute;
+    cursor: pointer;
+    background: url("../assets/powerOff.png") no-repeat 50% 50%;
+    background-size: cover;
+}
 .red-buble{
     width:.2rem;
     height:.28rem;
