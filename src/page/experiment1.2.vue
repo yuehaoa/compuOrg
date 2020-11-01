@@ -611,7 +611,7 @@
     </row>
 </template>
 <script>
-    const axios = require("axios");
+    // const axios = require("axios");
     import { screenChange } from "../scripts/screen.js"
     export default {
 

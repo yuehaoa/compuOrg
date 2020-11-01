@@ -37,6 +37,7 @@
                             <div class="power-source-text text">
                                 电源
                             </div>
+                            <div class="power-switch" @click="changePowerSwitch"></div>
                         </div>
                     </div>
                     <div class="sys-unit box">
@@ -241,6 +242,61 @@
                             <div class="mc-unit-text text">
                                 MC单元
                             </div>
+                            <div class="mc-unit-twoNeedle-1 twoNeedle" @click="buttonClick('mc-unit-LDIR')"></div>
+                            <div class="mc-unit-LDIR-text text">LDIR</div>
+                            <div class="mc-unit-twoNeedle-2 twoNeedle" @click="buttonClick('mc-unit-F1')"></div>
+                            <div class="mc-unit-F1-text text">F&lt;1&gt;</div>
+                            <div class="mc-unit-sixNeedle sixNeedle" @click="buttonClick('mc-unit-SE5-SE0')"></div>
+                            <div class="mc-unit-SE0-text text">SE0</div>
+                            <div class="mc-unit-SE5-text text">SE5</div>
+                            <div class="mc-unit-twoNeedle-3 twoNeedle" @click="buttonClick('mc-unit-RS_B')"></div>
+                            <div class="mc-unit-RS_B-text text">RS_B</div>
+                            <div class="mc-unit-twoNeedle-4 twoNeedle" @click="buttonClick('mc-unit-LDRi')"></div>
+                            <div class="mc-unit-LDRi-text text">LDRi</div>
+                            <div class="mc-unit-fourNeedle-1 fourNeedle" @click="buttonClick('mc-unit-S3-S0')"></div>
+                            <div class="mc-unit-S0-text text">S0</div>
+                            <div class="mc-unit-S3-text text">S3</div>
+                            <div class="mc-unit-fourNeedle-2 fourNeedle" @click="buttonClick('mc-unit-LDA-LDB')"></div>
+                            <div class="mc-unit-LDA-text text">LDA</div>
+                            <div class="mc-unit-LDB-text text">LDB</div>
+                            <div class="mc-unit-twoNeedle-5 twoNeedle-slim" @click="buttonClick('mc-unit-ALU_B')"></div>
+                            <div class="mc-unit-ALU_B-text text">ALU_B</div>
+                            <div class="mc-unit-twoNeedle-6 twoNeedle-slim" @click="buttonClick('mc-unit-LDAR')"></div>
+                            <div class="mc-unit-LDAR-text text">LDAR</div>
+                            <div class="mc-unit-twoNeedle-7 twoNeedle-slim" @click="buttonClick('mc-unit-LDPC')"></div>
+                            <div class="mc-unit-LDPC-text text">LDPC</div>
+                            <div class="mc-unit-twoNeedle-8 twoNeedle-slim" @click="buttonClick('mc-unit-PC_B')"></div>
+                            <div class="mc-unit-PC_B-text text">PC_B</div>
+                            <div class="mc-unit-fourNeedle-3 fourNeedle" @click="buttonClick('mc-unit-WR-RD-IOM')"></div>
+                            <div class="mc-unit-WR-text text">WR</div>
+                            <div class="mc-unit-RD-text text">RD</div>
+                            <div class="mc-unit-IOM-text text">IOM</div>
+                            <div class="mc-unit-buble-box">
+                                <div class="mc-unit-red-buble-1-1 red-buble"/>
+                                <div class="mc-unit-red-buble-1-2 red-buble"/>
+                                <div class="mc-unit-red-buble-1-3 red-buble"/>
+                                <div class="mc-unit-red-buble-1-4 red-buble"/>
+                                <div class="mc-unit-red-buble-2-1 red-buble"/>
+                                <div class="mc-unit-red-buble-2-2 red-buble"/>
+                                <div class="mc-unit-red-buble-2-3 red-buble"/>
+                                <div class="mc-unit-red-buble-2-4 red-buble"/>
+                                <div class="mc-unit-red-buble-3-1 red-buble"/>
+                                <div class="mc-unit-red-buble-3-2 red-buble"/>
+                                <div class="mc-unit-red-buble-3-3 red-buble"/>
+                                <div class="mc-unit-red-buble-3-4 red-buble"/>
+                                <div class="mc-unit-green-buble-1-1 green-buble"/>
+                                <div class="mc-unit-green-buble-1-2 green-buble"/>
+                                <div class="mc-unit-green-buble-1-3 green-buble"/>
+                                <div class="mc-unit-green-buble-1-4 green-buble"/>
+                                <div class="mc-unit-green-buble-2-1 green-buble"/>
+                                <div class="mc-unit-green-buble-2-2 green-buble"/>
+                                <div class="mc-unit-green-buble-2-3 green-buble"/>
+                                <div class="mc-unit-green-buble-2-4 green-buble"/>
+                                <div class="mc-unit-green-buble-3-1 green-buble"/>
+                                <div class="mc-unit-green-buble-3-2 green-buble"/>
+                                <div class="mc-unit-green-buble-3-3 green-buble"/>
+                                <div class="mc-unit-green-buble-3-4 green-buble"/>
+                            </div>
                         </div>
                     </div>
                     <div class="ir-unit box">
@@ -248,12 +304,68 @@
                             <div class="ir-unit-text text">
                                 IR单元
                             </div>
+                            <div class="ir-unit-twoNeedle-1 twoNeedle" @click="buttonClick('ir-unit-LDIR')"></div>
+                            <div class="ir-unit-LDIR-text text">LDIR</div>
+                            <div class="ir-unit-twoNeedle-2 twoNeedle" @click="buttonClick('ir-unit-F1')"></div>
+                            <div class="ir-unit-F1-text text">F&lt;1&gt;</div>
+                            <div class="ir-unit-sixNeedle sixNeedle" @click="buttonClick('ir-unit-SE5-SE0')"></div>
+                            <div class="ir-unit-SE5-text text">SE5</div>
+                            <div class="ir-unit-SE0-text text">SE0</div>
+                            <div class="ir-unit-eightNeedle eightNeedle" @click="buttonClick('ir-unit-D7-D0')"></div>
+                            <div class="ir-unit-D7-text text">D7</div>
+                            <div class="ir-unit-D0-text text">D0</div>
                         </div>
                     </div>
                     <div class="alu-reg-unit box">
                         <div class="wrapper">
                             <div class="alu-reg-unit-text text">
                                 ALU及REG单元
+                            </div>
+                            <div class="alu-reg-unit-twoNeedle-1 twoNeedle" @click="buttonClick('alu-reg-unit-RO_B')"/>
+                            <div class="alu-reg-unit-RO_B-text text">RO_B</div>
+                            <div class="alu-reg-unit-twoNeedle-2 twoNeedle" @click="buttonClick('alu-reg-unit-LDRO')"/>
+                            <div class="alu-reg-unit-LDRO-text text">LDRO</div>
+                            <div class="alu-reg-unit-twoNeedle-3 twoNeedle" @click="buttonClick('alu-reg-unit-ALU_B')"></div>
+                            <div class="alu-reg-unit-ALU_B-text text">ALU_B</div>
+                            <div class="alu-reg-unit-twoNeedle-4 twoNeedle"></div>
+                            <div class="alu-reg-unit-Cn-text text">Cn</div>
+                            <div class="alu-reg-unit-red-buble red-buble"/>
+                            <div class="alu-reg-unit-green-buble green-buble"/>
+                            <div class="alu-reg-unit-fourNeedle-1 fourNeedle"></div>
+                            <div class="alu-reg-unit-FZ-text text">FZ</div>
+                            <div class="alu-reg-unit-FC-text text">FC</div>
+                            <div class="alu-reg-unit-fourNeedle-2 fourNeedle" @click="buttonClick('alu-reg-unit-S3-S0')"></div>
+                            <div class="alu-reg-unit-S3-text text">S3</div>
+                            <div class="alu-reg-unit-S0-text text">S0</div>
+                            <div class="alu-reg-unit-fourNeedle-3 fourNeedle" @click="buttonClick('alu-reg-unit-LDA-LDB')"></div>
+                            <div class="alu-reg-unit-LDA-text text">LDA</div>
+                            <div class="alu-reg-unit-LDB-text text">LDB</div>
+                            <div class="alu-reg-unit-eightNeedle-1 eightNeedle" @click="buttonClick('alu-reg-unit-IN7-IN0')"></div>
+                            <div class="alu-reg-unit-IN7-text text">IN7</div>
+                            <div class="alu-reg-unit-IN0-text text">IN0</div>
+                            <div class="alu-reg-unit-eightNeedle-2 eightNeedle" @click="buttonClick('alu-reg-unit-OUT7-OUT0')"></div>
+                            <div class="alu-reg-unit-OUT7-text text">OUT7</div>
+                            <div class="alu-reg-unit-OUT0-text text">OUT0</div>
+                            <div class="alu-reg-unit-eightNeedle-3 eightNeedle" @click="buttonClick('alu-reg-unit-D7-D0')"></div>
+                            <div class="alu-reg-unit-D7-text text">D7</div>
+                            <div class="alu-reg-unit-D0-text text">D0</div>
+                            <div class="alu-reg-unit-buble-box">
+                                <div class="alu-reg-unit-red-buble-1-1 red-buble"/>
+                                <div class="alu-reg-unit-red-buble-1-2 red-buble"/>
+                                <div class="alu-reg-unit-red-buble-1-3 red-buble"/>
+                                <div class="alu-reg-unit-red-buble-1-4 red-buble"/>
+                                <div class="alu-reg-unit-red-buble-2-1 red-buble"/>
+                                <div class="alu-reg-unit-red-buble-2-2 red-buble"/>
+                                <div class="alu-reg-unit-red-buble-2-3 red-buble"/>
+                                <div class="alu-reg-unit-red-buble-2-4 red-buble"/>
+                                <div class="alu-reg-unit-green-buble-1-1 green-buble"/>
+                                <div class="alu-reg-unit-green-buble-1-2 green-buble"/>
+                                <div class="alu-reg-unit-green-buble-1-3 green-buble"/>
+                                <div class="alu-reg-unit-green-buble-1-4 green-buble"/>
+                                <div class="alu-reg-unit-green-buble-2-1 green-buble"/>
+                                <div class="alu-reg-unit-green-buble-2-2 green-buble"/>
+                                <div class="alu-reg-unit-green-buble-2-3 green-buble"/>
+                                <div class="alu-reg-unit-green-buble-2-4 green-buble"/>
                             </div>
                         </div>
                     </div>
@@ -305,10 +417,14 @@
                             <div class="red-buble system-red-buble-2"/>
                             <div class="red-buble system-red-buble-3"/>
                             <div class="red-buble system-red-buble-4"/>
-                            
-                            <div class="fourNeedle system-twoNeedle-xiow-xior" @click=" buttonClick('con-bus-XIOW-XIOR')" id="con-bus-XIOW-XIOR"/>
-                            <div class="text system-twoNeedle-xiow-xior-text">
-                                XIOW-XIOR
+                            <div class="twoNeedle system-twoNeedle-xiow" @click=" buttonClick('con-bus-XIOW')" id="con-bus-XIOW"/>
+                            <div class="text system-twoNeedle-xiow-text">
+                                XIOW
+                            </div>
+
+                            <div class="twoNeedle system-twoNeedle-xior" @click=" buttonClick('con-bus-XIOR')" id="con-bus-XIOR"/>
+                            <div class="text system-twoNeedle-xior-text">
+                                XIOR
                             </div>
 
                             <div class="fourNeedle system-fourNeedle-xmwr" @click="buttonClick('con-bus-XMWR-XMRD')" id="con-bus-XMWR-XMRD"/>
@@ -418,6 +534,13 @@
                             <div class="out-unit-text text">
                                 OUT单元
                             </div>
+                            <div class="out-unit-twoNeedle-1 twoNeedle" @click="buttonClick('out-unit-WR')"/>
+                            <div class="out-unit-WR-text text">WR</div>
+                            <div class="out-unit-twoNeedle-2 twoNeedle" @click="buttonClick('out-unit-LED_B')"/>
+                            <div class="out-unit-LED_B-text text">LED_B</div>
+                            <div class="out-unit-eightNeedle eightNeedle"  @click="buttonClick('out-unit-D7-D0')"/>
+                            <div class="out-unit-D7-text text">D7</div>
+                            <div class="out-unit-D0-text text">D0</div>
                         </div>
                     </div>
                     <div class="con-unit box">
@@ -542,8 +665,8 @@
                             <div class="fourNeedle-k3k2-text text invisible">
                                 K3--K0
                             </div>
-                            <div class="eightNeedle-SD27 eightNeedle invisible" id="SD27-SD20"/>
-                            <div class="eightNeedle-SD27-text text invisible">
+                            <div class="eightNeedle-SD27 eightNeedle" id="SD27-SD20" @click="buttonClick('con-unit-SD27-SD20')"/>
+                            <div class="eightNeedle-SD27-text text">
                                 SD27-SD20
                             </div>
                             <div class="twoNeedle-alu twoNeedle" @click="buttonClick('conALU_B')" id="conALU_B"/>
@@ -619,6 +742,10 @@
                 <div class="con-unit box select-background"/>
                 <div class="in-unit box select-background"/>
                 <div class="expansion-unit box select-background"/>
+                <div class="mc-unit box select-background"/>
+                <div class="ir-unit box select-background"/>
+                <div class="out-unit box select-background"/>
+                <div class="alu-reg-unit box select-background"/>
             </card>
         </i-col>
     </row>
@@ -630,6 +757,7 @@
 
         data() {
             return{
+                powerStatus: false,
                 menuShow: true,
                 count: 0,
                 x1:0,
@@ -664,9 +792,24 @@
                 lineList: [
                      "clk030HZ",
                      "time-con-T4-T1con-bus-T4-T1",
-                     "con-bus-XIOW-XIORexpansion-E3-E2",
-                     "con-bus-XMWR-XMRDexpansion-E1-E0",
-                     "con-bus-WR-RD-IOMcon-unit-WR-RD-IOM"
+                     "con-bus-XD7-XD0in-unit-D7-D0",
+                     "con-bus-XD7-XD0out-unit-D7-D0",
+                     "con-bus-WR-RD-IOMmc-unit-WR-RD-IOM",
+                     "con-bus-XIORin-unit-IN_B-RD",
+                     "con-bus-XIOWout-unit-WR",
+                     "out-unit-LED_Bexpansion-GND",
+                     "cpuD7-D0alu-reg-unit-IN7-IN0",
+                     "cpuD7-D0alu-reg-unit-OUT7-OUT0",
+                     "cpuD7-D0alu-reg-unit-D7-D0",
+                     "mc-unit-ALU_Balu-reg-unit-ALU_B",
+                     "mc-unit-LDA-LDBalu-reg-unit-LDA-LDB",
+                     "mc-unit-S3-S0alu-reg-unit-S3-S0",
+                     "mc-unit-RS_Balu-reg-unit-RO_B",
+                     "mc-unit-LDRialu-reg-unit-LDRO",
+                     "mc-unit-LDIRir-unit-LDIR",
+                     "mc-unit-F1ir-unit-F1",
+                     "mc-unit-SE5-SE0ir-unit-SE5-SE0",
+                     "ir-unit-D7-D0con-unit-SD27-SD20"
                  ],
                 temp:[], //用来清除上一次的连线
                 totalRow: [],
@@ -736,6 +879,18 @@
                 let on = "url(\""+require("../assets/on.png")+"\")";
                 e.srcElement.style.backgroundImage = 
                     e.srcElement.style.backgroundImage === off || e.srcElement.style.backgroundImage === "" ? on : off;
+            },
+            changePowerSwitch(e){
+                let off = "url(\""+require("../assets/powerOff.png")+"\")";
+                let on = "url(\""+require("../assets/powerOn.png")+"\")";
+                if(this.powerStatus){
+                    this.powerStatus = false;
+                    e.srcElement.style.backgroundImage = off;
+                }
+                else{
+                    this.powerStatus = true;
+                    e.srcElement.style.backgroundImage = on;
+                }
             },
 
             t4Option(){               
@@ -819,21 +974,28 @@
             },
             /*布线检查函数 */
             lineCheck(){
-               if (this.tableData.length>5)
+                if (!this.powerStatus)
+                {
+                   this.$Message.warning({
+                        content: "请先开启电源"
+                    })
+                    return;
+                }
+                if (this.tableData.length>20)
                 {
                    this.$Message.warning({
                         content: "布线多余，请重新布线"
                     })
                     return;
                 }
-                if (this.tableData.length<5)
+                if (this.tableData.length<20)
                 {
                    this.$Message.warning({
                         content: "布线缺失，请检查布线"
                     })
                     return;
                 }
-                 /*实验三连线情况*/
+                 /*实验二连线情况*/
                  var lineList = [];
                  let i = 0;
                  for(;i<this.tableData.length;i++) {
@@ -844,8 +1006,8 @@
                      }
                  }
                  /*布线数正确 */
-                 // let str1 = lineList.sort().toString();
-                 // let str2 = this.lineList.sort().toString();
+                 //let str1 = lineList.sort().toString();
+                 //let str2 = this.lineList.sort().toString();
                  let str1 = lineList.toString();
                  let str2 = this.lineList.toString();
                  if (str1 === str2){
@@ -1035,7 +1197,7 @@
 @import '../static/system-bus.css';
 @import '../static/time-control+expand.css';
 @import '../elements/public-elements.css';
-@import '../elements/system-bus-3.css';
+@import '../elements/system-bus.css';
 @import '../elements/time-control.css';
 @import '../elements/alu.css';
 @import '../elements/con2.css';
@@ -1044,6 +1206,10 @@
 @import '../elements/pc-ar.css';
 @import '../elements/in-unit.css';
 @import '../elements/expansion-unit.css';
+@import '../elements/mc-unit.css';
+@import '../elements/ir-unit.css';
+@import '../elements/out-unit.css';
+@import '../elements/alu-reg-unit.css';
 
 @import '../elements/result.css';
 
