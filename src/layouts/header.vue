@@ -2,7 +2,7 @@
     <div class="layout">
         <Layout>
             <Header>
-                <Menu mode="horizontal" theme="dark" active-name="1">
+                <Menu mode="horizontal" theme="dark" active-name="1" >
                     <div class="layout-logo">
                         <div class="wrapper">
                             <!--img src="../assets/login-logo.jpg" alt="信息学院logo" width="50px"/-->
@@ -14,22 +14,22 @@
                     <div class="layout-nav">
                         <Row type="flex">
                            <i-col span="3" offset="12" class="position">
-                               <MenuItem>
-                               <Icon type="ios-search" size="24" />
+                               <MenuItem name="1">
+                                  <Icon type="ios-search" size="24" />
                                </MenuItem>
                            </i-col> 
                             <i-col span="3" class="position">
-                                <MenuItem>
-                               <Icon type="ios-add-circle-outline" size="24"/>
+                                <MenuItem name="2">
+                                    <Icon type="ios-add-circle-outline" size="24"/>
                                </MenuItem>
                            </i-col>     
                            <i-col span="3" class="position">
-                               <MenuItem>
-                               <Icon type="ios-help-circle-outline" size="24"/>
+                               <MenuItem name="3">
+                                    <Icon type="ios-help-circle-outline" size="24"/>
                                </MenuItem>
                            </i-col> 
                            <i-col span="3"  class="position">
-                               <MenuItem>
+                               <MenuItem name="4">
                                  <Dropdown>
                                     <Icon type="ios-settings-outline" size="24"/>
                                     <DropdownMenu slot="list">
@@ -43,15 +43,14 @@
                                         </DropdownItem>
                                     </DropdownMenu>
                                 </Dropdown>
-                               <Icon type="ios-settings-outline" size="24"/>
                                </MenuItem>
                            </i-col> 
                         </Row>
                     </div>
                 </Menu>
             </Header>
-            <Layout :style="{padding: '0 50px'}">
-                <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
+            <Layout :style="{padding: '0 50px', background: '#fff'}">
+                <Content :style="{padding: '24px', minHeight: '500px', background: '#fff'}">
                     <slot></slot>
                 </Content>
             </Layout>
@@ -63,7 +62,6 @@
 export default {
     data(){
         return{
-            activeMenu:this.$route.name
         }
     },
     methods:{
