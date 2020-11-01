@@ -83,11 +83,13 @@ const routes = [
   {
      path: "/experiment2",
      component: () => import("./page/experiment2.vue")
+  },
+  {
+    path: "/exp_environment1",
+    meta:{layout:"header"},
+    name:"exp_environment1",
+    component: () => import("./page/exp_environment1.vue")
   }
-  // {
-  //   path: "/test",
-  //   component: () => import("./page/test.vue")
-  // }
 
 ]
 const router = new VueRouter({

@@ -1,60 +1,39 @@
-.MEM-eightNeedle-1{
-    left:1.0rem;
-    top: 0.1rem;
+.mem-D7-D0{
+    left:0.8rem;
+    top:0.1rem;
 }
-.MEM-eightNeedle-D7-text{
-    width: .5rem;
-    height: 0.5rem;
-    position: absolute;
-    left: 1.0rem;
-    top: 0.5rem;
+.mem-D7-D0-text{
+    left: 0.8rem;
+    top:0.45rem;
+    width:2rem;
+    height:.4rem;
+    position:absolute;
     font-size: .192rem;
+    line-height: .192rem;
 }
-.MEM-eightNeedle-D0-text{
-    width: .5rem;
-    height: 0.5rem;
-    position: absolute;
-    left: 2.0rem;
-    top: 0.5rem;
+.mem-A7-A0{
+    left:0.1rem;
+    top:1.0rem;
+}
+.mem-A7-A0-text{
+    left: 0.1rem;
+    top:1.355rem;
+    width:1rem;
+    height:.4rem;
+    position:absolute;
     font-size: .192rem;
+    line-height: .192rem;
 }
-.MEM-eightNeedle-2{
-    left:0.5rem;
-    top: 0.9rem;
+.mem-WR-RD{
+    left:1.8rem;
+    top:1.0rem;
 }
-.MEM-eightNeedle-A7-text{
-    width: .5rem;
-    height: 0.5rem;
-    position: absolute;
-    left: 0.5rem;
-    top: 1.3rem;
+.mem-WR-RD-text{
+    left: 1.8rem;
+    top:1.355rem;
+    width:1rem;
+    height:.4rem;
+    position:absolute;
     font-size: .192rem;
-}
-.MEM-eightNeedle-A0-text{
-    width: .5rem;
-    height: 0.5rem;
-    position: absolute;
-    left: 1.5rem;
-    top: 1.3rem;
-    font-size: .192rem;
-}
-.MEM-fourNeedle{
-    left:2.4rem;
-    top: 0.9rem;
-}
-.MEM-fourNeedle-WR-text{
-    width: .5rem;
-    height: 0.5rem;
-    position: absolute;
-    left: 2.2rem;
-    top: 1.3rem;
-    font-size: .192rem;
-}
-.MEM-fourNeedle-RD-text{
-    width: .5rem;
-    height: 0.5rem;
-    position: absolute;
-    left: 2.9rem;
-    top: 1.3rem;
-    font-size: .192rem;
+    line-height: .192rem;
 }

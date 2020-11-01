@@ -17,13 +17,15 @@ import teacherLayout from '@/layouts/teacherHeader.vue'
 import emptyLayout from '@/layouts/empty.vue'
 import expLayout from '@/layouts/expHeader.vue'
 import stuLayout from '@/layouts/stuHeader.vue'
+import stuLayout2 from '@/layouts/header.vue'
 export default {
   name: 'app',
   components:{
       'teacherHeader-layout':teacherLayout,
       'empty-layout':emptyLayout,
       'expHeader-layout':expLayout,
-      'stuHeader-layout':stuLayout
+      'stuHeader-layout':stuLayout,
+      'header-layout':stuLayout2
   },
   data() {
     return{
