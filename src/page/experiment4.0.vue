@@ -1202,7 +1202,7 @@
 @import '../elements/alu.css';
 @import '../elements/con2.css';
 @import '../elements/cpu.css';
-@import '../elements/MEM.css';
+@import '../elements/mem.css';
 @import '../elements/pc-ar.css';
 @import '../elements/in-unit.css';
 @import '../elements/expansion-unit.css';

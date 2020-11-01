@@ -1,5 +1,5 @@
 <template>
-   <div>
+   <div class="body">
         <div class="title">
                 <div class="main-title">计算机组成原理实验平台</div>
                 <div class="sub-title">厦门大学信息学院</div>
@@ -115,12 +115,14 @@ export default {
 }
 </script>
 <style lang="less">
-body{
+.body{
     background: url(../../src/image/login-bg.34416485.jpg) no-repeat center center fixed;
     background-size: cover;
     overflow-x: hidden;
     overflow-y: hidden;
-
+    position: fixed;
+    width: 100%;
+    height:100%;
 }
 #login-form {
     background: url(../../src/image/login_box.731ee520.png);

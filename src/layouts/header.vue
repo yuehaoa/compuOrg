@@ -49,8 +49,8 @@
                     </div>
                 </Menu>
             </Header>
-            <Layout :style="{padding: '0 50px', background: '#fff'}">
-                <Content :style="{padding: '24px', minHeight: '500px', background: '#fff'}">
+            <Layout :style="{padding: '0 50px'}">
+                <Content :style="{padding: '24px', minHeight: '500px'}">
                     <slot></slot>
                 </Content>
             </Layout>

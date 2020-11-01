@@ -85,6 +85,14 @@ const routes = [
      component: () => import("./page/experiment2.vue")
   },
   {
+    path: "/experiment3",
+    component: () => import("./page/experiment3.0.vue")
+ },
+ {
+  path: "/experiment4",
+  component: () => import("./page/experiment4.0.vue")
+  },
+  {
     path: "/exp_environment1",
     meta:{layout:"header"},
     name:"exp_environment1",
@@ -95,12 +103,6 @@ const routes = [
     meta:{layout:"header"},
     name:"exp_environment2",
     component: () => import("./page/exp_environment2.vue")
-  },
-  {
-    path: "/exp_environment3",
-    meta:{layout:"header"},
-    name:"exp_environment3",
-    component: () => import("./page/exp_environment3.vue")
   }
 
 ]
