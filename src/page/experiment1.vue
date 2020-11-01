@@ -707,7 +707,7 @@
 <script>
     const axios = require("axios");
     import html2canvas from 'html2canvas'
-    import VueDraggableResizable from "vue-draggable-resizable";
+    // import VueDraggableResizable from "vue-draggable-resizable";
     import { SVG } from '@svgdotjs/svg.js'
     import { screenChange } from "../scripts/screen.js"
     import { watermark, deleteMark } from "../scripts/waterMark.js"

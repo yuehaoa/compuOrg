@@ -22,7 +22,7 @@ const routes = [
     
     path: '/', 
 
-    redirect: '/experiment2'
+    redirect: '/login'
 
     //redirect: '/test'
   },
