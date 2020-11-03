@@ -22,7 +22,7 @@ const routes = [
     
     path: '/', 
 
-    redirect: '/experiment2'
+    redirect: '/experiment4'
 
     //redirect: '/test'
   },
@@ -81,15 +81,25 @@ const routes = [
 
   },
   {
-     path: "/experiment2",
-     component: () => import("./page/experiment2.vue")
- }
-
+    path: "/experiment3",
+    component: () => import("./page/experiment3.1.vue")
+ },
+ {
+  path: "/experiment4",
+  component: () => import("./page/experiment4.0.vue")
+  },
+  {
+    path: "/exp_environment1",
+    meta:{layout:"header"},
+    name:"exp_environment1",
+    component: () => import("./page/exp_environment1.vue")
+  },
+  {
+    path: "/exp_environment2",
+    meta:{layout:"header"},
+    name:"exp_environment2",
+    component: () => import("./page/exp_environment2.vue")
   }
-  // {
-  //   path: "/test",
-  //   component: () => import("./page/test.vue")
-  // }
 
 ]
 const router = new VueRouter({

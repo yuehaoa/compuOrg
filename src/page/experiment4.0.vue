@@ -34,9 +34,6 @@
             <div class="svg-style" id="svg-container">
                     <div class="power-source box">
                         <div class="wrapper">
-
-                            <div class="switch power-switch" @click="powerOnAction" id="power" />
-
                             <div class="power-source-text text">
                                 电源
                             </div>
@@ -83,10 +80,8 @@
                                     <DropdownMenu slot="list">
                                         <DropdownItem style="width:0.8rem">T1</DropdownItem>
                                         <DropdownItem style="width:0.8rem">T2</DropdownItem>
-                                        <DropdownItem style="width:0.8rem" @click.native="t3Option">T3</DropdownItem>
+                                        <DropdownItem style="width:0.8rem" @click.native="MEMt3Option">T3</DropdownItem>
                                         <DropdownItem style="width:0.8rem">T4</DropdownItem>
-
-
                                     </DropdownMenu>
                                 </Dropdown>
                             </div>
@@ -96,7 +91,7 @@
                             <div class="st-text text">
                                 ST
                             </div>
-                            <div class="start bulb" @click="changeImage" id="kk1Start"/>
+                            <div class="start bulb" @click="checkkk123" id="kk1Start"/>
                             <div class="start-text text">
                                 运行
                             </div>
@@ -107,15 +102,11 @@
                             <div class="stop-text text">
                                 停止
                             </div>
-
-       
-                            <div class="singleStep bulb" @click="changeImage" id="singleStep"/>
-
-                            <div class="singleShot bulb" @click="changeImage" id="singleBeat"/>
+                            <div class="singleShot bulb" @click="checkkk123" id="singleBeat"/>
                             <div class="singleShot-text text">
                                 单拍
                             </div>
-                     
+                            <div class="singleStep bulb" @click="changeImage" />
                             <div class="singleStep-text text">
                                 单步
                             </div>
@@ -134,7 +125,7 @@
                             <div class="check-text text">
                                 校验
                             </div>
-                            <div class="run bulb" @click="changeImage" id="kk3Start"/>
+                            <div class="run bulb" @click="checkkk123" id="kk3Start"/>
                             <div class="run-text text">
                                 运行
                             </div>
@@ -155,6 +146,26 @@
                             <div class="expansion-unit-text text">
                                 扩展单元
                             </div>
+                            <div class="expansion-unit-twoNeedle-1 twoNeedle" @click=" buttonClick('expansion-GND')" id="expansion-GND"/>
+                            <div class="expansion-unit-twoNeedle-GND-text text">GND</div>
+                            <div class="expansion-unit-twoNeedle-2 twoNeedle" @click=" buttonClick('expansion-5V')" id="expansion-5V"/>
+                            <div class="expansion-unit-twoNeedle-5V-text text">+5V</div>
+                            <div class="expansion-unit-twoNeedle-3 twoNeedle-slim "/>
+                            <div class="expansion-unit-twoNeedle-E7-text text">E7</div>
+                            <div class="expansion-unit-twoNeedle-E6-text text">E6</div>
+                            <div class="expansion-unit-twoNeedle-4 twoNeedle-slim"/>
+                            <div class="expansion-unit-twoNeedle-E5-text text">E5</div>
+                            <div class="expansion-unit-twoNeedle-E4-text text">E4</div>
+                            <div class="expansion-unit-twoNeedle-5 twoNeedle-slim" @click=" buttonClick('expansion-E3-E2')" id="expansion-E3-E2"/>
+                            <div class="expansion-unit-twoNeedle-E3-text text">E3</div>
+                            <div class="expansion-unit-twoNeedle-E2-text text">E2</div>
+                            <div class="expansion-unit-twoNeedle-6 twoNeedle-slim" @click=" buttonClick('expansion-E1-E0')" id="expansion-E1-E0"/>
+                            <div class="expansion-unit-twoNeedle-E1-text text">E1</div>
+                            <div class="expansion-unit-twoNeedle-E0-text text">E0</div>
+                            <div class="red-buble expansion-unit-red-buble-1" name="buble_F"/>
+                            <div class="red-buble expansion-unit-red-buble-2" name="buble_F"/>
+                            <div class="green-buble expansion-unit-green-buble-1" name="buble_F"/>
+                            <div class="green-buble expansion-unit-green-buble-2" name="buble_F"/>
                         </div>
                     </div>
                     <!--结果列表栏-->
@@ -294,14 +305,10 @@
                             <div class="red-buble system-red-buble-2"/>
                             <div class="red-buble system-red-buble-3"/>
                             <div class="red-buble system-red-buble-4"/>
-                            <div class="twoNeedle system-twoNeedle-xiow invisible"/>
-                            <div class="text system-twoNeedle-xiow-text invisible">
-                                XIOW
-                            </div>
-
-                            <div class="twoNeedle system-twoNeedle-xior invisible"/>
-                            <div class="text system-twoNeedle-xior-text invisible">
-                                XIOR
+                            
+                            <div class="fourNeedle system-twoNeedle-xiow-xior" @click=" buttonClick('con-bus-XIOW-XIOR')" id="con-bus-XIOW-XIOR"/>
+                            <div class="text system-twoNeedle-xiow-xior-text">
+                                XIOW-XIOR
                             </div>
 
                             <div class="fourNeedle system-fourNeedle-xmwr" @click="buttonClick('con-bus-XMWR-XMRD')" id="con-bus-XMWR-XMRD"/>
@@ -487,16 +494,15 @@
                             <div class="SD10-text text">
                                 SD10  LDB
                             </div>
-
-                            <div class="switch SD7"  @click="changeSwitch" id="conWR_switch"/>
-                            <div class="SD7-text text ">
+                            <div class="switch SD7 " @click="changeSwitch" id="conWR"/>
+                            <div class="SD7-text text">
                                 SD07  WR
                             </div>
-                            <div class="switch SD6"  @click="changeSwitch" id="conRD_switch"/>
-                            <div class="SD6-text text ">
+                            <div class="switch SD6"  @click="changeSwitch" id="conRD"/>
+                            <div class="SD6-text text">
                                 06  RD
                             </div>
-                            <div class="switch SD5"  @click="changeSwitch" id="conIOM_switch"/>
+                            <div class="switch SD5 " @click="changeSwitch" id="conIOM"/>
                             <div class="SD5-text text ">
                                 05  IOM
                             </div>
@@ -512,13 +518,12 @@
                             <div class="SD2-text text invisible">
                                 02
                             </div>
-
-                            <div class="switch SD1 "  @click="changeSwitch" id="conLDAR_switch"/>
-                            <div class="SD1-text text ">
+                            <div class="switch SD1 invisible"/>
+                            <div class="SD1-text text invisible">
                                 01  LDAR
                             </div>
-                            <div class="switch SD0 "  @click="changeSwitch" id="conIOR_switch"/>
-                            <div class="SD0-text text ">
+                            <div class="switch SD0 invisible"/>
+                            <div class="SD0-text text invisible">
                                 SD00 LOR
                             </div>
                             <div class="clr-white-btn white-btn" @click="clear()"/>
@@ -595,16 +600,14 @@
                             <div class="in-unit-D4-text text">D4</div>
                             <div class="in-unit-D3-text text">D3</div>
                             <div class="in-unit-D0-text text">D0</div>
-
-                            <div class="switch in-unit-D7" @click="changeSwitch" name="in-D7-D0"/>
-                            <div class="switch in-unit-D6" @click="changeSwitch" name="in-D7-D0"/>
-                            <div class="switch in-unit-D5" @click="changeSwitch" name="in-D7-D0"/>
-                            <div class="switch in-unit-D4" @click="changeSwitch" name="in-D7-D0"/>
-                            <div class="switch in-unit-D3" @click="changeSwitch" name="in-D7-D0"/>
-                            <div class="switch in-unit-D2" @click="changeSwitch" name="in-D7-D0"/>
-                            <div class="switch in-unit-D1" @click="changeSwitch" name="in-D7-D0"/>
-                            <div class="switch in-unit-D0" @click="changeSwitch" name="in-D7-D0"/>
-
+                            <div class="switch in-unit-D7" @click="changeSwitch"/>
+                            <div class="switch in-unit-D6" @click="changeSwitch"/>
+                            <div class="switch in-unit-D5" @click="changeSwitch"/>
+                            <div class="switch in-unit-D4" @click="changeSwitch"/>
+                            <div class="switch in-unit-D3" @click="changeSwitch"/>
+                            <div class="switch in-unit-D2" @click="changeSwitch"/>
+                            <div class="switch in-unit-D1" @click="changeSwitch"/>
+                            <div class="switch in-unit-D0" @click="changeSwitch"/>
                         </div>
                     </div>
             </div>
@@ -615,6 +618,7 @@
                 <div class="pc-ar box select-background"/>
                 <div class="con-unit box select-background"/>
                 <div class="in-unit box select-background"/>
+                <div class="expansion-unit box select-background"/>
             </card>
         </i-col>
     </row>
@@ -660,39 +664,25 @@
                 lineList: [
                      "clk030HZ",
                      "time-con-T4-T1con-bus-T4-T1",
-                     "con-bus-XD7-XD0MEM-unit-D7-D0",
-                     "con-bus-XA7-XA0MEM-unit-A7-A0",
-                     "con-bus-XMWR-XMRDMEM-unit-WR-RD",
-                     "con-bus-WR-RD-IOMcon-unit-WR-RD-IOM",
-                     "con-unit-IORin-unit-IN_B-RD",
-                     "con-unit-LDARpc-ar-LDAR",
-                     "cpuD7-D0pc-ar-D7-D0",
-                     "cpuD7-D0in-unit-D7-D0",
-                     "pc-ar-D7-D0in-unit-D7-D0"
+                     "con-bus-XIOW-XIORexpansion-E3-E2",
+                     "con-bus-XMWR-XMRDexpansion-E1-E0",
+                     "con-bus-WR-RD-IOMcon-unit-WR-RD-IOM"
                  ],
                 temp:[], //用来清除上一次的连线
                 totalRow: [],
                 allLineTemp: [], //用来删除所有连线的draw
-
-                // FZ:0,
-                // FC:0,
-                buttonRight:false, //时序开关按钮检查
+                FZ:0,
+                FC:0,
                 lineRight: false,  //布线检查，true表示布线正确
                 start:false,      //true表示开始试验
-                power:false,  //电源开关
-                mem: [],  //存储器，下标代表地址（10进制），内容代表数据（二进制）
-                is_address:false,
-                is_data:false,
-                address:0,
-                // lda:0,
-                // ldb:0,
-                // conCn:0,
-                // alu_b:0,
-                // S3_0_Flag:[0,0,0,0], //运算指令
-                // memA:[0,0,0,0,0,0,0,0],  //暂存器A
-                // memB:[0,0,0,0,0,0,0,0],  //暂存器B
-                // F:[0,0,0,0,0,0,0,0]
-
+                lda:0,
+                ldb:0,
+                conCn:0,
+                alu_b:0,
+                S3_0_Flag:[0,0,0,0], //运算指令
+                memA:[0,0,0,0,0,0,0,0],  //暂存器A
+                memB:[0,0,0,0,0,0,0,0],  //暂存器B
+                F:[0,0,0,0,0,0,0,0]
             }
         },
         mounted() {
@@ -747,7 +737,6 @@
                 e.srcElement.style.backgroundImage = 
                     e.srcElement.style.backgroundImage === off || e.srcElement.style.backgroundImage === "" ? on : off;
             },
-
             buttonClick(name) {
                 if(this.count%2==0) {
                     let x = {A: name, B: ""}
@@ -771,21 +760,21 @@
             },
             /*布线检查函数 */
             lineCheck(){
-               if (this.tableData.length>11)
+               if (this.tableData.length>5)
                 {
                    this.$Message.warning({
                         content: "布线多余，请重新布线"
                     })
                     return;
                 }
-                if (this.tableData.length<11)
+                if (this.tableData.length<5)
                 {
                    this.$Message.warning({
                         content: "布线缺失，请检查布线"
                     })
                     return;
                 }
-                 /*实验二连线情况*/
+                 /*实验三连线情况*/
                  var lineList = [];
                  let i = 0;
                  for(;i<this.tableData.length;i++) {
@@ -813,7 +802,6 @@
                     })
                  }
             },
-
             remove() {
                 this.tableData.pop();
                 this.count = this.count-2;
@@ -876,171 +864,46 @@
                 var draw = SVG().addTo('#svg-container').size('100%', '100%')
                 this.drawLine(currentRow, draw)
                 this.temp.push(draw)
-
             },
-            powerOnAction(e){
-                let off = "url(\""+require("../assets/off.png")+"\")";
+            checkKk123(e){
+                let bulb = "url(\""+require("../assets/bulb.png")+"\")";
+                let lightOn = "url(\""+require("../assets/bulb-green.png")+"\")"
+                e.srcElement.style.backgroundImage 
+                    = e.srcElement.style.backgroundImage ===  bulb|| e.srcElement.style.backgroundImage === "" ? lightOn : bulb;
+
+                let kk1Start=document.getElementById('kk1Start').style.backgroundImage===lightOn?1:0;
+                let kk3Start=document.getElementById('kk3Start').style.backgroundImage===lightOn?1:0;
+                let kk2SingleBeat=document.getElementById('singleBeat').style.backgroundImage===lightOn?1:0;
+                let E3_0=document.getElementsByName('buble_F');
+                let redOn = "url(\""+require("../assets/red.png")+"\")";
+                let greenOn = "url(\""+require("../assets/green.png")+"\")";
+                if (kk1Start===1&&kk3Start===1&&kk2SingleBeat===1){
+                    E3_0[0].style.backgroundImage=redOn;
+                    E3_0[1].style.backgroundImage=redOn;
+                    E3_0[2].style.backgroundImage=greenOn;
+                    E3_0[3].style.backgroundImage=greenOn;
+                }
+            },
+            MEMt3Option(){
                 let on = "url(\""+require("../assets/on.png")+"\")";
-                e.srcElement.style.backgroundImage = 
-                    e.srcElement.style.backgroundImage === off || e.srcElement.style.backgroundImage === "" ? on : off;
-            
-                let powerState = e.srcElement.style.backgroundImage;
-                //电源开启，开始实验
-                if (powerState===on){
-                    this.power=true;
-                    this.$Message.success({
-                        content: '电源已打开'
-                    })
-                    
-                    if (!this.lineRight){
-                        this.$Message.warning({
-                            content: '请先检查布线'
-                        })
-                        return;
-                    }
-                    let timeStartLight = "url(\""+require("../assets/bulb-green.png")+"\")";
-                    
-                    let kk1Start = document.getElementById('kk1Start').style.backgroundImage;
-                    let kk3Start = document.getElementById('kk3Start').style.backgroundImage;
-                    let kk2SingleStep = document.getElementById('singleStep').style.backgroundImage;
-                    if (kk1Start!=timeStartLight || kk2SingleStep!=timeStartLight || kk3Start!=timeStartLight) {
-                        this.$Message.warning({
-                            content: '未打开时序控制台开关'
-                        })
-                        
-                        return;
-                    }
-                    let conIOR_switch=document.getElementById('conIOR_switch').style.backgroundImage;
-                    if (conIOR_switch!=on){
-                        this.$Message.warning({
-                            content: '未打开con单元IOR！'
-                        })
-                        
-                        return;
-                    }
-                    this.buttonRight=true;
-                    /**总线竞争如何判断 */
-                }
-                else{
-                    this.power=false;
-                    this.$Message.warning({
-                        content: '电源已关闭'
-                    })
-                }
-                
-                
-            },
-            t3Option(){
-                
-                if (this.power===false){
-                    this.$Message.warning({
-                            content: '电源未开启'
-                        })
-                    return;
-                }
-                if (this.buttonRight===false){
-                    this.$Message.warning({
-                            content: '请检查布线与时序开关'
-                        })
-                    return;
-                }
-                let is_write=true;
-                let is_read=false;
-                let switchOn = "url(\""+require("../assets/on.png")+"\")";
-                let wr = document.getElementById('conWR_switch').style.backgroundImage===switchOn?1:0;
-                
-                let rd = document.getElementById('conRD_switch').style.backgroundImage===switchOn?1:0;
-               
-                let ior = document.getElementById('conIOR_switch').style.backgroundImage===switchOn?1:0;
-               
-                let iom = document.getElementById('conIOM_switch').style.backgroundImage===switchOn?1:0;
-                
-                let ldar = document.getElementById('conLDAR_switch').style.backgroundImage===switchOn?1:0;
-                
-                let in_D7_D0=document.getElementsByName('in-D7-D0');
-                
-                
-                let redLight ="url(\""+require("../assets/red.png")+"\")";
                 let redOff = "url(\""+require("../assets/red-bulbe.png")+"\")";
-                let greenLight ="url(\""+require("../assets/green.png")+"\")";
                 let greenOff = "url(\""+require("../assets/green-buble.png")+"\")";
-                //获取系统总线区灯泡数组
-                let buble_F_list=document.getElementsByName('buble_F');
-                /**判断是读还是写 */
-                if (ior===1&&wr===0&&rd===1&&iom===0){
-                    this.$Message.success({
-                            content: '数据读取成功'
-                        })
-                    is_read=true;
-                    is_write=false;
+                let wr=document.getElementById('conWR').style.backgroundImage==on?1:0;
+                let rd=document.getElementById('conRD').style.backgroundImage==on?1:0;
+                let iom=document.getElementById('conIOM').style.backgroundImage==on?1:0;
+                let E3_0=document.getElementsByName('buble_F');
+                if (wr===0&&rd===1&&iom===0){
+                    E3_0[0].style.backgroundImage=redOff;
                 }
-                /**判断写地址还是写数据 */
-                if (wr===0&&rd===0&&ior===0&&ldar===1){
-                    this.is_address=true;
-                    this.is_data=false;
-                    this.$Message.success({
-                        content: '地址单元写入成功'
-                    })
+                if (wr===1&&rd===0&&iom===0){
+                    E3_0[1].style.backgroundImage=redOff;
                 }
-                else if(wr===1&&rd===0&&ior===0&&ldar===0&&iom===0){
-                    this.is_address=false;
-                    this.is_data=true;
-                    this.$Message.success({
-                        content: '数据单元写入成功'
-                    })
+                if (wr===0&&rd===1&&iom===1){
+                    E3_0[2].style.backgroundImage=greenOff;
                 }
-                /**获取in单元数据*/
-                let t=0;//存储十进制，用于下标
-                let dataList=[];//存储二进制数据
-                let i=1;
-                in_D7_D0.forEach((v,index)=>{
-                    if(in_D7_D0[7-index].style.backgroundImage===switchOn){
-                        t+=i;
-                        dataList[index]=1;
-                    }
-                    else{
-                        dataList[index]=0;
-                    }
-                    i*=2;   
-                });
-                if(is_write){
-                    //地址打入AR
-                    if (this.is_address&&!this.is_data){
-                        this.address=t;
-                    }
-                    //数据写入或者读取数据
-                    else if (!this.is_address&&this.is_data){
-                        if (ior==0){
-                            this.mem[this.address]=dataList;
-                        }
-                    } 
-
+                if (wr===1&&rd===0&&iom===1){
+                    E3_0[3].style.backgroundImage=greenOff;
                 }
-                else if (is_read){
-                    let data=this.mem[t];
-                    data.forEach((v,index)=>{
-                        //将结果显示在系统总线的灯泡中
-                        if (index<4){
-                            if (v===1){
-                                buble_F_list[index].style.backgroundImage=redLight;
-                            }
-                            else{
-                                buble_F_list[index].style.backgroundImage=redOff; 
-                            } 
-                        }
-                        else{
-                            if (v===1){
-                                buble_F_list[index].style.backgroundImage=greenLight;
-                            }
-                            else{
-                                buble_F_list[index].style.backgroundImage=greenOff; 
-                            } 
-                    
-                        }
-                        
-                    })
-                }
-
             }
         }
     }
@@ -1054,14 +917,15 @@
 @import '../static/system-bus.css';
 @import '../static/time-control+expand.css';
 @import '../elements/public-elements.css';
-@import '../elements/system-bus.css';
+@import '../elements/system-bus-3.css';
 @import '../elements/time-control.css';
 @import '../elements/alu.css';
 @import '../elements/con2.css';
 @import '../elements/cpu.css';
-@import '../elements/MEM.css';
+
 @import '../elements/pc-ar.css';
 @import '../elements/in-unit.css';
+@import '../elements/expansion-unit.css';
 
 @import '../elements/result.css';
 
@@ -1074,12 +938,4 @@
     top:1.26rem;
     z-index: 1;
 }
-
-.power-switch{
-    left: 0rem;
-    top: 0rem;
-    /* width: 0.8rem;
-    height: 2rem; */
-}
-
 </style>

@@ -1,0 +1,138 @@
+.twoNeedle-slim{
+    width:.436rem;
+    height:.35rem;
+    cursor: pointer;
+    position:absolute;
+    background: url('../assets/2针-slim.png') no-repeat 50% 50%;
+    background-size: cover;
+}
+.expansion-unit-twoNeedle-1{
+    left:0.3rem;
+    top:.15rem;
+}
+.expansion-unit-twoNeedle-GND-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:0.4rem;
+    top:.55rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.expansion-unit-twoNeedle-2{
+    left:1.2rem;
+    top:.15rem;
+}
+.expansion-unit-twoNeedle-5V-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:1.3rem;
+    top:.55rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.expansion-unit-twoNeedle-3{
+    left:0.10rem;
+    top:0.85rem;
+}
+.expansion-unit-twoNeedle-E7-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:0.08rem;
+    top:1.25rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.expansion-unit-twoNeedle-E6-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:0.32rem;
+    top:1.25rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.expansion-unit-twoNeedle-4{
+    left:0.65rem;
+    top:0.85rem;
+}
+.expansion-unit-twoNeedle-E5-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:0.65rem;
+    top:1.25rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.expansion-unit-twoNeedle-E4-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:0.90rem;
+    top:1.25rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.expansion-unit-twoNeedle-5{
+    left:1.20rem;
+    top:0.85rem;
+}
+.expansion-unit-twoNeedle-E3-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:1.20rem;
+    top:1.25rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.expansion-unit-twoNeedle-E2-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:1.45rem;
+    top:1.25rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.expansion-unit-twoNeedle-6{
+    left:1.75rem;
+    top:0.85rem;
+}
+.expansion-unit-twoNeedle-E1-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:1.75rem;
+    top:1.25rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.expansion-unit-twoNeedle-E0-text{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:2.00rem;
+    top:1.25rem;
+    font-size: .192rem;
+    line-height: .192rem;
+}
+.expansion-unit-red-buble-1{
+    left:0.3rem;
+    top:1.6rem;
+}
+.expansion-unit-red-buble-2{
+    left:0.65rem;
+    top:1.6rem;
+}
+.expansion-unit-green-buble-1{
+    left:1.2rem;
+    top:1.6rem;
+}
+.expansion-unit-green-buble-2{
+    left:1.55rem;
+    top:1.6rem;
+}
