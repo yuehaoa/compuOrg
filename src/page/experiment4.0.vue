@@ -865,7 +865,7 @@
                 this.drawLine(currentRow, draw)
                 this.temp.push(draw)
             },
-            checkKk123(e){
+            checkkk123(e){
                 let bulb = "url(\""+require("../assets/bulb.png")+"\")";
                 let lightOn = "url(\""+require("../assets/bulb-green.png")+"\")"
                 e.srcElement.style.backgroundImage 
