@@ -80,8 +80,8 @@
                                     <DropdownMenu slot="list">
                                         <DropdownItem style="width:0.8rem">T1</DropdownItem>
                                         <DropdownItem style="width:0.8rem">T2</DropdownItem>
-                                        <DropdownItem style="width:0.8rem">T3</DropdownItem>
-                                        <DropdownItem style="width:0.8rem" @click.native="t4Option">T4</DropdownItem>
+                                        <DropdownItem style="width:0.8rem" @click.native="MEMt3Option">T3</DropdownItem>
+                                        <DropdownItem style="width:0.8rem">T4</DropdownItem>
                                     </DropdownMenu>
                                 </Dropdown>
                             </div>
@@ -91,7 +91,7 @@
                             <div class="st-text text">
                                 ST
                             </div>
-                            <div class="start bulb" @click="changeImage" id="kk1Start"/>
+                            <div class="start bulb" @click="checkkk123" id="kk1Start"/>
                             <div class="start-text text">
                                 运行
                             </div>
@@ -102,11 +102,11 @@
                             <div class="stop-text text">
                                 停止
                             </div>
-                            <div class="singleShot bulb" @click="changeImage" id="singleBeat"/>
+                            <div class="singleShot bulb" @click="checkkk123" id="singleBeat"/>
                             <div class="singleShot-text text">
                                 单拍
                             </div>
-                            <div class="singleStep bulb" @click="changeImage"/>
+                            <div class="singleStep bulb" @click="changeImage" />
                             <div class="singleStep-text text">
                                 单步
                             </div>
@@ -125,7 +125,7 @@
                             <div class="check-text text">
                                 校验
                             </div>
-                            <div class="run bulb" @click="changeImage" id="kk3Start"/>
+                            <div class="run bulb" @click="checkkk123" id="kk3Start"/>
                             <div class="run-text text">
                                 运行
                             </div>
@@ -494,16 +494,16 @@
                             <div class="SD10-text text">
                                 SD10  LDB
                             </div>
-                            <div class="switch SD7 invisible"/>
-                            <div class="SD7-text text invisible">
+                            <div class="switch SD7 " @click="changeSwitch" id="conWR"/>
+                            <div class="SD7-text text">
                                 SD07  WR
                             </div>
-                            <div class="switch SD6 invisible"/>
-                            <div class="SD6-text text invisible">
+                            <div class="switch SD6"  @click="changeSwitch" id="conRD"/>
+                            <div class="SD6-text text">
                                 06  RD
                             </div>
-                            <div class="switch SD5 invisible"/>
-                            <div class="SD5-text text invisible">
+                            <div class="switch SD5 " @click="changeSwitch" id="conIOM"/>
+                            <div class="SD5-text text ">
                                 05  IOM
                             </div>
                             <div class="switch SD4 invisible"/>
@@ -737,65 +737,6 @@
                 e.srcElement.style.backgroundImage = 
                     e.srcElement.style.backgroundImage === off || e.srcElement.style.backgroundImage === "" ? on : off;
             },
-
-            t4Option(){               
-
-                var numlist=this.$refs.num7.parentElement.children;
-                var bulbelist=this.$refs.A7.parentElement.children;
-                let switchOn = "url(\""+require("../assets/on.png")+"\")";
-                let switchOff = "url(\""+require("../assets/off.png")+"\")";
-                let redLight ="url(\""+require("../assets/red.png")+"\")";
-                let redOff = "url(\""+require("../assets/red-bulbe.png")+"\")";
-                let greenLight ="url(\""+require("../assets/green.png")+"\")";
-                let greenOff = "url(\""+require("../assets/green-buble.png")+"\")";
-                let ldaImage = this.$refs.lda.style.backgroundImage;
-                let ldbImage = this.$refs.ldb.style.backgroundImage;
-                var isLda = false;
-                /*获取0-15的所有buble */
-                let bubleArr = Array.from(bulbelist).splice(0,16);
-                /*获取lda的灯泡和ldb的灯泡 */
-                let ldaBuble = bubleArr.splice(0,8)
-                let ldbBuble = bubleArr.splice(0,8)
-                /*获取0-7的所有开关 */
-                let switchArr1 = Array.from(numlist).filter((item,index)=>{if(index%2!=0) return item})
-                let switchArr = switchArr1.splice(0,8);
-                /*通过filter找到亮灯的开关，然后找到相应的灯泡 */
-                if(ldaImage===switchOn&&(ldbImage==switchOff||ldbImage==="")) isLda=!isLda;
-                else if(ldbImage===switchOn&&(ldaImage==switchOff||ldaImage==="")) isLda=false;
-                else {
-                    alert("请先打开LDA或LDB");
-                    return;
-                }
-                if(isLda){
-                    this.lda=1;
-                    this.ldb=0;
-                    let temp = [0,0,0,0,0,0,0,0]
-                    switchArr.forEach((v,index)=>{
-                        if(v.style.backgroundImage === switchOn) {
-                            ldaBuble[7-index].style.backgroundImage = redLight;
-                            temp[7-index]=1;
-                        } else{
-                            ldaBuble[7-index].style.backgroundImage = redOff;
-                            temp[7-index]=0;
-                        }
-                    })
-                    this.memA = temp;
-                } else{
-                    this.lda=0;
-                    this.ldb=1;
-                    let temp = [0,0,0,0,0,0,0,0]
-                    switchArr.forEach((v,index)=>{
-                        if(v.style.backgroundImage === switchOn) {
-                            ldbBuble[7-index].style.backgroundImage = greenLight;
-                            temp[7-index]=1;
-                        } else{
-                            ldbBuble[7-index].style.backgroundImage = greenOff;
-                            temp[7-index]=0;
-                        }
-                    })
-                    this.memB = temp;
-                }
-            },
             buttonClick(name) {
                 if(this.count%2==0) {
                     let x = {A: name, B: ""}
@@ -861,105 +802,6 @@
                     })
                  }
             },
-            startExeperiment(){
-                if (!this.lineRight)
-                {
-                    this.$Message.warning({
-                        content: '请先布线'
-                    })
-                    return;
-                }
-                //清空所有连线，只有点击显示所有连线才会显示连线
-                if(this.temp.length!=0) {
-                    var draw2 = this.temp.pop();
-                    draw2.remove();
-                }
-
-                let timeStartLight = "url(\""+require("../assets/bulb-green.png")+"\")";
-                let kk1Start = document.getElementById('kk1Start').style.backgroundImage;
-                let kk3Start = document.getElementById('kk3Start').style.backgroundImage;
-                let kk2SingleBeat = document.getElementById('singleBeat').style.backgroundImage;
-                if (kk1Start!=timeStartLight || kk2SingleBeat!=timeStartLight || kk3Start!=timeStartLight) {
-                    this.$Message.warning({
-                        content: '未打开时序控制台开关'
-                    })
-                    return;
-                }
-                this.start=true;
-                let switchOn = "url(\""+require("../assets/on.png")+"\")";
-                let redLight ="url(\""+require("../assets/red.png")+"\")";
-                let redOff = "url(\""+require("../assets/red-bulbe.png")+"\")";
-                let greenLight ="url(\""+require("../assets/green.png")+"\")";
-                let greenOff = "url(\""+require("../assets/green-buble.png")+"\")";
-                //获取系统总线区灯泡数组
-                let buble_F_list=document.getElementsByName('buble_F');
-                //获取S3-S0开关
-                var SD3_0=document.getElementsByName('SD03-00');
-                //置Cn
-                this.conCn=document.getElementById('SD_Cn').style.backgroundImage===switchOn?1:0 ;
-                //置ALU_B
-                this.alu_b=document.getElementById('ALU_B').style.backgroundImage===switchOn?1:0 ;
-                /*根据SD03-00置相应的功能号*/
-                SD3_0.forEach((element,index)=>{
-                    if (element.style.backgroundImage===switchOn){
-                        this.S3_0_Flag[index]=1;
-                    }
-                    else{
-                        this.S3_0_Flag[index]=0;
-                    }
-                });
-                let flag=this.S3_0_Flag.toString().replace(",","").replace(",","").replace(",","").replace(",","");
-                console.log("指令： "+flag);
-                switch(flag){
-                    case "0000": this._0000_X();break;
-                    case "0001": this._0001_X();break;
-                    case "0010": this._0010_X();break;
-                    case "0011": this._0011_X();break;
-                    case "0100": this._0100_X();break;
-                    case "0101": this._0101_X();break;
-                    case "0110": { 
-                        if (this.conCn===0) 
-                            this._0110_0();
-                        else 
-                            this._0110_1();    
-                        break;
-                        }
-                    case "0111": { 
-                        if (this.conCn===0) 
-                            this._0111_0();
-                        else 
-                            this._0111_1();    
-                        break;
-                        }
-                    case "1000": this._1000_X();break;
-                    case "1001": this._1001_X();break;
-                    case "1010": this._1010_X();break;
-                    case "1011": this._1011_X();break;
-                    case "1100": this._1100_X();break;
-                    case "1101": this._1101_X();break;           
-                }
-                //将结果显示在系统总线的灯泡中
-               this.F.forEach((v,index)=>{
-                    console.log(index+" : "+v);
-                    if (index<4){
-                        if (v===1){
-                            buble_F_list[index].style.backgroundImage=redLight;
-                        }
-                        else{
-                            buble_F_list[index].style.backgroundImage=redOff; 
-                        } 
-                    }
-                    else{
-                        if (v===1){
-                            buble_F_list[index].style.backgroundImage=greenLight;
-                        }
-                        else{
-                            buble_F_list[index].style.backgroundImage=greenOff; 
-                        } 
-                    }
-                })
-            },
-
             remove() {
                 this.tableData.pop();
                 this.count = this.count-2;
@@ -1022,6 +864,46 @@
                 var draw = SVG().addTo('#svg-container').size('100%', '100%')
                 this.drawLine(currentRow, draw)
                 this.temp.push(draw)
+            },
+            checkkk123(e){
+                let bulb = "url(\""+require("../assets/bulb.png")+"\")";
+                let lightOn = "url(\""+require("../assets/bulb-green.png")+"\")"
+                e.srcElement.style.backgroundImage 
+                    = e.srcElement.style.backgroundImage ===  bulb|| e.srcElement.style.backgroundImage === "" ? lightOn : bulb;
+
+                let kk1Start=document.getElementById('kk1Start').style.backgroundImage===lightOn?1:0;
+                let kk3Start=document.getElementById('kk3Start').style.backgroundImage===lightOn?1:0;
+                let kk2SingleBeat=document.getElementById('singleBeat').style.backgroundImage===lightOn?1:0;
+                let E3_0=document.getElementsByName('buble_F');
+                let redOn = "url(\""+require("../assets/red.png")+"\")";
+                let greenOn = "url(\""+require("../assets/green.png")+"\")";
+                if (kk1Start===1&&kk3Start===1&&kk2SingleBeat===1){
+                    E3_0[0].style.backgroundImage=redOn;
+                    E3_0[1].style.backgroundImage=redOn;
+                    E3_0[2].style.backgroundImage=greenOn;
+                    E3_0[3].style.backgroundImage=greenOn;
+                }
+            },
+            MEMt3Option(){
+                let on = "url(\""+require("../assets/on.png")+"\")";
+                let redOff = "url(\""+require("../assets/red-bulbe.png")+"\")";
+                let greenOff = "url(\""+require("../assets/green-buble.png")+"\")";
+                let wr=document.getElementById('conWR').style.backgroundImage==on?1:0;
+                let rd=document.getElementById('conRD').style.backgroundImage==on?1:0;
+                let iom=document.getElementById('conIOM').style.backgroundImage==on?1:0;
+                let E3_0=document.getElementsByName('buble_F');
+                if (wr===0&&rd===1&&iom===0){
+                    E3_0[0].style.backgroundImage=redOff;
+                }
+                if (wr===1&&rd===0&&iom===0){
+                    E3_0[1].style.backgroundImage=redOff;
+                }
+                if (wr===0&&rd===1&&iom===1){
+                    E3_0[2].style.backgroundImage=greenOff;
+                }
+                if (wr===1&&rd===0&&iom===1){
+                    E3_0[3].style.backgroundImage=greenOff;
+                }
             }
         }
     }
@@ -1040,7 +922,7 @@
 @import '../elements/alu.css';
 @import '../elements/con2.css';
 @import '../elements/cpu.css';
-@import '../elements/mem.css';
+
 @import '../elements/pc-ar.css';
 @import '../elements/in-unit.css';
 @import '../elements/expansion-unit.css';
