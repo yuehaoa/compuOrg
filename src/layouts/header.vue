@@ -50,7 +50,7 @@
                 </Menu>
             </Header>
             <Layout :style="{padding: '0 50px'}">
-                <Content :style="{padding: '24px', minHeight: '500px'}">
+                <Content :style="{padding: '0 24px', minHeight: '500px'}">
                     <slot></slot>
                 </Content>
             </Layout>

@@ -863,6 +863,7 @@
                     var draw2 = this.temp.pop();
                     draw2.remove();
                 }
+                this.$router.push({name:'exp_environment2'});
             },
             clear () {
                 let temp = [0,0,0,0,0,0,0,0]
