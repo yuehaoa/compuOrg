@@ -22,6 +22,14 @@
     background: url('../assets/4针.png') no-repeat 50% 50%;
     background-size: cover;
 }
+.sixNeedle{
+    width:.936rem;
+    height:0.36rem;
+    cursor: pointer;
+    position:absolute;
+    background: url('../assets/6针.png') no-repeat 50% 50%;
+    background-size: cover;
+}
 .switch{
     width:.5rem;
     height:.6rem;
