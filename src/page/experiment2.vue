@@ -726,7 +726,7 @@
 <script>
     const axios = require("axios");
     import html2canvas from 'html2canvas'
-    import VueDraggableResizable from "vue-draggable-resizable";
+    // import VueDraggableResizable from "vue-draggable-resizable";
     import { SVG } from '@svgdotjs/svg.js'
     import { screenChange } from "../scripts/screen.js"
     import { watermark, deleteMark } from "../scripts/waterMark.js"
@@ -882,6 +882,7 @@
                     var draw2 = this.temp.pop();
                     draw2.remove();
                 }
+                this.$router.push({name:'exp_environment2'});
             },
             clear () {
                 let temp = [0,0,0,0,0,0,0,0]

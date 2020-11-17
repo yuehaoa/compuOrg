@@ -34,6 +34,9 @@
             <div class="svg-style" id="svg-container">
                     <div class="power-source box">
                         <div class="wrapper">
+
+                            <div class="switch power-switch" @click="powerOnAction" id="power" />
+
                             <div class="power-source-text text">
                                 电源
                             </div>
@@ -80,8 +83,10 @@
                                     <DropdownMenu slot="list">
                                         <DropdownItem style="width:0.8rem">T1</DropdownItem>
                                         <DropdownItem style="width:0.8rem">T2</DropdownItem>
-                                        <DropdownItem style="width:0.8rem">T3</DropdownItem>
-                                        <DropdownItem style="width:0.8rem" @click.native="t4Option">T4</DropdownItem>
+                                        <DropdownItem style="width:0.8rem" @click.native="t3Option">T3</DropdownItem>
+                                        <DropdownItem style="width:0.8rem">T4</DropdownItem>
+
+
                                     </DropdownMenu>
                                 </Dropdown>
                             </div>
@@ -102,11 +107,15 @@
                             <div class="stop-text text">
                                 停止
                             </div>
+
+       
+                            <div class="singleStep bulb" @click="changeImage" id="singleStep"/>
+
                             <div class="singleShot bulb" @click="changeImage" id="singleBeat"/>
                             <div class="singleShot-text text">
                                 单拍
                             </div>
-                            <div class="singleStep bulb" @click="changeImage"/>
+                     
                             <div class="singleStep-text text">
                                 单步
                             </div>
@@ -478,16 +487,17 @@
                             <div class="SD10-text text">
                                 SD10  LDB
                             </div>
-                            <div class="switch SD7 invisible"/>
-                            <div class="SD7-text text invisible">
+
+                            <div class="switch SD7"  @click="changeSwitch" id="conWR_switch"/>
+                            <div class="SD7-text text ">
                                 SD07  WR
                             </div>
-                            <div class="switch SD6 invisible"/>
-                            <div class="SD6-text text invisible">
+                            <div class="switch SD6"  @click="changeSwitch" id="conRD_switch"/>
+                            <div class="SD6-text text ">
                                 06  RD
                             </div>
-                            <div class="switch SD5 invisible"/>
-                            <div class="SD5-text text invisible">
+                            <div class="switch SD5"  @click="changeSwitch" id="conIOM_switch"/>
+                            <div class="SD5-text text ">
                                 05  IOM
                             </div>
                             <div class="switch SD4 invisible"/>
@@ -502,12 +512,13 @@
                             <div class="SD2-text text invisible">
                                 02
                             </div>
-                            <div class="switch SD1 invisible"/>
-                            <div class="SD1-text text invisible">
+
+                            <div class="switch SD1 "  @click="changeSwitch" id="conLDAR_switch"/>
+                            <div class="SD1-text text ">
                                 01  LDAR
                             </div>
-                            <div class="switch SD0 invisible"/>
-                            <div class="SD0-text text invisible">
+                            <div class="switch SD0 "  @click="changeSwitch" id="conIOR_switch"/>
+                            <div class="SD0-text text ">
                                 SD00 LOR
                             </div>
                             <div class="clr-white-btn white-btn" @click="clear()"/>
@@ -584,14 +595,16 @@
                             <div class="in-unit-D4-text text">D4</div>
                             <div class="in-unit-D3-text text">D3</div>
                             <div class="in-unit-D0-text text">D0</div>
-                            <div class="switch in-unit-D7" @click="changeSwitch"/>
-                            <div class="switch in-unit-D6" @click="changeSwitch"/>
-                            <div class="switch in-unit-D5" @click="changeSwitch"/>
-                            <div class="switch in-unit-D4" @click="changeSwitch"/>
-                            <div class="switch in-unit-D3" @click="changeSwitch"/>
-                            <div class="switch in-unit-D2" @click="changeSwitch"/>
-                            <div class="switch in-unit-D1" @click="changeSwitch"/>
-                            <div class="switch in-unit-D0" @click="changeSwitch"/>
+
+                            <div class="switch in-unit-D7" @click="changeSwitch" name="in-D7-D0"/>
+                            <div class="switch in-unit-D6" @click="changeSwitch" name="in-D7-D0"/>
+                            <div class="switch in-unit-D5" @click="changeSwitch" name="in-D7-D0"/>
+                            <div class="switch in-unit-D4" @click="changeSwitch" name="in-D7-D0"/>
+                            <div class="switch in-unit-D3" @click="changeSwitch" name="in-D7-D0"/>
+                            <div class="switch in-unit-D2" @click="changeSwitch" name="in-D7-D0"/>
+                            <div class="switch in-unit-D1" @click="changeSwitch" name="in-D7-D0"/>
+                            <div class="switch in-unit-D0" @click="changeSwitch" name="in-D7-D0"/>
+
                         </div>
                     </div>
             </div>
@@ -660,18 +673,26 @@
                 temp:[], //用来清除上一次的连线
                 totalRow: [],
                 allLineTemp: [], //用来删除所有连线的draw
-                FZ:0,
-                FC:0,
+
+                // FZ:0,
+                // FC:0,
+                buttonRight:false, //时序开关按钮检查
                 lineRight: false,  //布线检查，true表示布线正确
                 start:false,      //true表示开始试验
-                lda:0,
-                ldb:0,
-                conCn:0,
-                alu_b:0,
-                S3_0_Flag:[0,0,0,0], //运算指令
-                memA:[0,0,0,0,0,0,0,0],  //暂存器A
-                memB:[0,0,0,0,0,0,0,0],  //暂存器B
-                F:[0,0,0,0,0,0,0,0]
+                power:false,  //电源开关
+                mem: [],  //存储器，下标代表地址（10进制），内容代表数据（二进制）
+                is_address:false,
+                is_data:false,
+                address:0,
+                // lda:0,
+                // ldb:0,
+                // conCn:0,
+                // alu_b:0,
+                // S3_0_Flag:[0,0,0,0], //运算指令
+                // memA:[0,0,0,0,0,0,0,0],  //暂存器A
+                // memB:[0,0,0,0,0,0,0,0],  //暂存器B
+                // F:[0,0,0,0,0,0,0,0]
+
             }
         },
         mounted() {
@@ -684,6 +705,7 @@
                     var draw2 = this.temp.pop();
                     draw2.remove();
                 }
+                this.$router.push({name:'exp_environment2'});
             },
             clear () {
                 let temp = [0,0,0,0,0,0,0,0]
@@ -727,64 +749,6 @@
                     e.srcElement.style.backgroundImage === off || e.srcElement.style.backgroundImage === "" ? on : off;
             },
 
-            t4Option(){               
-
-                var numlist=this.$refs.num7.parentElement.children;
-                var bulbelist=this.$refs.A7.parentElement.children;
-                let switchOn = "url(\""+require("../assets/on.png")+"\")";
-                let switchOff = "url(\""+require("../assets/off.png")+"\")";
-                let redLight ="url(\""+require("../assets/red.png")+"\")";
-                let redOff = "url(\""+require("../assets/red-bulbe.png")+"\")";
-                let greenLight ="url(\""+require("../assets/green.png")+"\")";
-                let greenOff = "url(\""+require("../assets/green-buble.png")+"\")";
-                let ldaImage = this.$refs.lda.style.backgroundImage;
-                let ldbImage = this.$refs.ldb.style.backgroundImage;
-                var isLda = false;
-                /*获取0-15的所有buble */
-                let bubleArr = Array.from(bulbelist).splice(0,16);
-                /*获取lda的灯泡和ldb的灯泡 */
-                let ldaBuble = bubleArr.splice(0,8)
-                let ldbBuble = bubleArr.splice(0,8)
-                /*获取0-7的所有开关 */
-                let switchArr1 = Array.from(numlist).filter((item,index)=>{if(index%2!=0) return item})
-                let switchArr = switchArr1.splice(0,8);
-                /*通过filter找到亮灯的开关，然后找到相应的灯泡 */
-                if(ldaImage===switchOn&&(ldbImage==switchOff||ldbImage==="")) isLda=!isLda;
-                else if(ldbImage===switchOn&&(ldaImage==switchOff||ldaImage==="")) isLda=false;
-                else {
-                    alert("请先打开LDA或LDB");
-                    return;
-                }
-                if(isLda){
-                    this.lda=1;
-                    this.ldb=0;
-                    let temp = [0,0,0,0,0,0,0,0]
-                    switchArr.forEach((v,index)=>{
-                        if(v.style.backgroundImage === switchOn) {
-                            ldaBuble[7-index].style.backgroundImage = redLight;
-                            temp[7-index]=1;
-                        } else{
-                            ldaBuble[7-index].style.backgroundImage = redOff;
-                            temp[7-index]=0;
-                        }
-                    })
-                    this.memA = temp;
-                } else{
-                    this.lda=0;
-                    this.ldb=1;
-                    let temp = [0,0,0,0,0,0,0,0]
-                    switchArr.forEach((v,index)=>{
-                        if(v.style.backgroundImage === switchOn) {
-                            ldbBuble[7-index].style.backgroundImage = greenLight;
-                            temp[7-index]=1;
-                        } else{
-                            ldbBuble[7-index].style.backgroundImage = greenOff;
-                            temp[7-index]=0;
-                        }
-                    })
-                    this.memB = temp;
-                }
-            },
             buttonClick(name) {
                 if(this.count%2==0) {
                     let x = {A: name, B: ""}
@@ -850,104 +814,6 @@
                     })
                  }
             },
-            startExeperiment(){
-                if (!this.lineRight)
-                {
-                    this.$Message.warning({
-                        content: '请先布线'
-                    })
-                    return;
-                }
-                //清空所有连线，只有点击显示所有连线才会显示连线
-                if(this.temp.length!=0) {
-                    var draw2 = this.temp.pop();
-                    draw2.remove();
-                }
-
-                let timeStartLight = "url(\""+require("../assets/bulb-green.png")+"\")";
-                let kk1Start = document.getElementById('kk1Start').style.backgroundImage;
-                let kk3Start = document.getElementById('kk3Start').style.backgroundImage;
-                let kk2SingleBeat = document.getElementById('singleBeat').style.backgroundImage;
-                if (kk1Start!=timeStartLight || kk2SingleBeat!=timeStartLight || kk3Start!=timeStartLight) {
-                    this.$Message.warning({
-                        content: '未打开时序控制台开关'
-                    })
-                    return;
-                }
-                this.start=true;
-                let switchOn = "url(\""+require("../assets/on.png")+"\")";
-                let redLight ="url(\""+require("../assets/red.png")+"\")";
-                let redOff = "url(\""+require("../assets/red-bulbe.png")+"\")";
-                let greenLight ="url(\""+require("../assets/green.png")+"\")";
-                let greenOff = "url(\""+require("../assets/green-buble.png")+"\")";
-                //获取系统总线区灯泡数组
-                let buble_F_list=document.getElementsByName('buble_F');
-                //获取S3-S0开关
-                var SD3_0=document.getElementsByName('SD03-00');
-                //置Cn
-                this.conCn=document.getElementById('SD_Cn').style.backgroundImage===switchOn?1:0 ;
-                //置ALU_B
-                this.alu_b=document.getElementById('ALU_B').style.backgroundImage===switchOn?1:0 ;
-                /*根据SD03-00置相应的功能号*/
-                SD3_0.forEach((element,index)=>{
-                    if (element.style.backgroundImage===switchOn){
-                        this.S3_0_Flag[index]=1;
-                    }
-                    else{
-                        this.S3_0_Flag[index]=0;
-                    }
-                });
-                let flag=this.S3_0_Flag.toString().replace(",","").replace(",","").replace(",","").replace(",","");
-                console.log("指令： "+flag);
-                switch(flag){
-                    case "0000": this._0000_X();break;
-                    case "0001": this._0001_X();break;
-                    case "0010": this._0010_X();break;
-                    case "0011": this._0011_X();break;
-                    case "0100": this._0100_X();break;
-                    case "0101": this._0101_X();break;
-                    case "0110": { 
-                        if (this.conCn===0) 
-                            this._0110_0();
-                        else 
-                            this._0110_1();    
-                        break;
-                        }
-                    case "0111": { 
-                        if (this.conCn===0) 
-                            this._0111_0();
-                        else 
-                            this._0111_1();    
-                        break;
-                        }
-                    case "1000": this._1000_X();break;
-                    case "1001": this._1001_X();break;
-                    case "1010": this._1010_X();break;
-                    case "1011": this._1011_X();break;
-                    case "1100": this._1100_X();break;
-                    case "1101": this._1101_X();break;           
-                }
-                //将结果显示在系统总线的灯泡中
-               this.F.forEach((v,index)=>{
-                    console.log(index+" : "+v);
-                    if (index<4){
-                        if (v===1){
-                            buble_F_list[index].style.backgroundImage=redLight;
-                        }
-                        else{
-                            buble_F_list[index].style.backgroundImage=redOff; 
-                        } 
-                    }
-                    else{
-                        if (v===1){
-                            buble_F_list[index].style.backgroundImage=greenLight;
-                        }
-                        else{
-                            buble_F_list[index].style.backgroundImage=greenOff; 
-                        } 
-                    }
-                })
-            },
 
             remove() {
                 this.tableData.pop();
@@ -1011,6 +877,171 @@
                 var draw = SVG().addTo('#svg-container').size('100%', '100%')
                 this.drawLine(currentRow, draw)
                 this.temp.push(draw)
+
+            },
+            powerOnAction(e){
+                let off = "url(\""+require("../assets/off.png")+"\")";
+                let on = "url(\""+require("../assets/on.png")+"\")";
+                e.srcElement.style.backgroundImage = 
+                    e.srcElement.style.backgroundImage === off || e.srcElement.style.backgroundImage === "" ? on : off;
+            
+                let powerState = e.srcElement.style.backgroundImage;
+                //电源开启，开始实验
+                if (powerState===on){
+                    this.power=true;
+                    this.$Message.success({
+                        content: '电源已打开'
+                    })
+                    
+                    if (!this.lineRight){
+                        this.$Message.warning({
+                            content: '请先检查布线'
+                        })
+                        return;
+                    }
+                    let timeStartLight = "url(\""+require("../assets/bulb-green.png")+"\")";
+                    
+                    let kk1Start = document.getElementById('kk1Start').style.backgroundImage;
+                    let kk3Start = document.getElementById('kk3Start').style.backgroundImage;
+                    let kk2SingleStep = document.getElementById('singleStep').style.backgroundImage;
+                    if (kk1Start!=timeStartLight || kk2SingleStep!=timeStartLight || kk3Start!=timeStartLight) {
+                        this.$Message.warning({
+                            content: '未打开时序控制台开关'
+                        })
+                        
+                        return;
+                    }
+                    let conIOR_switch=document.getElementById('conIOR_switch').style.backgroundImage;
+                    if (conIOR_switch!=on){
+                        this.$Message.warning({
+                            content: '未打开con单元IOR！'
+                        })
+                        
+                        return;
+                    }
+                    this.buttonRight=true;
+                    /**总线竞争如何判断 */
+                }
+                else{
+                    this.power=false;
+                    this.$Message.warning({
+                        content: '电源已关闭'
+                    })
+                }
+                
+                
+            },
+            t3Option(){
+                
+                if (this.power===false){
+                    this.$Message.warning({
+                            content: '电源未开启'
+                        })
+                    return;
+                }
+                if (this.buttonRight===false){
+                    this.$Message.warning({
+                            content: '请检查布线与时序开关'
+                        })
+                    return;
+                }
+                let is_write=true;
+                let is_read=false;
+                let switchOn = "url(\""+require("../assets/on.png")+"\")";
+                let wr = document.getElementById('conWR_switch').style.backgroundImage===switchOn?1:0;
+                
+                let rd = document.getElementById('conRD_switch').style.backgroundImage===switchOn?1:0;
+               
+                let ior = document.getElementById('conIOR_switch').style.backgroundImage===switchOn?1:0;
+               
+                let iom = document.getElementById('conIOM_switch').style.backgroundImage===switchOn?1:0;
+                
+                let ldar = document.getElementById('conLDAR_switch').style.backgroundImage===switchOn?1:0;
+                
+                let in_D7_D0=document.getElementsByName('in-D7-D0');
+                
+                
+                let redLight ="url(\""+require("../assets/red.png")+"\")";
+                let redOff = "url(\""+require("../assets/red-bulbe.png")+"\")";
+                let greenLight ="url(\""+require("../assets/green.png")+"\")";
+                let greenOff = "url(\""+require("../assets/green-buble.png")+"\")";
+                //获取系统总线区灯泡数组
+                let buble_F_list=document.getElementsByName('buble_F');
+                /**判断是读还是写 */
+                if (ior===1&&wr===0&&rd===1&&iom===0){
+                    this.$Message.success({
+                            content: '数据读取成功'
+                        })
+                    is_read=true;
+                    is_write=false;
+                }
+                /**判断写地址还是写数据 */
+                if (wr===0&&rd===0&&ior===0&&ldar===1){
+                    this.is_address=true;
+                    this.is_data=false;
+                    this.$Message.success({
+                        content: '地址单元写入成功'
+                    })
+                }
+                else if(wr===1&&rd===0&&ior===0&&ldar===0&&iom===0){
+                    this.is_address=false;
+                    this.is_data=true;
+                    this.$Message.success({
+                        content: '数据单元写入成功'
+                    })
+                }
+                /**获取in单元数据*/
+                let t=0;//存储十进制，用于下标
+                let dataList=[];//存储二进制数据
+                let i=1;
+                in_D7_D0.forEach((v,index)=>{
+                    if(in_D7_D0[7-index].style.backgroundImage===switchOn){
+                        t+=i;
+                        dataList[index]=1;
+                    }
+                    else{
+                        dataList[index]=0;
+                    }
+                    i*=2;   
+                });
+                if(is_write){
+                    //地址打入AR
+                    if (this.is_address&&!this.is_data){
+                        this.address=t;
+                    }
+                    //数据写入或者读取数据
+                    else if (!this.is_address&&this.is_data){
+                        if (ior==0){
+                            this.mem[this.address]=dataList;
+                        }
+                    } 
+
+                }
+                else if (is_read){
+                    let data=this.mem[t];
+                    data.forEach((v,index)=>{
+                        //将结果显示在系统总线的灯泡中
+                        if (index<4){
+                            if (v===1){
+                                buble_F_list[index].style.backgroundImage=redLight;
+                            }
+                            else{
+                                buble_F_list[index].style.backgroundImage=redOff; 
+                            } 
+                        }
+                        else{
+                            if (v===1){
+                                buble_F_list[index].style.backgroundImage=greenLight;
+                            }
+                            else{
+                                buble_F_list[index].style.backgroundImage=greenOff; 
+                            } 
+                    
+                        }
+                        
+                    })
+                }
+
             }
         }
     }
@@ -1044,4 +1075,12 @@
     top:1.26rem;
     z-index: 1;
 }
+
+.power-switch{
+    left: 0rem;
+    top: 0rem;
+    /* width: 0.8rem;
+    height: 2rem; */
+}
+
 </style>
