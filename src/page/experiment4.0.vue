@@ -239,35 +239,33 @@
                     </div>
                     <div class="mc-unit box">
                         <div class="wrapper">
-                            <div class="mc-unit-text text">
-                                MC单元
-                            </div>
-                            <div class="mc-unit-twoNeedle-1 twoNeedle" @click="buttonClick('mc-unit-LDIR')"></div>
+                            <div class="mc-unit-text text">MC单元</div>
+                            <div class="mc-unit-LDIR twoNeedle" @click="buttonClick('mc-unit-LDIR')" id="mc-unit-LDIR"></div>
                             <div class="mc-unit-LDIR-text text">LDIR</div>
-                            <div class="mc-unit-twoNeedle-2 twoNeedle" @click="buttonClick('mc-unit-F1')"></div>
+                            <div class="mc-unit-F1 twoNeedle" @click="buttonClick('mc-unit-F1')" id="mc-unit-F1"></div>
                             <div class="mc-unit-F1-text text">F&lt;1&gt;</div>
-                            <div class="mc-unit-sixNeedle sixNeedle" @click="buttonClick('mc-unit-SE5-SE0')"></div>
+                            <div class="mc-unit-SE5-SE0 sixNeedle" @click="buttonClick('mc-unit-SE5-SE0')" id="mc-unit-SE5-SE0"></div>
                             <div class="mc-unit-SE0-text text">SE0</div>
                             <div class="mc-unit-SE5-text text">SE5</div>
-                            <div class="mc-unit-twoNeedle-3 twoNeedle" @click="buttonClick('mc-unit-RS_B')"></div>
+                            <div class="mc-unit-RS_B twoNeedle" @click="buttonClick('mc-unit-RS_B')" id="mc-unit-RS_B"></div>
                             <div class="mc-unit-RS_B-text text">RS_B</div>
-                            <div class="mc-unit-twoNeedle-4 twoNeedle" @click="buttonClick('mc-unit-LDRi')"></div>
+                            <div class="mc-unit-LDRi twoNeedle" @click="buttonClick('mc-unit-LDRi')" id="mc-unit-LDRi"></div>
                             <div class="mc-unit-LDRi-text text">LDRi</div>
-                            <div class="mc-unit-fourNeedle-1 fourNeedle" @click="buttonClick('mc-unit-S3-S0')"></div>
+                            <div class="mc-unit-S3-S0 fourNeedle" @click="buttonClick('mc-unit-S3-S0')" id="mc-unit-S3-S0"></div>
                             <div class="mc-unit-S0-text text">S0</div>
                             <div class="mc-unit-S3-text text">S3</div>
-                            <div class="mc-unit-fourNeedle-2 fourNeedle" @click="buttonClick('mc-unit-LDA-LDB')"></div>
+                            <div class="mc-unit-LDA-LDB fourNeedle" @click="buttonClick('mc-unit-LDA-LDB')" id="mc-unit-LDA-LDB"></div>
                             <div class="mc-unit-LDA-text text">LDA</div>
                             <div class="mc-unit-LDB-text text">LDB</div>
-                            <div class="mc-unit-twoNeedle-5 twoNeedle-slim" @click="buttonClick('mc-unit-ALU_B')"></div>
+                            <div class="mc-unit-ALU_B twoNeedle-slim" @click="buttonClick('mc-unit-ALU_B')" id="mc-unit-ALU_B"></div>
                             <div class="mc-unit-ALU_B-text text">ALU_B</div>
-                            <div class="mc-unit-twoNeedle-6 twoNeedle-slim" @click="buttonClick('mc-unit-LDAR')"></div>
+                            <div class="mc-unit-LDAR twoNeedle-slim" @click="buttonClick('mc-unit-LDAR')" id="mc-unit-LDAR"></div>
                             <div class="mc-unit-LDAR-text text">LDAR</div>
-                            <div class="mc-unit-twoNeedle-7 twoNeedle-slim" @click="buttonClick('mc-unit-LDPC')"></div>
+                            <div class="mc-unit-LDPC twoNeedle-slim" @click="buttonClick('mc-unit-LDPC')" id="mc-unit-LDPC"></div>
                             <div class="mc-unit-LDPC-text text">LDPC</div>
-                            <div class="mc-unit-twoNeedle-8 twoNeedle-slim" @click="buttonClick('mc-unit-PC_B')"></div>
+                            <div class="mc-unit-PC_B twoNeedle-slim" @click="buttonClick('mc-unit-PC_B')" id="mc-unit-PC_B"></div>
                             <div class="mc-unit-PC_B-text text">PC_B</div>
-                            <div class="mc-unit-fourNeedle-3 fourNeedle" @click="buttonClick('mc-unit-WR-RD-IOM')"></div>
+                            <div class="mc-unit-WR-RD-IOM fourNeedle" @click="buttonClick('mc-unit-WR-RD-IOM')" id="mc-unit-WR-RD-IOM"></div>
                             <div class="mc-unit-WR-text text">WR</div>
                             <div class="mc-unit-RD-text text">RD</div>
                             <div class="mc-unit-IOM-text text">IOM</div>
@@ -301,17 +299,15 @@
                     </div>
                     <div class="ir-unit box">
                         <div class="wrapper">
-                            <div class="ir-unit-text text">
-                                IR单元
-                            </div>
-                            <div class="ir-unit-twoNeedle-1 twoNeedle" @click="buttonClick('ir-unit-LDIR')"></div>
+                            <div class="ir-unit-text text">IR单元</div>
+                            <div class="ir-unit-LDIR twoNeedle" @click="buttonClick('ir-unit-LDIR')" id="ir-unit-LDIR"></div>
                             <div class="ir-unit-LDIR-text text">LDIR</div>
-                            <div class="ir-unit-twoNeedle-2 twoNeedle" @click="buttonClick('ir-unit-F1')"></div>
+                            <div class="ir-unit-F1 twoNeedle" @click="buttonClick('ir-unit-F1')" id="ir-unit-F1"></div>
                             <div class="ir-unit-F1-text text">F&lt;1&gt;</div>
-                            <div class="ir-unit-sixNeedle sixNeedle" @click="buttonClick('ir-unit-SE5-SE0')"></div>
+                            <div class="ir-unit-SE5-SE0 sixNeedle" @click="buttonClick('ir-unit-SE5-SE0')" id="ir-unit-SE5-SE0"></div>
                             <div class="ir-unit-SE5-text text">SE5</div>
                             <div class="ir-unit-SE0-text text">SE0</div>
-                            <div class="ir-unit-eightNeedle eightNeedle" @click="buttonClick('ir-unit-D7-D0')"></div>
+                            <div class="ir-unit-D7-D0 eightNeedle" @click="buttonClick('ir-unit-D7-D0')" id="ir-unit-D7-D0"></div>
                             <div class="ir-unit-D7-text text">D7</div>
                             <div class="ir-unit-D0-text text">D0</div>
                         </div>
@@ -321,32 +317,32 @@
                             <div class="alu-reg-unit-text text">
                                 ALU及REG单元
                             </div>
-                            <div class="alu-reg-unit-twoNeedle-1 twoNeedle" @click="buttonClick('alu-reg-unit-RO_B')"/>
+                            <div class="alu-reg-unit-RO_B twoNeedle" @click="buttonClick('alu-reg-unit-RO_B')" id="alu-reg-unit-RO_B"/>
                             <div class="alu-reg-unit-RO_B-text text">RO_B</div>
-                            <div class="alu-reg-unit-twoNeedle-2 twoNeedle" @click="buttonClick('alu-reg-unit-LDRO')"/>
+                            <div class="alu-reg-unit-LDRO twoNeedle" @click="buttonClick('alu-reg-unit-LDRO')" id="alu-reg-unit-LDRO"/>
                             <div class="alu-reg-unit-LDRO-text text">LDRO</div>
-                            <div class="alu-reg-unit-twoNeedle-3 twoNeedle" @click="buttonClick('alu-reg-unit-ALU_B')"></div>
+                            <div class="alu-reg-unit-ALU_B twoNeedle" @click="buttonClick('alu-reg-unit-ALU_B')" id="alu-reg-unit-ALU_B"></div>
                             <div class="alu-reg-unit-ALU_B-text text">ALU_B</div>
-                            <div class="alu-reg-unit-twoNeedle-4 twoNeedle"></div>
+                            <div class="alu-reg-unit-Cn twoNeedle"></div>
                             <div class="alu-reg-unit-Cn-text text">Cn</div>
-                            <div class="alu-reg-unit-red-buble red-buble"/>
-                            <div class="alu-reg-unit-green-buble green-buble"/>
-                            <div class="alu-reg-unit-fourNeedle-FZ-FC fourNeedle"></div>
+                            <div class="alu-reg-unit-FZ red-buble"/>
+                            <div class="alu-reg-unit-FC green-buble"/>
+                            <div class="alu-reg-unit-FZ-FC fourNeedle"></div>
                             <div class="alu-reg-unit-FZ-text text">FZ</div>
                             <div class="alu-reg-unit-FC-text text">FC</div>
-                            <div class="alu-reg-unit-fourNeedle-2 fourNeedle" @click="buttonClick('alu-reg-unit-S3-S0')"></div>
+                            <div class="alu-reg-unit-S3-S0 fourNeedle" @click="buttonClick('alu-reg-unit-S3-S0')" id="alu-reg-unit-S3-S0"></div>
                             <div class="alu-reg-unit-S3-text text">S3</div>
                             <div class="alu-reg-unit-S0-text text">S0</div>
-                            <div class="alu-reg-unit-fourNeedle-3 fourNeedle" @click="buttonClick('alu-reg-unit-LDA-LDB')"></div>
+                            <div class="alu-reg-unit-LDA-LDB fourNeedle" @click="buttonClick('alu-reg-unit-LDA-LDB')" id="alu-reg-unit-LDA-LDB"></div>
                             <div class="alu-reg-unit-LDA-text text">LDA</div>
                             <div class="alu-reg-unit-LDB-text text">LDB</div>
-                            <div class="alu-reg-unit-eightNeedle-1 eightNeedle" @click="buttonClick('alu-reg-unit-IN7-IN0')"></div>
+                            <div class="alu-reg-unit-IN7-IN0 eightNeedle" @click="buttonClick('alu-reg-unit-IN7-IN0')" id="alu-reg-unit-IN7-IN0"></div>
                             <div class="alu-reg-unit-IN7-text text">IN7</div>
                             <div class="alu-reg-unit-IN0-text text">IN0</div>
-                            <div class="alu-reg-unit-eightNeedle-2 eightNeedle" @click="buttonClick('alu-reg-unit-OUT7-OUT0')"></div>
+                            <div class="alu-reg-unit-OUT7-OUT0 eightNeedle" @click="buttonClick('alu-reg-unit-OUT7-OUT0')" id="alu-reg-unit-OUT7-OUT0"></div>
                             <div class="alu-reg-unit-OUT7-text text">OUT7</div>
                             <div class="alu-reg-unit-OUT0-text text">OUT0</div>
-                            <div class="alu-reg-unit-eightNeedle-3 eightNeedle" @click="buttonClick('alu-reg-unit-D7-D0')"></div>
+                            <div class="alu-reg-unit-D7-D0 eightNeedle" @click="buttonClick('alu-reg-unit-D7-D0')" id="alu-reg-unit-D7-D0"></div>
                             <div class="alu-reg-unit-D7-text text">D7</div>
                             <div class="alu-reg-unit-D0-text text">D0</div>
                             <div class="alu-reg-unit-buble-box">
@@ -421,35 +417,18 @@
                             <div class="text system-twoNeedle-xiow-text">
                                 XIOW
                             </div>
-
                             <div class="twoNeedle system-twoNeedle-xior" @click=" buttonClick('con-bus-XIOR')" id="con-bus-XIOR"/>
-                            <div class="text system-twoNeedle-xior-text">
-                                XIOR
-                            </div>
-
+                            <div class="text system-twoNeedle-xior-text">XIOR</div>
                             <div class="fourNeedle system-fourNeedle-xmwr" @click="buttonClick('con-bus-XMWR-XMRD')" id="con-bus-XMWR-XMRD"/>
-                            <div class="text system-fourNeedle-xmwr-text">
-                                XMWR-XMRD
-                            </div>
-
+                            <div class="text system-fourNeedle-xmwr-text">XMWR-XMRD</div>
                             <div class="twoNeedle system-twoNeedle-hold invisible"/>
-                            <div class="text system-twoNeedle-hold-text invisible">
-                                HOLD
-                            </div>
-
+                            <div class="text system-twoNeedle-hold-text invisible">HOLD</div>
                             <div class="fourNeedle system-fourNeedle-iom" @click="buttonClick('con-bus-WR-RD-IOM')" id="con-bus-WR-RD-IOM"/>
-                            <div class="text system-fourNeedle-iom-text">
-                                WR-RD-IOM
-                            </div>
-                            
+                            <div class="text system-fourNeedle-iom-text">WR-RD-IOM</div>
                             <div class="eightNeedle2 system-eightNeedle-xd-1" @click="buttonClick('con-bus-XD7-XD0')" id="con-bus-XD7-XD0-1"/>
                             <div class="eightNeedle2 system-eightNeedle-xd-2" @click="buttonClick('con-bus-XD7-XD0')" id="con-bus-XD7-XD0-2"/>
-                            <div class="text system-eightNeedle-xd7-text">
-                                XD7
-                            </div>
-                            <div class="text system-eightNeedle-xd0-text">
-                                XD0
-                            </div>
+                            <div class="text system-eightNeedle-xd7-text">XD7</div>
+                            <div class="text system-eightNeedle-xd0-text">XD0</div>
                             
                             <!----->
                             <div class="red-buble system-red-buble-a7" name="buble_F"/>
@@ -495,15 +474,15 @@
                             <div class="mm-text text">
                                 MEM单元
                             </div>
-                            <div class="MEM-eightNeedle-1 eightNeedle" @click="buttonClick('MEM-unit-D7-D0')" id="MEM-unit-D7-D0"/>
-                            <div class="MEM-eightNeedle-D7-text text">D7</div>
-                            <div class="MEM-eightNeedle-D0-text text">D0</div>
-                            <div class="MEM-eightNeedle-2 eightNeedle" @click="buttonClick('MEM-unit-A7-A0')" id="MEM-unit-A7-A0"/>
-                            <div class="MEM-eightNeedle-A7-text text">A7</div>
-                            <div class="MEM-eightNeedle-A0-text text">A0</div>
-                            <div class="MEM-fourNeedle fourNeedle" @click="buttonClick('MEM-unit-WR-RD')" id="MEM-unit-WR-RD"/>
-                            <div class="MEM-fourNeedle-WR-text text">WR</div>
-                            <div class="MEM-fourNeedle-RD-text text">RD</div>
+                            <div class="mem-D7-D0 eightNeedle" @click="buttonClick('MEM-unit-D7-D0')" id="MEM-unit-D7-D0"/>
+                            <div class="mem-D7-text text">D7</div>
+                            <div class="mem-D0-text text">D0</div>
+                            <div class="mem-A7-A0 eightNeedle" @click="buttonClick('MEM-unit-A7-A0')" id="MEM-unit-A7-A0"/>
+                            <div class="mem-A7-text text">A7</div>
+                            <div class="mem-A0-text text">A0</div>
+                            <div class="mem-WR-RD fourNeedle" @click="buttonClick('MEM-unit-WR-RD')" id="MEM-unit-WR-RD"/>
+                            <div class="mem-WR-text text">WR</div>
+                            <div class="mem-RD-text text">RD</div>
                         </div>
                     </div>
                     <div class="eightTwoNine box">
@@ -531,14 +510,12 @@
                     </div>
                     <div class="out-unit box">
                         <div class="wrapper">
-                            <div class="out-unit-text text">
-                                OUT单元
-                            </div>
-                            <div class="out-unit-twoNeedle-1 twoNeedle" @click="buttonClick('out-unit-WR')"/>
+                            <div class="out-unit-text text">OUT单元</div>
+                            <div class="out-unit-WR twoNeedle" @click="buttonClick('out-unit-WR')" id="out-unit-WR"/>
                             <div class="out-unit-WR-text text">WR</div>
-                            <div class="out-unit-twoNeedle-2 twoNeedle" @click="buttonClick('out-unit-LED_B')"/>
+                            <div class="out-unit-LED_B twoNeedle" @click="buttonClick('out-unit-LED_B')" id="out-unit-LED_B"/>
                             <div class="out-unit-LED_B-text text">LED_B</div>
-                            <div class="out-unit-eightNeedle eightNeedle"  @click="buttonClick('out-unit-D7-D0')"/>
+                            <div class="out-unit-D7-D0 eightNeedle"  @click="buttonClick('out-unit-D7-D0')" id="out-unit-D7-D0"/>
                             <div class="out-unit-D7-text text">D7</div>
                             <div class="out-unit-D0-text text">D0</div>
                         </div>
@@ -1202,7 +1179,7 @@
 @import '../elements/alu.css';
 @import '../elements/con2.css';
 @import '../elements/cpu.css';
-@import '../elements/mem.css';
+@import '../elements/mem-4.css';
 @import '../elements/pc-ar.css';
 @import '../elements/in-unit.css';
 @import '../elements/expansion-unit.css';
