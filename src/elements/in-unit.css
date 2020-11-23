@@ -1,8 +1,8 @@
-.in-unit-fourNeedle{
+.in-unit-IN_B-RD{
     left:1.0rem;
     top:.1rem;
 }
-.in-unit-fourNeedle-IN_B-RD-text{
+.in-unit-IN_B-RD-text{
     width:1.08rem;
     height:.42rem;
     position:absolute;
@@ -11,11 +11,11 @@
     font-size: .192rem;
     line-height: .192rem;
 }
-.in-unit-eightNeedle{
+.in-unit-D7-D0{
     left:2.0rem;
     top:.1rem;
 }
-.in-unit-eightNeedle-D7-text{
+.in-unit-D7-text{
     width:1.08rem;
     height:.42rem;
     position:absolute;
@@ -24,7 +24,7 @@
     font-size: .192rem;
     line-height: .192rem;
 }
-.in-unit-eightNeedle-D0-text{
+.in-unit-D0-text{
     width:1.08rem;
     height:.42rem;
     position:absolute;
@@ -65,7 +65,7 @@
     left:2.3rem;
     top:1.35rem;
 }
-.in-unit-D7-text{
+.in-unit-switch-D7-text{
     width:1.08rem;
     height:.42rem;
     position:absolute;
@@ -74,7 +74,7 @@
     font-size: .192rem;
     line-height: .192rem;
 }
-.in-unit-D4-text{
+.in-unit-switch-D4-text{
     width:1.08rem;
     height:.42rem;
     position:absolute;
@@ -83,7 +83,7 @@
     font-size: .192rem;
     line-height: .192rem;
 }
-.in-unit-D3-text{
+.in-unit-switch-D3-text{
     width:1.08rem;
     height:.42rem;
     position:absolute;
@@ -92,7 +92,7 @@
     font-size: .192rem;
     line-height: .192rem;
 }
-.in-unit-D0-text{
+.in-unit-switch-D0-text{
     width:1.08rem;
     height:.42rem;
     position:absolute;
