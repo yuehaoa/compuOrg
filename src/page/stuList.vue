@@ -7,11 +7,6 @@
             </i-col>
         </Row>
         <Table stripe :columns="columns" :data="this.stulist" ref="stuTable" style="margin-top:20px;">
-            <template v-slot:action="props">
-                <Button type="primary" @click="toDetail(props.row)">详情</Button>
-                &nbsp;
-                <Button style="margin-left:15px;" type="error" @click="delStu(props.row)">删除</Button>
-            </template>
         </Table>
     </Card>
 </template>
@@ -85,34 +80,36 @@ export default {
                     key:"stuName"
                 },
                 {
+                    title: '学号',
+                    key: "num"
+                },
+                {
                     title:"班级",
                     key:"class"
                 },
                 {
                     title:"年级",
                     key:"grade"
-                },
-                {
-                    title: '操作',
-                    slot: 'action',
-                    align: 'center'
                 }
             ],
             stulist:[
                 {
                     stuName:"小赵",
                     class:"1班",
-                    grade:"2018级本科"
+                    grade:"2018级本科",
+                    num: "20180001"
                 },
                 {
                     stuName:"小李",
                     class:"1班",
-                    grade:"2018级本科"
+                    grade:"2018级本科",
+                     num: "20180002"
                 },
                 {
                     stuName:"小孙",
                     class:"1班",
-                    grade:"2018级本科"
+                    grade:"2018级本科",
+                    num: "20180003"
                 }
             ]
         }

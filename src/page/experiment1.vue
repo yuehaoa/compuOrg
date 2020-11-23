@@ -30,10 +30,10 @@
                         </template>
                     </Table>
                     <div style="margin-top:.2rem" v-if="tableShow">
-                        <Button type="error" style="float:right" @click="remove()">删除连线</Button>
+                        <Button type="error" ghost style="float:right" @click="remove()">删除连线</Button>
                     </div>
                     <div style="margin-bottom:.2rem" v-if="tableShow">
-                        <Button type="success" style="float:left" @click="lineCheck()">校验所有连线</Button>
+                        <Button type="primary" ghost style="float:left" @click="lineCheck()">校验所有连线</Button>
                     </div>
                 </card>
             </div>
@@ -375,14 +375,7 @@
                             </div>
                         </vue-draggable-resizable>
                         <div class="pc-ar box">
-                            <div class="wrapper">
-                                <div class="pc-ar-text-1 text">
-                                    PC及AR
-                                </div>
-                                <div class="pc-ar-text-2 text">
-                                    单元
-                                </div>
-                            </div>
+                            
                         </div>
                         <div class="system-bus-text text">
                             系统总线

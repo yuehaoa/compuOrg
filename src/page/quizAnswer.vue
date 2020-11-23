@@ -78,12 +78,33 @@ export default {
         this.studentId = this.$route.params.studentId;
         this.flag = this.$route.params.flag;
         this.isStudent = this.$route.params.isStudent;
-        this.getStudentExam()
+       // this.getStudentExam()
     },
     data(){
         return{
             studentId: '',
-            quizQuestion:[],
+            quizQuestion:[
+                {
+                    title: "什么是ALU单元",
+                    answer:"算术逻辑单元 Arithmetic Logic Unit, ALU是中央处理器CPU的执行单元，是所有中央处理器的核心组成部分"
+                },
+                {
+                    title: "为什么在实验开始前将时序与操作台单元的开关 KK2 置为‘单拍’档",
+                    answer:""
+                },
+                {
+                    title: "请简述如何将数据存入LDA",
+                    answer:"置 LDA=1，LDB=0，连续按动时序单元的 ST 按钮，产生一个 T4 上沿，则将二进制数01100101 置入暂存器 A 中，暂存器 A 的值通过 ALU 单元的 A7…A0 八位 LED 灯显示"
+                },
+                {
+                    title: "请简述如何将数据存入LDB",
+                    answer:" LDA=0，LDB=1，连续按动时序单元的 ST 按钮，产生一个 T4 上沿，则将二进制数10100111 置入暂存器 B 中，暂存器 B 的值通过 ALU 单元的 B7…B0 八位 LED 灯显示"
+                },
+                {
+                    title: "请简述如何进行加法运算",
+                    answer:""
+                }
+            ],
             score:'',
             value:'',
             value5:'',

@@ -37,6 +37,7 @@
                                 <MenuItem name="1-1" :to="{name:'Experiment1'}">运算器</MenuItem>
                                 <MenuItem name="1-2">存储器</MenuItem>
                                 <MenuItem name="1-3">系统总线</MenuItem>
+                                <MenuItem name="1-4">微程序控制器</MenuItem>
                             </Submenu>
                             <Submenu name="2">
                                 <template slot="title">

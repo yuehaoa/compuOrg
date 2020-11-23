@@ -36,11 +36,15 @@ export default {
              columns: [
                 {
                     title:"姓名",
-                    key:"name"
+                    key:"stuName"
+                },
+                {
+                    title:"学号",
+                    key:"num"
                 },
                 {
                     title:"班级",
-                    key:"classname"
+                    key:"class"
                 },
                 {
                     title:"年级",
@@ -55,11 +59,15 @@ export default {
             columns2: [
                 {
                     title:"姓名",
-                    key:"name"
+                    key:"stuName"
+                },
+                {
+                    title:"学号",
+                    key:"num"
                 },
                 {
                     title:"班级",
-                    key:"classname"
+                    key:"class"
                 },
                 {
                     title:"年级",
@@ -78,26 +86,37 @@ export default {
             stulist:[
                 {
                     stuName:"小赵",
+                    num:"2018001",
                     class:"1班",
                     grade:"2018级本科"
                 },
                 {
                     stuName:"小李",
+                    num:"2018002",
                     class:"1班",
                     grade:"2018级本科"
                 },
                 {
                     stuName:"小孙",
+                    num:"2018003",
                     class:"1班",
                     grade:"2018级本科"
                 }
             ],
-            stulistFinished: []
+            stulistFinished: [
+                {
+                    stuName:"小宋",
+                    num:"2018005",
+                    class:"1班",
+                    score:50,
+                    grade:"2018级本科"
+                }
+            ]
         }
     },
     mounted() {
-        this.getStudents();
-        this.getFinishedStudent();
+       // this.getStudents();
+        //this.getFinishedStudent();
     },
     methods:{
         getStudents() {
