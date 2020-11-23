@@ -360,7 +360,7 @@
                             </div>
                             <div class="eightNeedle2 system-eightNeedle-xa" @click="buttonClick('con-bus-XA7-XA0')" id="con-bus-XA7-XA0"></div>
 
-                            <div class="system-bus-text-1 text">
+                            <div class="system-bus-control-text-1 text">
                                 控制总线
                             </div>
                             <div class="system-bus-text-2 text">
@@ -379,15 +379,15 @@
                             <div class="mm-text text">
                                 MEM单元
                             </div>
-                            <div class="MEM-eightNeedle-1 eightNeedle" @click="buttonClick('MEM-unit-D7-D0')" id="MEM-unit-D7-D0"/>
-                            <div class="MEM-eightNeedle-D7-text text">D7</div>
-                            <div class="MEM-eightNeedle-D0-text text">D0</div>
-                            <div class="MEM-eightNeedle-2 eightNeedle" @click="buttonClick('MEM-unit-A7-A0')" id="MEM-unit-A7-A0"/>
-                            <div class="MEM-eightNeedle-A7-text text">A7</div>
-                            <div class="MEM-eightNeedle-A0-text text">A0</div>
-                            <div class="MEM-fourNeedle fourNeedle" @click="buttonClick('MEM-unit-WR-RD')" id="MEM-unit-WR-RD"/>
-                            <div class="MEM-fourNeedle-WR-text text">WR</div>
-                            <div class="MEM-fourNeedle-RD-text text">RD</div>
+                            <div class="mem-D7-D0 eightNeedle" @click="buttonClick('MEM-unit-D7-D0')" id="MEM-unit-D7-D0"/>
+                            <div class="mem-D7-text text">D7</div>
+                            <div class="mem-D0-text text">D0</div>
+                            <div class="mem-A7-A0 eightNeedle" @click="buttonClick('MEM-unit-A7-A0')" id="MEM-unit-A7-A0"/>
+                            <div class="mem-A7-text text">A7</div>
+                            <div class="mem-A0-text text">A0</div>
+                            <div class="mem-WR-RD fourNeedle" @click="buttonClick('MEM-unit-WR-RD')" id="MEM-unit-WR-RD"/>
+                            <div class="mem-WR-text text">WR</div>
+                            <div class="mem-RD-text text">RD</div>
                         </div>
                     </div>
                     <div class="eightTwoNine box">
@@ -923,6 +923,7 @@
 @import '../elements/alu.css';
 @import '../elements/con2.css';
 @import '../elements/cpu.css';
+@import '../elements/mem-4.css';
 
 @import '../elements/pc-ar.css';
 @import '../elements/in-unit.css';
