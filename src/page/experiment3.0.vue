@@ -146,22 +146,22 @@
                             <div class="expansion-unit-text text">
                                 扩展单元
                             </div>
-                            <div class="expansion-unit-twoNeedle-1 twoNeedle" @click=" buttonClick('expansion-GND')" id="expansion-GND"/>
-                            <div class="expansion-unit-twoNeedle-GND-text text">GND</div>
-                            <div class="expansion-unit-twoNeedle-2 twoNeedle" @click=" buttonClick('expansion-5V')" id="expansion-5V"/>
-                            <div class="expansion-unit-twoNeedle-5V-text text">+5V</div>
-                            <div class="expansion-unit-twoNeedle-3 twoNeedle-slim "/>
-                            <div class="expansion-unit-twoNeedle-E7-text text">E7</div>
-                            <div class="expansion-unit-twoNeedle-E6-text text">E6</div>
-                            <div class="expansion-unit-twoNeedle-4 twoNeedle-slim"/>
-                            <div class="expansion-unit-twoNeedle-E5-text text">E5</div>
-                            <div class="expansion-unit-twoNeedle-E4-text text">E4</div>
-                            <div class="expansion-unit-twoNeedle-5 twoNeedle-slim" @click=" buttonClick('expansion-E3-E2')" id="expansion-E3-E2"/>
-                            <div class="expansion-unit-twoNeedle-E3-text text">E3</div>
-                            <div class="expansion-unit-twoNeedle-E2-text text">E2</div>
-                            <div class="expansion-unit-twoNeedle-6 twoNeedle-slim" @click=" buttonClick('expansion-E1-E0')" id="expansion-E1-E0"/>
-                            <div class="expansion-unit-twoNeedle-E1-text text">E1</div>
-                            <div class="expansion-unit-twoNeedle-E0-text text">E0</div>
+                            <div class="expansion-unit-GND twoNeedle" @click=" buttonClick('expansion-GND')" id="expansion-GND"/>
+                            <div class="expansion-unit-GND-text text">GND</div>
+                            <div class="expansion-unit-5V twoNeedle" @click=" buttonClick('expansion-5V')" id="expansion-5V"/>
+                            <div class="expansion-unit-5V-text text">+5V</div>
+                            <div class="expansion-unit-E7-E6 twoNeedle-slim" @click=" buttonClick('expansion-E7-E6')" id="expansion-E7-E6"/>
+                            <div class="expansion-unit-E7-text expansion-E-text text">E7</div>
+                            <div class="expansion-unit-E6-text expansion-E-text text">E6</div>
+                            <div class="expansion-unit-E5-E4 twoNeedle-slim" @click=" buttonClick('expansion-E5-E4')" id="expansion-E5-E4"/>
+                            <div class="expansion-unit-E5-text expansion-E-text text">E5</div>
+                            <div class="expansion-unit-E4-text expansion-E-text text">E4</div>
+                            <div class="expansion-unit-E3-E2 twoNeedle-slim" @click=" buttonClick('expansion-E3-E2')" id="expansion-E3-E2"/>
+                            <div class="expansion-unit-E3-text expansion-E-text text">E3</div>
+                            <div class="expansion-unit-E2-text expansion-E-text text">E2</div>
+                            <div class="expansion-unit-E1-E0 twoNeedle-slim" @click=" buttonClick('expansion-E1-E0')" id="expansion-E1-E0"/>
+                            <div class="expansion-unit-E1-text expansion-E-text text">E1</div>
+                            <div class="expansion-unit-E0-text expansion-E-text text">E0</div>
                             <div class="red-buble expansion-unit-red-buble-1" name="buble_F"/>
                             <div class="red-buble expansion-unit-red-buble-2" name="buble_F"/>
                             <div class="green-buble expansion-unit-green-buble-1" name="buble_F"/>
@@ -360,7 +360,7 @@
                             </div>
                             <div class="eightNeedle2 system-eightNeedle-xa" @click="buttonClick('con-bus-XA7-XA0')" id="con-bus-XA7-XA0"></div>
 
-                            <div class="system-bus-text-1 text">
+                            <div class="system-bus-control-text-1 text">
                                 控制总线
                             </div>
                             <div class="system-bus-text-2 text">
@@ -379,15 +379,15 @@
                             <div class="mm-text text">
                                 MEM单元
                             </div>
-                            <div class="MEM-eightNeedle-1 eightNeedle" @click="buttonClick('MEM-unit-D7-D0')" id="MEM-unit-D7-D0"/>
-                            <div class="MEM-eightNeedle-D7-text text">D7</div>
-                            <div class="MEM-eightNeedle-D0-text text">D0</div>
-                            <div class="MEM-eightNeedle-2 eightNeedle" @click="buttonClick('MEM-unit-A7-A0')" id="MEM-unit-A7-A0"/>
-                            <div class="MEM-eightNeedle-A7-text text">A7</div>
-                            <div class="MEM-eightNeedle-A0-text text">A0</div>
-                            <div class="MEM-fourNeedle fourNeedle" @click="buttonClick('MEM-unit-WR-RD')" id="MEM-unit-WR-RD"/>
-                            <div class="MEM-fourNeedle-WR-text text">WR</div>
-                            <div class="MEM-fourNeedle-RD-text text">RD</div>
+                            <div class="mem-D7-D0 eightNeedle" @click="buttonClick('MEM-unit-D7-D0')" id="MEM-unit-D7-D0"/>
+                            <div class="mem-D7-text text">D7</div>
+                            <div class="mem-D0-text text">D0</div>
+                            <div class="mem-A7-A0 eightNeedle" @click="buttonClick('MEM-unit-A7-A0')" id="MEM-unit-A7-A0"/>
+                            <div class="mem-A7-text text">A7</div>
+                            <div class="mem-A0-text text">A0</div>
+                            <div class="mem-WR-RD fourNeedle" @click="buttonClick('MEM-unit-WR-RD')" id="MEM-unit-WR-RD"/>
+                            <div class="mem-WR-text text">WR</div>
+                            <div class="mem-RD-text text">RD</div>
                         </div>
                     </div>
                     <div class="eightTwoNine box">
@@ -591,15 +591,15 @@
                             <div class="in-unit-text text">
                                 IN单元
                             </div>
-                            <div class="in-unit-fourNeedle fourNeedle" @click="buttonClick('in-unit-IN_B-RD')" id="in-unit-IN_B-RD"/>
-                            <div class="in-unit-fourNeedle-IN_B-RD-text text">IN_B RD</div>
-                            <div class="in-unit-eightNeedle eightNeedle" @click="buttonClick('in-unit-D7-D0')" id="in-unit-D7-D0"/>
-                            <div class="in-unit-eightNeedle-D7-text text">D7</div>
-                            <div class="in-unit-eightNeedle-D0-text text">D0</div>
+                            <div class="in-unit-IN_B-RD fourNeedle" @click="buttonClick('in-unit-IN_B-RD')" id="in-unit-IN_B-RD"/>
+                            <div class="in-unit-IN_B-RD-text text">IN_B RD</div>
+                            <div class="in-unit-D7-D0 eightNeedle" @click="buttonClick('in-unit-D7-D0')" id="in-unit-D7-D0"/>
                             <div class="in-unit-D7-text text">D7</div>
-                            <div class="in-unit-D4-text text">D4</div>
-                            <div class="in-unit-D3-text text">D3</div>
                             <div class="in-unit-D0-text text">D0</div>
+                            <div class="in-unit-switch-D7-text text">D7</div>
+                            <div class="in-unit-switch-D4-text text">D4</div>
+                            <div class="in-unit-switch-D3-text text">D3</div>
+                            <div class="in-unit-switch-D0-text text">D0</div>
                             <div class="switch in-unit-D7" @click="changeSwitch"/>
                             <div class="switch in-unit-D6" @click="changeSwitch"/>
                             <div class="switch in-unit-D5" @click="changeSwitch"/>
@@ -923,6 +923,7 @@
 @import '../elements/alu.css';
 @import '../elements/con2.css';
 @import '../elements/cpu.css';
+@import '../elements/mem-4.css';
 
 @import '../elements/pc-ar.css';
 @import '../elements/in-unit.css';

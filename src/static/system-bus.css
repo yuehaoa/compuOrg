@@ -5,6 +5,16 @@
     left:12.804rem;
     top:3.204rem;
 }
+.system-bus-control-text-1{
+    width:1.08rem;
+    height:.42rem;
+    position:absolute;
+    left:.216rem;
+    top:0.8rem;
+    font-size: .192rem;
+    line-height: .192rem;
+    font-weight:bold;
+}
 .system-bus-text-1{
     width:1.08rem;
     height:.42rem;
