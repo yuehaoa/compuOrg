@@ -21,6 +21,9 @@
                                 实验信息
                             </template>
                             <MenuItem name="Exp1_List" :to="{name:'Exp1_List'}">实验1</MenuItem>
+                            <MenuItem name="Exp2_List" :to="{name:'Exp2_List'}">实验2</MenuItem>
+                            <MenuItem name="Exp3_List" :to="{name:'Exp3_List'}">实验3</MenuItem>
+                            <MenuItem name="Exp4_List" :to="{name:'Exp4_List'}">实验4</MenuItem>
                         </Submenu>
                         <Submenu name="2">
                             <template slot="title">

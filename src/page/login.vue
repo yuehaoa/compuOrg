@@ -1,7 +1,7 @@
 <template>
    <div class="body">
         <div class="title">
-                <div class="main-title">计算机组成原理实验平台</div>
+                <div class="main-title">计算机硬件课程实验仿真平台</div>
                 <div class="sub-title">厦门大学信息学院</div>
         </div>
         <!--  <div class="logo-form">
@@ -13,7 +13,7 @@
             </div>-->
             <div id="login-form">
                 <div class="container">
-                    <div class="container-title">账号登录</div>
+                    <div class="container-title">学生账号登录</div>
                     <div class="content">
                         <i-form v-show="method === 'password'" :model="passwordModel" :rules="passwordRules" ref="password">
                             <form-item prop="userName">
@@ -24,7 +24,7 @@
                             </form-item>
                             <form-item>
                                 <i-button long size="large" type="primary" @click="login()" :loading="isloading">登 录</i-button>
-                                <a href="javascript:;" class="to-mobile" @click="method='mobile'">使用手机短信登录</a>
+                                <a href="javascript:;" class="to-mobile" @click="register()" style="float:right">忘记密码</a>
                             </form-item>
                         </i-form>
                     </div>
@@ -177,12 +177,12 @@ export default {
     margin-top: 50px;
 }
 .main-title{
-    font-size: 32px;
-    line-height: 32px;
+    font-size: 50px;
+    line-height: 50px;
 }
 .sub-title{
     margin-top: 8px;
-    font-size: 18px;
+    font-size: 30px;
     margin-bottom: 10px;
 }
 </style>

@@ -33,7 +33,28 @@ const axios = require("axios");
 export default {
     data(){
         return{
-            quizQuestion:[],
+            quizQuestion:[
+                {
+                    title: "什么是ALU单元",
+                    answer:""
+                },
+                {
+                    title: "为什么在实验开始前将时序与操作台单元的开关 KK2 置为‘单拍’档",
+                    answer:""
+                },
+                {
+                    title: "请简述如何将数据存入LDA",
+                    answer:""
+                },
+                {
+                    title: "请简述如何将数据存入LDB",
+                    answer:""
+                },
+                {
+                    title: "请简述如何进行加法运算",
+                    answer:""
+                }
+            ],
             answerSet:[],
             minutes:30,
             seconds:0,
