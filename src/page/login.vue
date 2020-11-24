@@ -1,8 +1,9 @@
 <template>
    <div class="body">
+       <a class="about-software" @click="$router.push({'name':'aboutSoftware'})"><span style="font-size:14px;">关于软件</span></a>
         <div class="title">
-                <div class="main-title">计算机硬件课程实验仿真平台</div>
-                <div class="sub-title">厦门大学信息学院</div>
+            <div class="main-title">计算机硬件课程实验仿真平台</div>
+            <div class="sub-title">厦门大学信息学院</div>
         </div>
         <!--  <div class="logo-form">
                 <img src="../assets/login-logo.jpg"/>
@@ -184,5 +185,13 @@ export default {
     margin-top: 8px;
     font-size: 30px;
     margin-bottom: 10px;
+}
+.about-software{
+    float:right;
+    color:white;
+    width:80px;
+    height:40px;
+    border:none;
+    padding:10px;
 }
 </style>

@@ -25,7 +25,17 @@
                            </i-col>     
                            <i-col span="3" class="position">
                                <MenuItem name="3">
-                                    <Icon type="ios-help-circle-outline" size="24"/>
+                                    <Dropdown>
+                                        <Icon type="ios-help-circle-outline" size="24"/>
+                                        <DropdownMenu slot="list">
+                                            <DropdownItem>
+                                                帮助中心
+                                            </DropdownItem>
+                                            <DropdownItem divided @click.native="$router.push({'name':'aboutSoftware'})">
+                                                关于软件
+                                            </DropdownItem> 
+                                        </DropdownMenu>
+                                    </Dropdown>
                                </MenuItem>
                            </i-col> 
                            <i-col span="3"  class="position">
@@ -65,7 +75,7 @@ export default {
         }
     },
     methods:{
-        
+
     }
 }
 </script>
