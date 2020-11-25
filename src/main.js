@@ -5,8 +5,6 @@ import 'iview/dist/styles/iview.css' // 引入iview css样式
 import VueRouter from 'vue-router'
 
 
-
-
 import VueDraggableResizable from 'vue-draggable-resizable'
 import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
 Vue.component('vue-draggable-resizable', VueDraggableResizable)
@@ -112,6 +110,12 @@ const routes = [
     meta:{layout:"empty"},
     name:"exp_environment3",
     component: () => import("./page/exp_environment3.vue")
+  },
+  {
+    path: "/aboutSoftware",
+    meta:{layout:"header"},
+    name:"aboutSoftware",
+    component: () => import("./page/aboutSoftware.vue")
   }
 
 ]
